@@ -12,8 +12,6 @@ public class MainController {
     @Autowired
     private TaskService taskService;
     
-    //Blabla
-    
     @GetMapping("/")
     public String home() {
         return "index";
