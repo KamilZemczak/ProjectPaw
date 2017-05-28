@@ -9,7 +9,7 @@
         
         <title>Boot Sample | Home</title>
         
-        <link hred="static/css/bootstrap.min.css" rel="stylesheet">
+        <link href="static/css/bootstrap.min.css" rel="stylesheet">
         
         <!--[if lt IE 9]>
         <script src="static/js/html5shiv.min.js"></script>
