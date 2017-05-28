@@ -31,5 +31,10 @@ public class SampleRestController {
         taskService.save(task);
         return "Task saved!";
     }
-
+    
+    @GetMapping("/delete-task")
+    public String deleteTask(@RequestParam int id) {
+        taskService.delete(id);
+        return "Task deleted!";
+    }
 }
