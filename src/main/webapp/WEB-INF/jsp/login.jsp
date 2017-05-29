@@ -14,7 +14,7 @@
 
 <style>
 .jumbotron{
-    background-color:#D6BABA;
+    background-color:#b5953f;
     color:white;
 }
 /* Adds borders for tabs */
@@ -38,11 +38,12 @@
 
 <!-- page-header adds space aroundtext and enlarges it. It also adds an underline at the end -->
 <div class="page-header">
-<h1><center>Witaj w LIDZE TYPEROW!</center></h1>
+<center> <img src="static/images/ligatyperow.png" width="200" height="140"> </center>
 </div>
 
 <div class="row">
 <div class="col-md-4">
+
 </div>
 
 <div class="col-md-4">
