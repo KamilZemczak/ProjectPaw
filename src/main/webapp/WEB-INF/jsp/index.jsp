@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <html>
     <head>
@@ -27,7 +28,7 @@
                 <a href="/" class="navbar-brand">Bootsample</a>  
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="new-task">Manage Task</a></li>
+                        <li><a href="new-task">New Task</a></li>
                         <li><a href="all-tasks">All Tasks</a></li>
                     </ul>
                 </div>
@@ -56,6 +57,7 @@
                                         <th>Date Created</th>
                                         <th>Finished</th>
                                         <th></th>
+                                        <th></th>
                                     </tr>
                                 </thread>
                                 <tbody>
@@ -64,8 +66,9 @@
                                             <td>${task.id}</td>
                                             <td>${task.name}</td>
                                             <td>${task.description}</td>
-                                            <td>${task.dateCreated}</td>
+                                            <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${task.dateCreated}"/></td>
                                             <td>${task.finished}</td>
+                                            <td><a href="update-task?id=${task.id}"><span class="glyphicon glyphicon-pencil"></span></a></td>
                                             <td><a href="delete-task?id=${task.id}"><span class="glyphicon glyphicon-trash"></span></a></td>
                                         </tr>
                                     </c:forEach>
@@ -97,7 +100,7 @@
                                 <div class="col-md-7">
                                     <input type="radio" class="col-sm-1" name="finished" value="true"/>
                                     <div class="col-sm-1">Yes</div>
-                                    <input type="radio" class="col-sm-1" name="finished" value="true"/>
+                                    <input type="radio" class="col-sm-1" name="finished" value="false" checked/>
                                     <div class="col-sm-1">No</div>
                                 </div>
                             </div>
