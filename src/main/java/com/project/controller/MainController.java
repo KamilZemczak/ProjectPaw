@@ -18,7 +18,7 @@ public class MainController {
     @Autowired
     private TaskService taskService;
 
-    /*@GetMapping("/")
+    /* @GetMapping("/")
     public String home(HttpServletRequest request) {
     request.setAttribute("mode", "MODE_HOME");
     return "index";
@@ -60,4 +60,5 @@ public class MainController {
     request.setAttribute("mode", "MODE_TASKS");
     return "index";
     }*/
+    
 }
