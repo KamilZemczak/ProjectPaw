@@ -45,17 +45,7 @@ public class MainController {
     request.setAttribute("mode", "MODE_TASKS");
     return "index";
     }
-<<<<<<< HEAD
-     @GetMapping("/login")
-    public String login() {
-        return "login";
-    }
-      @GetMapping("/register")
-    public String register() {
-        return "register";
-    }
-=======
-    
+  
     @GetMapping("/update-task")
     public String updateTask(@RequestParam int id, HttpServletRequest request) {
     request.setAttribute("task", taskService.findTask(id));
@@ -70,5 +60,13 @@ public class MainController {
     request.setAttribute("mode", "MODE_TASKS");
     return "index";
     }*/
->>>>>>> master
+    
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
+      @GetMapping("/register")
+    public String register() {
+        return "register";
+    }
 }
