@@ -28,6 +28,10 @@ public class TaskService {
         return tasks;
     }
     
+    public Task findTask(int id) {
+        return taskRepository.findOne(id);
+    }
+    
     public void save(Task task) {
         taskRepository.save(task);
     }
