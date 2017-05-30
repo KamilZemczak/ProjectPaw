@@ -1,21 +1,12 @@
 package com.project.model;
 
+import javax.persistence.*;
 import java.util.Set;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
-import javax.persistence.Transient;
-import org.springframework.context.annotation.Role;
 
 @Entity
 @Table(name = "user")
 public class User {
-
+    
     private Long id;
     private String username;
     private String password;
