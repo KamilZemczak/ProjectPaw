@@ -26,6 +26,10 @@
       </form>
 
       <h2>Welcome ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['logoutForm'].submit()">Logout</a></h2>
+      
+      <a href="/home" class="navbar-brand">PAPA</a> 
+      
+      
 
   </c:if>
   <nav class="navbar-fixed-top">

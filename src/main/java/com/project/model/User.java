@@ -1,17 +1,20 @@
 package com.project.model;
 
+import java.io.Serializable;
+import java.util.List;
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
 @Table(name = "user")
-public class User {
+public class User implements Serializable {
     
     private Long id;
     private String username;
     private String password;
     private String passwordConfirm;
     private Set<Role> roles;
+    private List<Type> types;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -56,5 +59,16 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+    
+    /* @OneToMany(mappedBy = "user")
+    @OrderBy("id_type")*/
+    @ManyToMany
+    public List<Type> getTypes() {
+        return types;
+    }
+
+    public void setTypes(List<Type> types) {
+        this.types = types;
     }
 }
