@@ -52,8 +52,8 @@
                                 <thread>
                                     <tr>
                                         <th>Id</th>
-                                        <th>Name</th>
-                                        <th>Description</th>
+                                        <th>HomeTeam</th>
+                                        <th>AwayTeam</th>
                                         <th>Date Created</th>
                                         <th>Finished</th>
                                         <th></th>
@@ -64,8 +64,8 @@
                                     <c:forEach var="task" items="${tasks}">
                                         <tr>
                                             <td>${task.id}</td>
-                                            <td>${task.name}</td>
-                                            <td>${task.description}</td>
+                                            <td>${task.homeTeam}</td>
+                                            <td>${task.awayTeam}</td>
                                             <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${task.dateCreated}"/></td>
                                             <td>${task.finished}</td>
                                             <td><a href="update-task?id=${task.id}"><span class="glyphicon glyphicon-pencil"></span></a></td>
@@ -84,15 +84,15 @@
                         <form class="form-horizontal" method="POST" action="save-task">
                             <input type="hidden" name="id" value="${task.id}"/>
                             <div class="form-group">
-                                <label class="control-label col-md-3">Name</label>
+                                <label class="control-label col-md-3">HomeTeam</label>
                                 <div class="col-md-7">
-                                    <input type="text" class="form-control" name="name" value="${task.name}"/>
+                                    <input type="text" class="form-control" name="homeTeam" value="${task.homeTeam}"/>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3">Description</label>
+                                <label class="control-label col-md-3">AwayTeam</label>
                                 <div class="col-md-7">
-                                    <input type="text" class="form-control" name="description" value="${task.description}"/>
+                                    <input type="text" class="form-control" name="awayTeam" value="${task.awayTeam}"/>
                                 </div>
                             </div>
                             <div class="form-group">

@@ -15,8 +15,8 @@ public class Task implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    private String name;
-    private String description;
+    private String homeTeam;
+    private String awayTeam;
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateCreated;
     private boolean finished;
@@ -24,10 +24,10 @@ public class Task implements Serializable {
     public Task() {
     }
 
-    public Task(String name, String description, Date dateCreated, boolean finished) {
+    public Task(String homeTeam, String awayTeam, Date dateCreated, boolean finished) {
         super();
-        this.name = name;
-        this.description = description;
+        this.homeTeam = homeTeam;
+        this.awayTeam = awayTeam;
         this.dateCreated = dateCreated;
         this.finished = finished;
     }
@@ -40,20 +40,20 @@ public class Task implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getHomeTeam() {
+        return homeTeam;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setHomeTeam(String homeTeam) {
+        this.homeTeam = homeTeam;
     }
 
-    public String getDescription() {
-        return description;
+    public String getAwayTeam() {
+        return awayTeam;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setAwayTeam(String awayTeam) {
+        this.awayTeam = awayTeam;
     }
 
     public Date getDateCreated() {
@@ -74,6 +74,6 @@ public class Task implements Serializable {
 
     @Override
     public String toString() {
-        return "Task{" + "id=" + id + ", name=" + name + ", description=" + description + ", dateCreated=" + dateCreated + ", finished=" + finished + '}';
+        return "Task{" + "id=" + id + ", homeTeam=" + homeTeam + ", awayTeam=" + awayTeam + ", dateCreated=" + dateCreated + ", finished=" + finished + '}';
     }
 }
