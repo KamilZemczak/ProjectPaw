@@ -6,38 +6,38 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity(name="t_tasks")
-public class Task implements Serializable {
+@Entity(name="games")
+public class Game implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int taskId;
+    private int gameId;
     private int round;
     private int scoreHomea;
     private int scoreAwaya;
     private String homeTeam;
     private String awayTeam;
-    private String dateMatch;
+    private String dateGame;
     private boolean finished;
     
     
-    public Task() {
+    public Game() {
     }
 
-    public Task(String homeTeam, String awayTeam, String dateMatch, boolean finished) {
+    public Game(String homeTeam, String awayTeam, String dateGame, boolean finished) {
         super();
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
-        this.dateMatch = dateMatch;
+        this.dateGame = dateGame;
         this.finished = finished;
     }
 
-    public int getTaskId() {
-        return taskId;
+    public int getGameId() {
+        return gameId;
     }
 
-    public void setTaskId(int taskId) {
-        this.taskId = taskId;
+    public void setGameId(int gameId) {
+        this.gameId = gameId;
     }
     
     public int getRound() {
@@ -80,12 +80,12 @@ public class Task implements Serializable {
         this.awayTeam = awayTeam;
     }
 
-    public String getDateMatch() {
-        return dateMatch;
+    public String getDateGame() {
+        return dateGame;
     }
 
-    public void setDateMatch(String dateMatch) {
-        this.dateMatch = dateMatch;
+    public void setDateGame(String dateGame) {
+        this.dateGame = dateGame;
     }
 
     public boolean isFinished() {
@@ -96,13 +96,8 @@ public class Task implements Serializable {
         this.finished = finished;
     }
     
-    /* @Override
-    public String toString() {
-    return "Task{" + "id=" + id + ", round=" + round + ", homeTeam=" + homeTeam + ", awayTeam=" + awayTeam + ", dateMatch=" + dateMatch + ", finished=" + finished + '}';
-    }*/
-    
     @Override
     public String toString() {
-        return "Task{" + "taskId=" + taskId + ", round=" + round + ", scoreHomea=" + scoreHomea + ", scoreAwaya=" + scoreAwaya + ", homeTeam=" + homeTeam + ", awayTeam=" + awayTeam + ", dateMatch=" + dateMatch + ", finished=" + finished + '}';
+        return "Game{" + "gameId=" + gameId + ", round=" + round + ", scoreHomea=" + scoreHomea + ", scoreAwaya=" + scoreAwaya + ", homeTeam=" + homeTeam + ", awayTeam=" + awayTeam + ", dateGame=" + dateGame + ", finished=" + finished + '}';
     }
 }

@@ -8,12 +8,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-@Entity(name = "type")
+@Entity(name = "types")
 public class Type implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int idType;
+    private int typeId;
     private int scoreHomep;
     private int scoreAwayp;
     /*   @ManyToMany(mappedBy = "types")
@@ -23,7 +23,7 @@ public class Type implements Serializable {
     private User user;
     @ManyToOne
     @JoinColumn(name = "idss")
-    private Task task;
+    private Game game;
 
     public Type() {
     }
@@ -33,12 +33,12 @@ public class Type implements Serializable {
         this.scoreAwayp = scoreAwayTeamp;
     }
 
-    public int getIdType() {
-        return idType;
+    public int getTypeId() {
+        return typeId;
     }
 
-    public void setIdType(int idType) {
-        this.idType = idType;
+    public void setTypeId(int typeId) {
+        this.typeId = typeId;
     }
 
     public int getScoreHomep() {
@@ -65,38 +65,16 @@ public class Type implements Serializable {
         this.user = user;
     }
 
-    public Task getTask() {
-        return task;
+    public Game getGame() {
+        return game;
     }
 
-    public void setTask(Task task) {
-        this.task = task;
+    public void setGame(Game game) {
+        this.game = game;
     }
 
     @Override
     public String toString() {
-        return "Type{" + "idType=" + idType + ", scoreHomep=" + scoreHomep + ", scoreAwayp=" + scoreAwayp + ", user=" + user + ", task=" + task + '}';
+        return "Type{" + "typeId=" + typeId + ", scoreHomep=" + scoreHomep + ", scoreAwayp=" + scoreAwayp + ", user=" + user + ", game=" + game + '}';
     }
-    /*   @Override
-    public String toString() {
-    return "Type{" + "idType=" + idType + ", scoreHomep=" + scoreHomep + ", scoreAwayp=" + scoreAwayp + ", user=" + user + '}';
-    }*/
-
- /* @Override
-    public String toString() {
-    return "Type{" + "idType=" + idType + ", scoreHomep=" + scoreHomep + ", scoreAwayTeamp=" + scoreAwayp + '}';
-    }*/
-
- /*@Override
-    public String toString() {
-    return "Type{" + "scoreHomeTeamp=" + scoreHomeTeamp + ", scoreAwayTeamp=" + scoreAwayTeamp + '}';
-    }*/
-
- /*
-    List Bet
-    user_id  = lista_z_zakladami [id.task]
-    
-    @OneToMany(mappedBy="user")
-    @OrderBy("bet_id")
-    private Set<Bet> bets = new HashSet();*/
 }

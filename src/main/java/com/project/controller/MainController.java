@@ -1,10 +1,10 @@
 package com.project.controller;
 
-import com.project.model.Task;
+import com.project.model.Game;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import com.project.service.TaskService;
+import com.project.service.GameService;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class MainController {
 
     @Autowired
-    private TaskService taskService;
+    private GameService gameService;
 
     @GetMapping("/home")
     public String home(HttpServletRequest request) {
@@ -23,48 +23,47 @@ public class MainController {
         return "index";
     }
 
-    @GetMapping("/all-tasks")
-    public String allTasks(HttpServletRequest request) {
-        request.setAttribute("tasks", taskService.findAll());
-        request.setAttribute("mode", "MODE_TASKS");
+    @GetMapping("/all-games")
+    public String allGames(HttpServletRequest request) {
+        request.setAttribute("games", gameService.findAll());
+        request.setAttribute("mode", "MODE_GAMES");
         return "index";
     }
     
     //TODO: nie wiadomo czy to dobrze
-    @GetMapping("/bet-tasks")
-    public String betTasks(HttpServletRequest request) {
-        request.setAttribute("tasks", taskService.findAll());
+    @GetMapping("/bet-games")
+    public String betGames(HttpServletRequest request) {
+        request.setAttribute("games", gameService.findAll());
         request.setAttribute("mode", "MODE_BETS");
         return "index";
     }
 
-    @GetMapping("/new-task")
-    public String newTask(HttpServletRequest request) {
+    @GetMapping("/new-game")
+    public String newGame(HttpServletRequest request) {
         request.setAttribute("mode", "MODE_NEW");
         return "index";
     }
 
-    @PostMapping("/save-task")
-    public String saveTask(@ModelAttribute Task task, BindingResult bindingResult, HttpServletRequest request) {
-        //task.setDateMatch(new Date());
-        taskService.save(task);
-        request.setAttribute("tasks", taskService.findAll());
-        request.setAttribute("mode", "MODE_TASKS");
+    @PostMapping("/save-game")
+    public String saveGame(@ModelAttribute Game game, BindingResult bindingResult, HttpServletRequest request) {
+        gameService.save(game);
+        request.setAttribute("games", gameService.findAll());
+        request.setAttribute("mode", "MODE_GAMES");
         return "index";
     }
 
-    @GetMapping("/update-task")
-    public String updateTask(@RequestParam int idTask, HttpServletRequest request) {
-        request.setAttribute("task", taskService.findTask(idTask));
+    @GetMapping("/update-game")
+    public String updateGame(@RequestParam int gameId, HttpServletRequest request) {
+        request.setAttribute("game", gameService.findGame(gameId));
         request.setAttribute("mode", "MODE_UPDATE");
         return "index";
     }
 
-    @GetMapping("/delete-task")
-    public String deleteTasks(@RequestParam int idTask, HttpServletRequest request) {
-        taskService.delete(idTask);
-        request.setAttribute("tasks", taskService.findAll());
-        request.setAttribute("mode", "MODE_TASKS");
+    @GetMapping("/delete-game")
+    public String deleteGames(@RequestParam int gameId, HttpServletRequest request) {
+        gameService.delete(gameId);
+        request.setAttribute("games", gameService.findAll());
+        request.setAttribute("mode", "MODE_GAMES");
         return "index";
     }
 

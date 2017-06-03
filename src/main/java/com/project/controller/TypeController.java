@@ -19,7 +19,7 @@ public class TypeController {
 
     @GetMapping("/bet-bet")
     public String updateType(@RequestParam int id, HttpServletRequest request) {
-        request.setAttribute("task", typeService.findType(id));
+        request.setAttribute("game", typeService.findType(id));
         request.setAttribute("mode", "MODE_BET");
         return "index";
     }
@@ -27,7 +27,7 @@ public class TypeController {
     @PostMapping("/save-bet")
     public String saveType(@ModelAttribute Type type, BindingResult bindingResult, HttpServletRequest request) {
         typeService.save(type);
-        request.setAttribute("tasks", typeService.findAll());
+        request.setAttribute("games", typeService.findAll());
         request.setAttribute("mode", "MODE_BETS");
         return "index";
     }
