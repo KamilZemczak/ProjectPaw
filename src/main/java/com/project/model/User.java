@@ -9,7 +9,7 @@ import java.util.Set;
 @Table(name = "user")
 public class User implements Serializable {
     
-    private Long id;
+    private Long userId;
     private String username;
     private String password;
     private String passwordConfirm;
@@ -18,12 +18,12 @@ public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long getId() {
-        return id;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public String getUsername() {

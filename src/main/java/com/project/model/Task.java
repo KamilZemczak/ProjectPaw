@@ -11,7 +11,7 @@ public class Task implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private int taskId;
     private int round;
     private int scoreHomea;
     private int scoreAwaya;
@@ -32,12 +32,12 @@ public class Task implements Serializable {
         this.finished = finished;
     }
 
-    public int getId() {
-        return id;
+    public int getTaskId() {
+        return taskId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setTaskId(int taskId) {
+        this.taskId = taskId;
     }
     
     public int getRound() {
@@ -103,6 +103,6 @@ public class Task implements Serializable {
     
     @Override
     public String toString() {
-        return "Task{" + "id=" + id + ", round=" + round + ", scoreHomea=" + scoreHomea + ", scoreAwaya=" + scoreAwaya + ", homeTeam=" + homeTeam + ", awayTeam=" + awayTeam + ", dateMatch=" + dateMatch + ", finished=" + finished + '}';
+        return "Task{" + "taskId=" + taskId + ", round=" + round + ", scoreHomea=" + scoreHomea + ", scoreAwaya=" + scoreAwaya + ", homeTeam=" + homeTeam + ", awayTeam=" + awayTeam + ", dateMatch=" + dateMatch + ", finished=" + finished + '}';
     }
 }

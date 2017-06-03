@@ -30,6 +30,7 @@ public class MainController {
         return "index";
     }
     
+    //TODO: nie wiadomo czy to dobrze
     @GetMapping("/bet-tasks")
     public String betTasks(HttpServletRequest request) {
         request.setAttribute("tasks", taskService.findAll());
@@ -53,15 +54,15 @@ public class MainController {
     }
 
     @GetMapping("/update-task")
-    public String updateTask(@RequestParam int id, HttpServletRequest request) {
-        request.setAttribute("task", taskService.findTask(id));
+    public String updateTask(@RequestParam int idTask, HttpServletRequest request) {
+        request.setAttribute("task", taskService.findTask(idTask));
         request.setAttribute("mode", "MODE_UPDATE");
         return "index";
     }
 
     @GetMapping("/delete-task")
-    public String deleteTasks(@RequestParam int id, HttpServletRequest request) {
-        taskService.delete(id);
+    public String deleteTasks(@RequestParam int idTask, HttpServletRequest request) {
+        taskService.delete(idTask);
         request.setAttribute("tasks", taskService.findAll());
         request.setAttribute("mode", "MODE_TASKS");
         return "index";

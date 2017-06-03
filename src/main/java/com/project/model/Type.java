@@ -1,13 +1,11 @@
 package com.project.model;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity(name = "type")
@@ -18,11 +16,16 @@ public class Type implements Serializable {
     private int idType;
     private int scoreHomep;
     private int scoreAwayp;
-    @ManyToMany(mappedBy = "types")
-    private List<User> users;
+    /*   @ManyToMany(mappedBy = "types")
+    private List<User> users;*/
+    @ManyToOne
+    @JoinColumn(name = "id")
+    private User user;
+    @ManyToOne
+    @JoinColumn(name = "idss")
+    private Task task;
 
     public Type() {
-
     }
 
     public Type(int scoreHomeTeamp, int scoreAwayTeamp) {
@@ -46,20 +49,45 @@ public class Type implements Serializable {
         this.scoreHomep = scoreHomeTeamp;
     }
 
-    public int getScoreAwayTeamp() {
+    public int getScoreAwayp() {
         return scoreAwayp;
     }
 
-    public void setScoreAwayTeamp(int scoreAwayTeamp) {
+    public void setScoreAwayp(int scoreAwayTeamp) {
         this.scoreAwayp = scoreAwayTeamp;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Task getTask() {
+        return task;
+    }
+
+    public void setTask(Task task) {
+        this.task = task;
     }
 
     @Override
     public String toString() {
-        return "Type{" + "idType=" + idType + ", scoreHomep=" + scoreHomep + ", scoreAwayTeamp=" + scoreAwayp + '}';
+        return "Type{" + "idType=" + idType + ", scoreHomep=" + scoreHomep + ", scoreAwayp=" + scoreAwayp + ", user=" + user + ", task=" + task + '}';
     }
+    /*   @Override
+    public String toString() {
+    return "Type{" + "idType=" + idType + ", scoreHomep=" + scoreHomep + ", scoreAwayp=" + scoreAwayp + ", user=" + user + '}';
+    }*/
 
-    /*@Override
+ /* @Override
+    public String toString() {
+    return "Type{" + "idType=" + idType + ", scoreHomep=" + scoreHomep + ", scoreAwayTeamp=" + scoreAwayp + '}';
+    }*/
+
+ /*@Override
     public String toString() {
     return "Type{" + "scoreHomeTeamp=" + scoreHomeTeamp + ", scoreAwayTeamp=" + scoreAwayTeamp + '}';
     }*/
