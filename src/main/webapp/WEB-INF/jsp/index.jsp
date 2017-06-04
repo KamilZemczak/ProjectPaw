@@ -66,15 +66,15 @@
                             <tbody>
                                 <c:forEach var="game" items="${games}">
                                     <tr>
-                                        <td>${game.gameId}</td>
+                                        <td>${game.id}</td>
                                         <td>${game.round}</td>
                                         <td>${game.homeTeam}</td>
                                         <td>${game.awayTeam}</td>
                                         <td>${game.dateGame}</td>
                                         <td>${game.scoreHomea} : ${game.scoreAwaya}</td>
                                         <td>${game.finished}</td>
-                                        <td><a href="update-game?gameId=${game.gameId}"><span class="glyphicon glyphicon-pencil"></span></a></td>
-                                        <td><a href="delete-game?gameId=${game.gameId}"><span class="glyphicon glyphicon-trash"></span></a></td>
+                                        <td><a href="update-game?id=${game.id}"><span class="glyphicon glyphicon-pencil"></span></a></td>
+                                        <td><a href="delete-game?id=${game.id}"><span class="glyphicon glyphicon-trash"></span></a></td>
                                     </tr>
                                 </c:forEach>
                             </tbody>
@@ -87,7 +87,7 @@
                     <h3>Dodaj mecz</h3>
                     <hr>
                     <form class="form-horizontal" method="POST" action="save-game">
-                        <input type="hidden" name="gameId" value="${game.gameId}"/>
+                        <input type="hidden" name="id" value="${game.id}"/>
                         <div class="form-group">
                             <label class="control-label col-md-3">Numer kolejki</label>
                             <div class="col-md-7">
@@ -168,7 +168,7 @@
                                         <td>${type.scoreHomep} : ${type.scoreHomep}</td>
                                         <td>${game.scoreHomea} : ${game.scoreAwaya}</td>                                 
                                         <td>${game.finished}</td>
-                                        <td><a href="bet-bet?gameId=${game.gameId}"><span class="glyphicon glyphicon-usd"></span></a></td>
+                                        <td><a href="bet-bet?id=${game.id}"><span class="glyphicon glyphicon-usd"></span></a></td>
                                     </tr>
                                 </c:forEach>
                             </tbody>
@@ -181,7 +181,9 @@
                     <h3>Obstaw</h3>
                     <hr>
                     <form class="form-horizontal" method="POST" action="save-bet">
-                        <input type="hidden" name="typeId" value="${type.typeId}"/>
+                        <input type="hidden" name="id" value="${type.id}"/>
+                        <input type="hidden" name="Id" value="${game.id}"/>
+                        <input type="hidden" name="userId" value="${user.id}"/>
                         Mecz ktory wlasnie obstawiasz to: ${game.homeTeam} + ${game.awayTeam}.
                         <div class="form-group">
                             <label class="control-label col-md-3">Wynik 1 druzyny (gospodarze)</label>
@@ -195,8 +197,8 @@
                                 <input type="text" class="form-control" name="scoreAwayp" value="${type.scoreAwayp}"/>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <input type="submit" class="btn btn-primary" value="Obstaw"/>
+                        <div class="form-group">                  
+                            <input type="submit" class="btn btn-primary" value="Obstaw"/>       
                         </div>
                     </form>
                 </div>

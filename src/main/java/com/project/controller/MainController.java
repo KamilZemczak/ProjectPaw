@@ -53,15 +53,15 @@ public class MainController {
     }
 
     @GetMapping("/update-game")
-    public String updateGame(@RequestParam int gameId, HttpServletRequest request) {
-        request.setAttribute("game", gameService.findGame(gameId));
+    public String updateGame(@RequestParam int id, HttpServletRequest request) {
+        request.setAttribute("game", gameService.findGame(id));
         request.setAttribute("mode", "MODE_UPDATE");
         return "index";
     }
 
     @GetMapping("/delete-game")
-    public String deleteGames(@RequestParam int gameId, HttpServletRequest request) {
-        gameService.delete(gameId);
+    public String deleteGames(@RequestParam int id, HttpServletRequest request) {
+        gameService.delete(id);
         request.setAttribute("games", gameService.findAll());
         request.setAttribute("mode", "MODE_GAMES");
         return "index";

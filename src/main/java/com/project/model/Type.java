@@ -1,6 +1,7 @@
 package com.project.model;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,21 +9,23 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-@Entity(name = "types")
+@Entity(name = "type")
 public class Type implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int typeId;
-    private int scoreHomep;
-    private int scoreAwayp;
-    @ManyToOne
-    @JoinColumn(name = "user")
-    private User user;
+    private Integer id;
+    @Column
+    private Integer scoreHomep;
+    @Column
+    private Integer scoreAwayp;
     @ManyToOne
     @JoinColumn(name = "game_id")
     private Game game;
-    
+    @ManyToOne
+    @JoinColumn(name = "userr_id")
+    private User user;
+
     public Type() {
     }
 
@@ -31,36 +34,28 @@ public class Type implements Serializable {
         this.scoreAwayp = scoreAwayTeamp;
     }
 
-    public int getTypeId() {
-        return typeId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setTypeId(int typeId) {
-        this.typeId = typeId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public int getScoreHomep() {
+    public Integer getScoreHomep() {
         return scoreHomep;
     }
 
-    public void setScoreHomep(int scoreHomeTeamp) {
-        this.scoreHomep = scoreHomeTeamp;
+    public void setScoreHomep(Integer scoreHomep) {
+        this.scoreHomep = scoreHomep;
     }
 
-    public int getScoreAwayp() {
+    public Integer getScoreAwayp() {
         return scoreAwayp;
     }
 
-    public void setScoreAwayp(int scoreAwayTeamp) {
-        this.scoreAwayp = scoreAwayTeamp;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
+    public void setScoreAwayp(Integer scoreAwayp) {
+        this.scoreAwayp = scoreAwayp;
     }
 
     public Game getGame() {
@@ -71,8 +66,16 @@ public class Type implements Serializable {
         this.game = game;
     }
 
-    @Override
-    public String toString() {
-    return "Type{" + "typeId=" + typeId + ", scoreHomep=" + scoreHomep + ", scoreAwayp=" + scoreAwayp + ", user=" + user + ", game=" + game + '}';
+    public User getUser() {
+        return user;
     }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    /*    @Override
+    public String toString() {
+    return "Type{" + "id=" + id + ", scoreHomep=" + scoreHomep + ", scoreAwayp=" + scoreAwayp + ", user=" + user + ", game=" + game + '}';
+    }*/
 }

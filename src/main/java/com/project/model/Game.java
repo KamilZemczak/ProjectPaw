@@ -1,26 +1,33 @@
 package com.project.model;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity; 
 import javax.persistence.GeneratedValue; 
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity(name="games")
+@Entity(name="game")
 public class Game implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int gameId;
-    private int round;
-    private int scoreHomea;
-    private int scoreAwaya;
+    private Integer id;
+    @Column
+    private Integer round;
+    @Column
+    private Integer scoreHomea;
+    @Column
+    private Integer scoreAwaya;
+    @Column
     private String homeTeam;
+    @Column
     private String awayTeam;
+    @Column
     private String dateGame;
+    @Column
     private boolean finished;
-    
-    
+      
     public Game() {
     }
 
@@ -32,35 +39,35 @@ public class Game implements Serializable {
         this.finished = finished;
     }
 
-    public int getGameId() {
-        return gameId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setGameId(int gameId) {
-        this.gameId = gameId;
+    public void setId(Integer id) {
+        this.id = id;
     }
-    
-    public int getRound() {
+
+    public Integer getRound() {
         return round;
     }
-    
-    public void setRound(int round) {
+
+    public void setRound(Integer round) {
         this.round = round;
     }
-    
-    public int getScoreHomea() {
+
+    public Integer getScoreHomea() {
         return scoreHomea;
     }
 
-    public void setScoreHomea(int scoreHomea) {
+    public void setScoreHomea(Integer scoreHomea) {
         this.scoreHomea = scoreHomea;
     }
 
-    public int getScoreAwaya() {
+    public Integer getScoreAwaya() {
         return scoreAwaya;
     }
 
-    public void setScoreAwaya(int scoreAwaya) {
+    public void setScoreAwaya(Integer scoreAwaya) {
         this.scoreAwaya = scoreAwaya;
     }
 
@@ -88,7 +95,7 @@ public class Game implements Serializable {
         this.dateGame = dateGame;
     }
 
-    public boolean isFinished() {
+    public boolean getFinished() {
         return finished;
     }
 
@@ -96,8 +103,8 @@ public class Game implements Serializable {
         this.finished = finished;
     }
     
-    @Override
+    /* @Override
     public String toString() {
-        return "Game{" + "gameId=" + gameId + ", round=" + round + ", scoreHomea=" + scoreHomea + ", scoreAwaya=" + scoreAwaya + ", homeTeam=" + homeTeam + ", awayTeam=" + awayTeam + ", dateGame=" + dateGame + ", finished=" + finished + '}';
-    }
+    return "Game{" + "id=" + id + ", round=" + round + ", scoreHomea=" + scoreHomea + ", scoreAwaya=" + scoreAwaya + ", homeTeam=" + homeTeam + ", awayTeam=" + awayTeam + ", dateGame=" + dateGame + ", finished=" + finished + '}';
+    }*/
 }

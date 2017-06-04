@@ -1,29 +1,41 @@
 package com.project.model;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
 @Table(name = "user")
 public class User implements Serializable {
-    
-    private Long userId;
-    private String username;
-    private String password;
-    private String passwordConfirm;
-    private Set<Role> roles;
-    private List<Type> types;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long getUserId() {
-        return userId;
+    private Integer id;
+    @Column
+    private String username;
+    @Column
+    private String password;
+    @Transient
+    private String passwordConfirm;
+    @ManyToMany
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;
+
+    public User() {
+
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -42,7 +54,6 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    @Transient
     public String getPasswordConfirm() {
         return passwordConfirm;
     }
@@ -51,24 +62,11 @@ public class User implements Serializable {
         this.passwordConfirm = passwordConfirm;
     }
 
-    @ManyToMany
-    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     public Set<Role> getRoles() {
         return roles;
     }
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
-    }
-    
-    /* @OneToMany(mappedBy = "user")
-    @OrderBy("id_type")*/
-    @ManyToMany
-    public List<Type> getTypes() {
-        return types;
-    }
-
-    public void setTypes(List<Type> types) {
-        this.types = types;
     }
 }

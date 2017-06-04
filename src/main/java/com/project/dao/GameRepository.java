@@ -1,8 +1,10 @@
 package com.project.dao;
 
-import org.springframework.data.repository.CrudRepository;
 import com.project.model.Game;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface GameRepository extends CrudRepository<Game, Integer> {
+@Repository
+public interface GameRepository extends JpaRepository<Game, Integer> {
     
 }

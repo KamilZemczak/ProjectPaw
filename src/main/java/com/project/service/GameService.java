@@ -9,17 +9,19 @@ import org.springframework.stereotype.Service;
 
 import com.project.model.Game;
 import com.project.dao.GameRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Service
 @Transactional
 public class GameService {
 
-    private final GameRepository gameRepository;
+    @Autowired
+    private GameRepository gameRepository;
 
-    public GameService(GameRepository gameRepository) {
-        this.gameRepository = gameRepository;
-    }
-
+    /*public GameService(GameRepository gameRepository) {
+    this.gameRepository = gameRepository;
+    }*/
+    
     public List<Game> findAll() {
         List<Game> games = new ArrayList<>();
         for (Game game : gameRepository.findAll()) {
@@ -28,15 +30,25 @@ public class GameService {
         return games;
     }
     
-    public Game findGame(int gameId) {
-        return gameRepository.findOne(gameId);
+    public Game findGame(int id) {
+        return gameRepository.findOne(id);
     }
     
+    /**
+     * Zapisuje parametry gry do bazy danych
+     * 
+     * @param game dane pobrane od użytkownika
+     */
     public void save(Game game) {
         gameRepository.save(game);
     }
     
-    public void delete(int gameId) {
-        gameRepository.delete(gameId);
+    /**
+     * Usuwa grę z bazy danych
+     * 
+     * @param id identyfikator usuwanej gry
+     */
+    public void delete(int id) {
+        gameRepository.delete(id);
     }
 }

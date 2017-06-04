@@ -6,18 +6,22 @@ import java.util.Set;
 @Entity
 @Table(name = "role")
 public class Role {
-    private Long roleId;
+    private Integer id;
     private String name;
     private Set<User> users;
+    
+    public Role(){
+        
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long getRoleId() {
-        return roleId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setRoleId(Long RoleId) {
-        this.roleId = roleId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
