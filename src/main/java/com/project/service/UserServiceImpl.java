@@ -12,6 +12,7 @@ import java.util.HashSet;
 
 @Service
 public class UserServiceImpl implements UserService {
+    
     @Autowired
     private UserRepository userRepository;
     @Autowired
@@ -29,5 +30,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
+    }
+    
+    public User getUsername(Integer userId) {
+        return userRepository.findOne(userId);
     }
 }

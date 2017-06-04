@@ -16,15 +16,13 @@ public class Type implements Serializable {
     private int typeId;
     private int scoreHomep;
     private int scoreAwayp;
-    /*   @ManyToMany(mappedBy = "types")
-    private List<User> users;*/
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "user")
     private User user;
     @ManyToOne
-    @JoinColumn(name = "idss")
+    @JoinColumn(name = "game_id")
     private Game game;
-
+    
     public Type() {
     }
 
@@ -75,6 +73,6 @@ public class Type implements Serializable {
 
     @Override
     public String toString() {
-        return "Type{" + "typeId=" + typeId + ", scoreHomep=" + scoreHomep + ", scoreAwayp=" + scoreAwayp + ", user=" + user + ", game=" + game + '}';
+    return "Type{" + "typeId=" + typeId + ", scoreHomep=" + scoreHomep + ", scoreAwayp=" + scoreAwayp + ", user=" + user + ", game=" + game + '}';
     }
 }
