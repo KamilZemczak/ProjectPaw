@@ -23,27 +23,45 @@
     </head>
     <body>
 
-        <div role="navigation">
-            <div class="navbar navbar-inverse">
-                <!--<a class="pull-left" href="index.html"><img src="static/images/ligatyperow2.png" width="100" height="50"></a><!--> 
-                <a href="/" class="navbar-brand">Strona glowna</a> 
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a href="bet-games">Obstaw mecz(user)</a></li>
-                        <li><a href="bet-games">Twoje typy(user)</a></li>
-                        <li><a href="new-game">Dodaj nowy mecz(admin)</a></li>
-                        <li><a href="all-games">Zarzadzaj meczami(admin)</a></li>
-                        <li><a href="#">Klasyfikacja graczy</a></li>
-                        <li><a href="#">Kontakt</a></li>
-                    </ul><c:if test="${pageContext.request.userPrincipal.name != null}">
+
+        <div class="navbar navbar-inverse">
+            <!--<a class="pull-left" href="index.html"><img src="static/images/ligatyperow2.png" width="100" height="50"></a><!-->
+
+            <a href="/" class="navbar-brand">Strona glowna</a>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">                 
+                  
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Panel uzytkownika
+                            <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                              <sec:authorize access="hasRole('ADMIN')"><li><a href="bet-games">Obstaw mecz</a></li></sec:authorize
+                            <li><a href="your-games">Twoje typy</a></li>
+                        </ul></li>>
+                    <li class="dropdown">                       
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Panel administratora
+                            <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="new-game">Dodaj nowy mecz</a></li>
+                            <li><a href="all-games">Zarzadzaj meczami</a></li>
+                        </ul>  </li>
+                    <li><a href="#">Klasyfikacja graczy</a></li>
+                    <li><a href="#">Kontakt</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <c:if test="${pageContext.request.userPrincipal.name != null}">
                         <form id="logoutForm" method="POST" action="${contextPath}/logout">
                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                         </form>
                     </c:if>
-                    <button class = "pull-right btn-primary btn-sm"  onclick="document.forms['logoutForm'].submit()">Wyloguj</button>
-                </div>
+
+                    <li><a onclick="document.forms['logoutForm'].submit()" href="#"><span class="glyphicon glyphicon-log-out" ></span> Wyloguj </a></li>
+
+                </ul>
             </div>
+
         </div>
+
 
         <c:choose>
             <c:when test="${mode == 'MODE_HOME'}">
@@ -150,7 +168,7 @@
             </c:when>
             <c:when test="${mode == 'MODE_BETS'}">
                 <div class="container text-center" id="gamesDiv">
-                    <h3>Wszystkie mecze do obstawienia</h3>
+                    <h3>Twoje typy</h3>
                     <hr>
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered text-left">
@@ -161,10 +179,9 @@
                                     <th>Druzyna 2 (goscie)</th>
                                     <th>Data spotkania</th>
                                     <th>Twoj wynik</th>
-                                    <th>Wynik koncowy</th>                                   
+                                    <th>Wynik koncowy</th>
                                     <th>Zakonczony</th>
-                                    <th></th>
-                                    <th></th>
+                                    <th>Punkty</th>
                                 </tr>
                             </thread>
                             <tbody>
@@ -175,9 +192,8 @@
                                         <td>${game.awayTeam}</td>
                                         <td>${game.dateGame}</td>
                                         <td>${type.scoreHomep} : ${type.scoreHomep}</td>
-                                        <td>${game.scoreHomea} : ${game.scoreAwaya}</td>                                 
+                                        <td>${game.scoreHomea} : ${game.scoreAwaya}</td>
                                         <td>${game.finished}</td>
-                                        <td><a href="bet-bet?id=${game.id}"><span class="glyphicon glyphicon-usd"></span></a></td>
                                     </tr>
                                 </c:forEach>
                             </tbody>
@@ -190,10 +206,10 @@
                     <h3>Obstaw</h3>
                     <hr>
                     <form class="form-horizontal" method="POST" action="save-bet">
-                        <input type="hidden" name="id" value="${type.id}"/>
-                        <input type="hidden" name="Id" value="${game.id}"/>
-                        <input type="hidden" name="userId" value="${user.id}"/>
-                        Mecz ktory wlasnie obstawiasz to: ${game.homeTeam} + ${game.awayTeam}.
+                        <input type="hidden" name="game_id" value="${game.id}"/>
+
+                        Mecz ktory wlasnie obstawiasz to: ${game.homeTeam} + ${game.awayTeam}.<br>
+
                         <div class="form-group">
                             <label class="control-label col-md-3">Wynik 1 druzyny (gospodarze)</label>
                             <div class="col-md-7">
@@ -212,8 +228,44 @@
                     </form>
                 </div>
             </c:when>
+            <c:when test="${mode == 'MODE_BETSS'}">
+                <div class="container text-center" id="gamesDiv">
+                    <h3>Wszystkie mecze do obstawienia</h3>
+                    <hr>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered text-left">
+                            <thread>
+                                <tr>
+                                    <th>Kolejka</th>
+                                    <th>Druzyna 1 (gospodarze)</th>
+                                    <th>Druzyna 2 (goscie)</th>
+                                    <th>Data spotkania</th>
+                                    <th>Twoj wynik</th>
+                                    <th>Wynik koncowy</th>
+                                    <th>Zakonczony</th>
+                                    <th></th>
+                                </tr>
+                            </thread>
+                            <tbody>
+                                <c:forEach var="game" items="${games}">
+                                    <tr>
+                                        <td>${game.round}</td>
+                                        <td>${game.homeTeam}</td>
+                                        <td>${game.awayTeam}</td>
+                                        <td>${game.dateGame}</td>
+                                        <td>${type.scoreHomep} : ${type.scoreHomep}</td>
+                                        <td>${game.scoreHomea} : ${game.scoreAwaya}</td>
+                                        <td>${game.finished}</td>
+                                        <td><a href="bet-bet?id=${game.id}"><span class="glyphicon glyphicon-usd"></span></a></td>
+                                    </tr>
+                                </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </c:when>
         </c:choose>
-        <script src="static/js/jquery-1.11.1.min.js"</script>
+        <script src="static/js/jquery-1.11.1.min.js"></script>
         <script src="static/js/bootstrap.min.js"></script>
     </body>
 </html>

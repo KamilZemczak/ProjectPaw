@@ -1,9 +1,13 @@
 package com.project.controller;
 
+import com.project.dao.RoleRepository;
+import com.project.model.Role;
 import com.project.model.User;
 import com.project.service.SecurityService;
 import com.project.service.UserService;
 import com.project.validator.UserValidator;
+import java.util.HashSet;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +26,9 @@ public class UserController {
 
     @Autowired
     private UserValidator userValidator;
+    
+    @Autowired
+    private RoleRepository roleRepository;
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registration(Model model) {
@@ -32,12 +39,14 @@ public class UserController {
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
-        userValidator.validate(userForm, bindingResult);
+         userValidator.validate(userForm, bindingResult);
 
         if (bindingResult.hasErrors()) {
             return "registration";
         }
-
+        Set<Role> roles = new HashSet<>();
+        roles.add(roleRepository.findOne(1));
+        userForm.setRoles(roles);
         userService.save(userForm);
 
         securityService.autologin(userForm.getUsername(), userForm.getPasswordConfirm());

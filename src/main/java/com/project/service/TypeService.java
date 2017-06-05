@@ -26,7 +26,13 @@ public class TypeService {
 
     @Autowired
     private TypeRepository typeRepository;
-
+    
+    @Autowired
+    private UserServiceImpl userServiceImpl;
+    
+    @Autowired
+    private GameService gameService;
+    
     /* public TypeService(TypeRepository typeRepository) {
     this.typeRepository = typeRepository;
     }
@@ -48,8 +54,8 @@ public class TypeService {
     }
 
     public void typeGameToUser(Integer gameId, Integer userId) {
-        User user = userRepository.findOne(userId);
-        Game game = gameRepository.findOne(gameId);
+        User user = userServiceImpl.getUsername(userId);
+        Game game = gameService.findGame(gameId);
         Type type = new Type();
         type.setGame(game);
         type.setUser(user);
@@ -59,8 +65,8 @@ public class TypeService {
         typeRepository.save(type);
     }
 
-    /*public ArrayList<GameDTO> getUserGames(Integer id) {
-        User one = userRepository.findOne(id);
+    public ArrayList<GameDTO> getUserGames() {
+        User one = userServiceImpl.getUserId();
         List<Type> typeGames = typeRepository.findUserGames(one);
         ArrayList<GameDTO> gameDTOArrayList = new ArrayList<GameDTO>();
         for (Type type : typeGames) {
@@ -77,5 +83,5 @@ public class TypeService {
             gameDTOArrayList.add(gameDTO);
         }
         return gameDTOArrayList;
-    }*/
+    }
 }

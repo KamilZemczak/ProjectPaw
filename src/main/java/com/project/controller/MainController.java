@@ -1,21 +1,31 @@
 package com.project.controller;
 
+import com.project.dto.MessageDTO;
 import com.project.model.Game;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import com.project.service.GameService;
+import com.project.service.MessageService;
+import com.project.service.TypeService;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class MainController {
 
     @Autowired
     private GameService gameService;
+
+    @Autowired
+    private MessageService messageService;
+
+    @Autowired
+    private TypeService typeService;
 
     @GetMapping("/")
     public String home(HttpServletRequest request) {
@@ -29,12 +39,19 @@ public class MainController {
         request.setAttribute("mode", "MODE_GAMES");
         return "index";
     }
-    
+
     //TODO: nie wiadomo czy to dobrze
+    @GetMapping("/your-games")
+    public String yourGames(HttpServletRequest request) {
+        request.setAttribute("games", typeService.getUserGames());
+        request.setAttribute("mode", "MODE_BETS");
+        return "index";
+    }
+
     @GetMapping("/bet-games")
     public String betGames(HttpServletRequest request) {
         request.setAttribute("games", gameService.findAll());
-        request.setAttribute("mode", "MODE_BETS");
+        request.setAttribute("mode", "MODE_BETSS");
         return "index";
     }
 
@@ -66,5 +83,4 @@ public class MainController {
         request.setAttribute("mode", "MODE_GAMES");
         return "index";
     }
-
 }

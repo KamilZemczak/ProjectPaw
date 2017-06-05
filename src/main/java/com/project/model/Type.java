@@ -29,11 +29,18 @@ public class Type implements Serializable {
     public Type() {
     }
 
-    public Type(int scoreHomeTeamp, int scoreAwayTeamp) {
-        this.scoreHomep = scoreHomeTeamp;
-        this.scoreAwayp = scoreAwayTeamp;
+    public Type(Integer scoreHomep, Integer scoreAwayp, Game game, User user) {
+        super();
+        this.scoreHomep = scoreHomep;
+        this.scoreAwayp = scoreAwayp;
+        this.game = game;
+        this.user = user;
     }
 
+    /*    public Type(int scoreHomeTeamp, int scoreAwayTeamp) {
+    this.scoreHomep = scoreHomeTeamp;
+    this.scoreAwayp = scoreAwayTeamp;
+    }*/
     public Integer getId() {
         return id;
     }
