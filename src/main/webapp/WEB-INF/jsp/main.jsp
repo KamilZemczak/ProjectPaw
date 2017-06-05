@@ -62,11 +62,12 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><h4>Panel uzytkownika<span class="caret"></span></h4></a>
             <ul class="dropdown-menu">
               <li><a href="#PP" data-toggle="modal">Typuj mecze</a></li>
-              <li><a href="#MB" data-toggle="modal">Historia typow</a></li>
+              <li><a href="#MB" data-toggle="modal">Twoje typy</a></li>
             </ul>
           </li>
-          <li><a href="#"><h4>Wyniki meczow</h4><span class="sr-only">(current)</span></a></li>
+          <li><a href="#"><h4>Wyniki meczow</h4></a></li>
           <li><a href="#"><h4>Klasyfikacja graczy</h4></a></li>
+          <li><a href="#"><h4>Kontakt</h4></a></li>
 
         </ul>
         <!-- navbar-left will move the search to the left -->

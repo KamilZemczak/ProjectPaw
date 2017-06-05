@@ -17,7 +17,7 @@ public class MainController {
     @Autowired
     private GameService gameService;
 
-    @GetMapping("/home")
+    @GetMapping("/")
     public String home(HttpServletRequest request) {
         request.setAttribute("mode", "MODE_HOME");
         return "index";

@@ -25,13 +25,22 @@
 
         <div role="navigation">
             <div class="navbar navbar-inverse">
-                <a href="/" class="navbar-brand">Strona glowna</a>  
+                <!--<a class="pull-left" href="index.html"><img src="static/images/ligatyperow2.png" width="100" height="50"></a><!--> 
+                <a href="/" class="navbar-brand">Strona glowna</a> 
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="new-game">Nowy zaklad</a></li>
-                        <li><a href="all-games">Wszystkie zaklady</a></li>
-                        <li><a href="bet-games">Obstaw zaklady</a></li>
-                    </ul>
+                        <li><a href="bet-games">Obstaw mecz(user)</a></li>
+                        <li><a href="bet-games">Twoje typy(user)</a></li>
+                        <li><a href="new-game">Dodaj nowy mecz(admin)</a></li>
+                        <li><a href="all-games">Zarzadzaj meczami(admin)</a></li>
+                        <li><a href="#">Klasyfikacja graczy</a></li>
+                        <li><a href="#">Kontakt</a></li>
+                    </ul><c:if test="${pageContext.request.userPrincipal.name != null}">
+                        <form id="logoutForm" method="POST" action="${contextPath}/logout">
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                        </form>
+                    </c:if>
+                    <button class = "pull-right btn-primary btn-sm"  onclick="document.forms['logoutForm'].submit()">Wyloguj</button>
                 </div>
             </div>
         </div>
@@ -40,7 +49,7 @@
             <c:when test="${mode == 'MODE_HOME'}">
                 <div class="container" id="homeDiv">
                     <div class="jumbotron text-center">
-                        <h1>Witaj w zarzadzaniu zakladami</h1>
+                        <h1>Witaj w lidze typerow ${pageContext.request.userPrincipal.name}.</h1>
                     </div>
                 </div>
             </c:when>
