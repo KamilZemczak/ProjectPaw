@@ -23,27 +23,44 @@
     </head>
     <body>
 
-        <div role="navigation">
+
             <div class="navbar navbar-inverse">
-                <!--<a class="pull-left" href="index.html"><img src="static/images/ligatyperow2.png" width="100" height="50"></a><!--> 
-                <a href="/" class="navbar-brand">Strona glowna</a> 
+                <!--<a class="pull-left" href="index.html"><img src="static/images/ligatyperow2.png" width="100" height="50"></a><!-->
+
+                <a href="/" class="navbar-brand">Strona glowna</a>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="bet-games">Obstaw mecz(user)</a></li>
-                        <li><a href="bet-games">Twoje typy(user)</a></li>
-                        <li><a href="new-game">Dodaj nowy mecz(admin)</a></li>
-                        <li><a href="all-games">Zarzadzaj meczami(admin)</a></li>
+                      <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Panel uzytkownika
+                  <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                        <li><a href="bet-games">Obstaw mecz</a></li>
+                        <li><a href="bet-games">Twoje typy</a></li>
+                      </ul></li>
+                      <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Panel administratora
+                      <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                        <li><a href="new-game">Dodaj nowy mecz</a></li>
+                        <li><a href="all-games">Zarzadzaj meczami</a></li>
+                      </ul>  </li>
                         <li><a href="#">Klasyfikacja graczy</a></li>
                         <li><a href="#">Kontakt</a></li>
-                    </ul><c:if test="${pageContext.request.userPrincipal.name != null}">
+                      </ul>
+                       <ul class="nav navbar-nav navbar-right">
+                    <c:if test="${pageContext.request.userPrincipal.name != null}">
                         <form id="logoutForm" method="POST" action="${contextPath}/logout">
                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                         </form>
                     </c:if>
-                    <button class = "pull-right btn-primary btn-sm"  onclick="document.forms['logoutForm'].submit()">Wyloguj</button>
+
+          <li><a onclick="document.forms['logoutForm'].submit()" href="#"><span class="glyphicon glyphicon-log-out" ></span> Wyloguj </a></li>
+
+                </ul>
                 </div>
+
             </div>
-        </div>
+
 
         <c:choose>
             <c:when test="${mode == 'MODE_HOME'}">
@@ -161,7 +178,7 @@
                                     <th>Druzyna 2 (goscie)</th>
                                     <th>Data spotkania</th>
                                     <th>Twoj wynik</th>
-                                    <th>Wynik koncowy</th>                                   
+                                    <th>Wynik koncowy</th>
                                     <th>Zakonczony</th>
                                     <th></th>
                                     <th></th>
@@ -175,7 +192,7 @@
                                         <td>${game.awayTeam}</td>
                                         <td>${game.dateGame}</td>
                                         <td>${type.scoreHomep} : ${type.scoreHomep}</td>
-                                        <td>${game.scoreHomea} : ${game.scoreAwaya}</td>                                 
+                                        <td>${game.scoreHomea} : ${game.scoreAwaya}</td>
                                         <td>${game.finished}</td>
                                         <td><a href="bet-bet?id=${game.id}"><span class="glyphicon glyphicon-usd"></span></a></td>
                                     </tr>
@@ -206,14 +223,14 @@
                                 <input type="text" class="form-control" name="scoreAwayp" value="${type.scoreAwayp}"/>
                             </div>
                         </div>
-                        <div class="form-group">                  
-                            <input type="submit" class="btn btn-primary" value="Obstaw"/>       
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-primary" value="Obstaw"/>
                         </div>
                     </form>
                 </div>
             </c:when>
         </c:choose>
-        <script src="static/js/jquery-1.11.1.min.js"</script>
+        <script src="static/js/jquery-1.11.1.min.js"></script>
         <script src="static/js/bootstrap.min.js"></script>
     </body>
 </html>
