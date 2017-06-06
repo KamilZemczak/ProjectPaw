@@ -39,7 +39,7 @@
 
             <!-- page-header adds space aroundtext and enlarges it. It also adds an underline at the end -->
 
-            <center> <img src="static/images/ligatyperow.png" width="200" height="140"> 
+            <center> <img src="static/images/ligatyperow.png" width="200" height="140">
                 <center><h4>Witaj w wirtualnej lidze typerow (tylko mecze pilki noznej). </h4>
                     <center><h4>Dostep dopiero po zalogowaniu.</h4></center>
 
@@ -66,6 +66,7 @@
                                     </div>
                             </div>
                         </div>
+                    </div>
                     </div>
 
                     <center><p>Jesli nie masz konta: <a href="${contextPath}/registration"> Zarejestruj sie</a></p></center>

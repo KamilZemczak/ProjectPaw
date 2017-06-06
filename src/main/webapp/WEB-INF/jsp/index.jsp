@@ -29,16 +29,16 @@
 
             <a href="/" class="navbar-brand">Strona glowna</a>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">                 
-                  
+                <ul class="nav navbar-nav">
+
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Panel uzytkownika
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                              <sec:authorize access="hasRole('ADMIN')"><li><a href="bet-games">Obstaw mecz</a></li></sec:authorize
+                            <li><a href="bet-games">Obstaw mecz</a></li>
                             <li><a href="your-games">Twoje typy</a></li>
-                        </ul></li>>
-                    <li class="dropdown">                       
+                        </ul></li>
+                    <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Panel administratora
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu">
@@ -46,7 +46,7 @@
                             <li><a href="all-games">Zarzadzaj meczami</a></li>
                         </ul>  </li>
                     <li><a href="#">Klasyfikacja graczy</a></li>
-                    <li><a href="#">Kontakt</a></li>
+                    <li><a href="kontakt">Kontakt</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <c:if test="${pageContext.request.userPrincipal.name != null}">
@@ -55,7 +55,7 @@
                         </form>
                     </c:if>
 
-                    <li><a onclick="document.forms['logoutForm'].submit()" href="#"><span class="glyphicon glyphicon-log-out" ></span> Wyloguj </a></li>
+                    <li><a onclick="document.forms['logoutForm'].submit()" href="#"><span class="glyphicon glyphicon-log-out" ></span> Wyloguj sie ${pageContext.request.userPrincipal.name} </a></li>
 
                 </ul>
             </div>
@@ -222,8 +222,8 @@
                                 <input type="text" class="form-control" name="scoreAwayp" value="${type.scoreAwayp}"/>
                             </div>
                         </div>
-                        <div class="form-group">                  
-                            <input type="submit" class="btn btn-primary" value="Obstaw"/>       
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-primary" value="Obstaw"/>
                         </div>
                     </form>
                 </div>
@@ -264,6 +264,34 @@
                     </div>
                 </div>
             </c:when>
+              <c:when test="${mode == 'MODE_KONTAKT'}">
+                <div class="container">
+
+                        <center><h2>Najczesciej zadawane pytania:</h2></center>
+
+
+
+                              <center>      <div class="jumbotron text-center">
+
+
+<b>Zgłoś uwagę/</b>
+<br>
+Masz jakis ciekawy pomysl, ktory usprawni dzialanie serwisu? A moze znalazles/as jakis blad? Napisz nam o tym koniecznie.
+<br><b>Brak punktów w Lidze Typerow?</b>
+<br>
+Punkty w Lidze Typerow nie zostaly podliczone od razu? Cierpliwosci,
+ system automatycznie aktualizuje stan punktow po wprowadzeniu wynikow meczw.
+  W ciagu 24 godzin od wprowadzenia wyniku meczu w serwisie punkty na pewno sie pojawia.
+                                </div>
+                                  </center>
+
+                                </div>
+                            </div>
+                            </div>
+
+
+
+                </c:when>
         </c:choose>
         <script src="static/js/jquery-1.11.1.min.js"></script>
         <script src="static/js/bootstrap.min.js"></script>
