@@ -19,10 +19,11 @@
             .jumbotron{
                 background-color:#262626;
                 color:white;
-                padding-top: 10px;
+                padding-top: 5px;
+                padding-bottom: 20px;
             }
 
-  </style>
+        </style>
     </head>
     <body>
 
@@ -47,9 +48,10 @@
                         <ul class="dropdown-menu">
                             <li><a href="new-game">Dodaj nowy mecz</a></li>
                             <li><a href="all-games">Zarzadzaj meczami</a></li>
+                            <li><a href="all-types">Rozdaj punkty</a></li>
                         </ul>  </li>
                     <li><a href="#">Klasyfikacja graczy</a></li>
-                    <li><a href="kontakt">Kontakt</a></li>
+                    <li><a href="contact">Kontakt</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <c:if test="${pageContext.request.userPrincipal.name != null}">
@@ -166,7 +168,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <input type="submit" class="btn btn-primary" value="Save"/>
+                            <input type="submit" class="btn btn-primary" value="Zapisz"/>
                         </div>
                     </form>
                 </div>
@@ -213,7 +215,7 @@
                     <form class="form-horizontal" method="POST" action="save-bet">
                         <input type="hidden" name="game_id" value="${game.id}"/>
 
-                        Mecz ktory wlasnie obstawiasz to: ${game.homeTeam} + ${game.awayTeam}.<br>
+                        Mecz ktory wlasnie obstawiasz to: ${game.homeTeam} vs ${game.awayTeam}.<br>
 
                         <div class="form-group">
                             <label class="control-label col-md-3">Wynik 1 druzyny (gospodarze)</label>
@@ -269,36 +271,71 @@
                     </div>
                 </div>
             </c:when>
-              <c:when test="${mode == 'MODE_KONTAKT'}">
+            <c:when test="${mode == 'MODE_TYPES'}">
+                <div class="container text-center" id="typesDiv">
+                    <h3>Wszystkie typy uzytkownikow</h3>
+                    <hr>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered text-left">
+                            <thread>
+                                <tr>
+                                    <th>ID typu</th>
+                                    <th>Rzeczywisty wynik</th>
+                                    <th>Wynik uzytkownika</th>
+                                    <th>Nazwa uzytkownika</th>
+                                    <th></th>
+                                </tr>
+                            </thread>
+                            <tbody>
+                                <c:forEach var="type" items="${types}">
+                                    <tr>
+                                        <td>${type.id}</td>
+                                        <td>${type.scoreHomep} : ${type.scoreAwayp}</td>
+                                        <td>${game.scoreHomea} : ${game.ScoreHomea}</td>
+
+                                        <td></td>
+                                    </tr>
+                                </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </c:when>
+            <c:when test="${mode == 'MODE_CONTACT'}">
                 <div class="container">
 
-                        <center><h1>Najczesciej zadawane pytania:</h1></center>
+                    <center><h1>Najczesciej zadawane pytania:</h1></center>
 
-                              <center>      <div class="jumbotron">
-<h3>Zglos uwage:</h3>
+                    <center>      <div class="jumbotron">
+                            <h3><b>Zglos uwage</b></h3>
 
-Masz jakis ciekawy pomysl, ktory usprawni dzialanie serwisu? A moze znalazles/as jakis blad? Napisz nam o tym koniecznie.
-<br><h3>Brak punktow w Lidze Typerow?</h3>
-<br>
-Punkty w Lidze Typerow nie zostaly podliczone od razu? Cierpliwosci,
-system automatycznie aktualizuje stan punktow po wprowadzeniu wynikow meczw.
-W ciagu 24 godzin od wprowadzenia wyniku meczu w serwisie punkty na pewno sie pojawia.
-<br><br>
-<b>  Odpowiemy na kazda wiadomosc jesli tylko nie wpadnie do spamu, takze smialo! <b>
-                                </div>
-                                  </center>
-<center><h1>Kontakt email:</h1></center>
-<center><h2 class="bg-primary">pawelbodo7@gmail.com</h2> <br>
-  <center> <img src="static/images/ligatyperow.png" width="200" height="140"></center>
-                                </div>
-                            </div>
-                            </div>
+                            Masz jakis ciekawy pomysl, ktory usprawni dzialanie serwisu? A moze znalazles/as jakis blad? Napisz nam o tym koniecznie.
+                            <br><h3><b>Brak przypisanych punktow</b></h3>
+
+                            Punkty w Lidze Typerow nie zostaly podliczone od razu? Cierpliwosci,
+                            system automatycznie aktualizuje stan punktow po wprowadzeniu wynikow meczw.
+                            W ciagu 24 godzin od wprowadzenia wyniku meczu w serwisie punkty na pewno sie pojawia.
+                            <br><br>
+                            <b>  Odpowiemy na kazda wiadomosc jesli tylko nie wpadnie do spamu, takze smialo! <b>
+                                    </div>
+                                    </center>
+                                    <center><h1>Kontakt email:</h1></center>
+                                    <center><h2> <span class="label label-default">pawelbodo7@gmail.com</span></h2> <br></center>
+                                    <center> <img src="static/images/ligatyperow.png" width="200" height="140"></center>
+                                    </div>
+                                    </div>
+                                    </div>
 
 
 
-                </c:when>
-        </c:choose>
-        <script src="static/js/jquery-1.11.1.min.js"></script>
-        <script src="static/js/bootstrap.min.js"></script>
-    </body>
-</html>
+                                </c:when>
+                            </c:choose>
+                            <div class="navbar navbar-fixed-bottom">
+                                <div class="panel-footer">
+                                   
+                                        Copyright: Projekt PAW 2017 (Kamil Zemczak Rafal Michalski). Wszystkie prawa zastrzezone.
+                                    </div></div>
+                            <script src="static/js/jquery-1.11.1.min.js"></script>
+                            <script src="static/js/bootstrap.min.js"></script>
+                            </body>
+                            </html>

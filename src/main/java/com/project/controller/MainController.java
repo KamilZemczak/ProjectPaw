@@ -83,9 +83,10 @@ public class MainController {
         request.setAttribute("mode", "MODE_GAMES");
         return "index";
     }
-     @GetMapping("/kontakt")
-    public String kontakt(HttpServletRequest request) {
-        request.setAttribute("mode", "MODE_KONTAKT");
+
+    @GetMapping("/contact")
+    public String contact(HttpServletRequest request) {
+        request.setAttribute("mode", "MODE_CONTACT");
         return "index";
     }
 }

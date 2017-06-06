@@ -34,38 +34,18 @@ public class TypeController {
 
     @PostMapping("/save-bet")
     public String saveType(@ModelAttribute Type type, @RequestParam("game_id") Integer id, HttpServletRequest request) {
-    type.setGame(gameService.findGame(id));
-    type.setUser(userServiceImpl.getUserId());
-    typeService.save(type);
-    request.setAttribute("bet", "MODE_BETS");
-    return "index";
+        type.setGame(gameService.findGame(id));
+        type.setUser(userServiceImpl.getUserId());
+        typeService.save(type);
+        request.setAttribute("bet", "MODE_BETS");
+        return "index";
     }
     
-    /*  @PostMapping("/save-bet")
-    public String saveGame(@ModelAttribute Type type, BindingResult bindingResult, HttpServletRequest request) {
-    typeService.save(type);
-    request.setAttribute("bets", typeService.findAll());
-    request.setAttribute("mode", "MODE_BETS");
-    return "index";
-    }*/
-
-    /*    @GetMapping("/bet-touser")
-    public String rentToUser(@RequestParam("id") Integer id, @RequestParam("userId") Integer userId) {
-    try {
-    typeService.typeGameToUser(type, id, userId);
-    } catch (Exception e) {
-    //messageService.addErrorMessage("Błąd. Skontaktuj się ze swoim deweloperem.");
-    e.printStackTrace();
+    @GetMapping("/all-types")
+    public String allGames(HttpServletRequest request) {
+        request.setAttribute("types", typeService.findAll());
+        request.setAttribute("mode", "MODE_TYPES");
+        return "index";
     }
-    //messageService.addSuccessMessage("Książka została wypożyczona!");
-    return "index";
-    }*/
- /*
-    @GetMapping("/save-bet")
-    public String saveType(@RequestParam("userId") Integer userId, int bookId, HttpServletRequest request) {
-    userServiceImpl.getUsername(userId);
-    request.setAttribute("masterId", userId);
-    typeService.betGameToUser(bookId, userId);
-    return "index";
-    }*/
+
 }
