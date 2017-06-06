@@ -25,24 +25,21 @@ public class Type implements Serializable {
     @ManyToOne
     @JoinColumn(name = "userr_id")
     private User user;
-    /*@Column
-    private Integer points;*/
+    @Column
+    private Integer points;
 
     public Type() {
     }
 
-    public Type(Integer scoreHomep, Integer scoreAwayp, Game game, User user) {
+    public Type(Integer scoreHomep, Integer scoreAwayp, Game game, User user, Integer points) {
         super();
         this.scoreHomep = scoreHomep;
         this.scoreAwayp = scoreAwayp;
         this.game = game;
         this.user = user;
+        this.points = points;
     }
 
-    /*    public Type(int scoreHomeTeamp, int scoreAwayTeamp) {
-    this.scoreHomep = scoreHomeTeamp;
-    this.scoreAwayp = scoreAwayTeamp;
-    }*/
     public Integer getId() {
         return id;
     }
@@ -82,4 +79,13 @@ public class Type implements Serializable {
     public void setUser(User user) {
         this.user = user;
     }
+
+    public Integer getPoints() {
+        return points;
+    }
+
+    public void setPoints(Integer points) {
+        this.points = points;
+    }
+
 }

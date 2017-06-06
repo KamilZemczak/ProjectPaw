@@ -45,9 +45,9 @@
                             <li><a href="bet-games">Obstaw mecz</a></li>
                             <li><a href="your-games">Twoje typy</a></li>
                         </ul></li>
-                       
-                           
-                        <li class="dropdown">
+
+
+                    <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Panel administratora
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu">
@@ -176,8 +176,8 @@
                             <input type="submit" class="btn btn-primary" value="Zapisz"/>
                         </div>
 
-                        
-                            
+
+
                     </form>
                 </div>
             </c:when>
@@ -280,14 +280,14 @@
                 </div>
             </c:when>
             <c:when test="${mode == 'MODE_TYPES'}">
-                <div class="container text-center" id="gamesDiv">
+                <div class="container text-center" id="typesDiv">
                     <h3>Wszystkie typy użytkowników</h3>
                     <hr>
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered text-left">
                             <thread>
                                 <tr>
-                                    <th>ID gry</th>
+                                    <th>ID typu</th>
                                     <th>Info</th>
                                     <th>Rzeczywisty wynik</th>
                                     <th>Wynik użytkownika</th>
@@ -296,19 +296,38 @@
                                 </tr>
                             </thread>
                             <tbody>
-                                <c:forEach var="game" items="${games}">
+                                <c:forEach var="type" items="${types}">
                                     <tr>
-                                        <td>${game.id}</td>
-                                        <td>${game.homeTeam} vs ${game.awayTeam}</td>
-                                        <td>${game.scoreHomea} : ${game.scoreHomea}</td>
-                                        <td>${game.scoreHomep} : ${game.scoreAwayp}</td>                                       
+                                        <td>${type.id}</td>
                                         <td></td>
-                                        <td><a href="bet-bet?id=${game.id}"><span class="glyphicon glyphicon-plus"></span></a></td>
+                                        <td></td>
+                                        <td>${type.scoreHomep} : ${type.scoreAwayp}</td>                                       
+                                        <td>${type.user}</td>
+                                        <td><a href="add-points?id=${type.id}"><span class="glyphicon glyphicon-plus"></span></a></td>
                                     </tr>
                                 </c:forEach>
                             </tbody>
                         </table>
                     </div>
+                </div>
+            </c:when>
+            <c:when test="${mode == 'MODE_PBET'}">
+                <div class="container text-center">
+                    <h3>Obstaw</h3>
+                    <hr>
+                    <form class="form-horizontal" method="POST" action="save-point">
+                        <input type="hidden" name="id" value="${type.id}"/>
+                   
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Punkty:</label>
+                            <div class="col-md-7">
+                                <input type="number" class="form-control" name="scoreHomep" max="25" min="0" value="${type.points}"/>
+                            </div>
+                        </div>                      
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-primary" value="Dodaj punkty"/>
+                        </div>
+                    </form>
                 </div>
             </c:when>
             <c:when test="${mode == 'MODE_CONTACT'}">

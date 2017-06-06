@@ -70,7 +70,7 @@ public class MainController {
     public String updateGame(@RequestParam int id, HttpServletRequest request) {
         request.setAttribute("game", gameService.findGame(id));
         request.setAttribute("mode", "MODE_UPDATE");
-        request.setAttribute("message", "treść wiadomości");
+        request.setAttribute("message", "treść wiadomości"); //TODO
         messageService.addSuccessMessage("Zaktualizowano pozycje!");
         return "index";
     }

@@ -46,6 +46,11 @@ public class TypeService {
     public void save(Type type) {
         typeRepository.save(type);
     }
+    
+    /*public void saveOnlyPoint(Type type) {
+    typeRepository.
+    
+    }*/
 
     public void typeGameToUser(Integer gameId, Integer userId) {
         User user = userServiceImpl.getUsername(userId);
