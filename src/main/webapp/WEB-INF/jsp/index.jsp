@@ -216,12 +216,12 @@
                     </div>
                 </div>
             </c:when>
-            <c:when test="${mode == 'MODE_BET'}">
+            <c:when test="${mode == 'MODE_BET' || mode == 'MODE_PBET'}">
                 <div class="container text-center">
                     <h3>Obstaw</h3>
                     <hr>
                     <form class="form-horizontal" method="POST" action="save-bet">
-                        <input type="hidden" name="game_id" value="${game.id}"/>
+                        <input type="hidden" name="id" value="${type.id}"/>
 
                         Mecz ktory wlasnie obstawiasz to: ${game.homeTeam} vs ${game.awayTeam}.<br>
 
@@ -311,7 +311,7 @@
                     </div>
                 </div>
             </c:when>
-            <c:when test="${mode == 'MODE_PBET'}">
+            <c:when test="${mode == 'MODE_PBETTT'}">
                 <div class="container text-center">
                     <h3>Obstaw</h3>
                     <hr>

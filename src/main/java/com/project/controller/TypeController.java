@@ -61,16 +61,22 @@ public class TypeController {
 
     @GetMapping("/add-points")
     public String addPoints(@RequestParam int id, HttpServletRequest request) {
-        request.setAttribute("game", typeService.findType(id));
+        request.setAttribute("type", typeService.findType(id));
         request.setAttribute("mode", "MODE_PBET");
         return "index";
     }
 
-    @PostMapping("/save-point")
-    public String savePoints(@ModelAttribute Type type, HttpServletRequest request) {       
-        typeService.save(type);
-        request.setAttribute("bet", "MODE_PBETS");
-        return "index";
-    }
-
+    /* @PostMapping("/save-point")
+    public String savePoints(@ModelAttribute Type type, HttpServletRequest request) {
+    typeService.save(type);
+    request.setAttribute("bet", "MODE_PBETS");
+    return "index";
+    }*/
+    
+    /*@GetMapping("/save-point")
+    public String savePoints2(@RequestParam int id, HttpServletRequest request) {
+    request.setAttribute("type", typeService.findType(id));
+    request.setAttribute("mode", "MODE_PBETS");
+    return "index";
+    }*/
 }
