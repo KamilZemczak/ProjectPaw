@@ -11,15 +11,18 @@
         <meta http-equiv="Cache-Control" content="no-cache">
         <meta http-equiv="Expires" content="Sat, 01 Dec 2001, 00:00:00 GMT">
 
-        <title>Task Manager | Home</title>
+        <title>Liga typerow</title>
 
         <link href="static/css/bootstrap.min.css" rel="stylesheet">
         <link href="static/css/style.css" rel="stylesheet">
+        <style>
+            .jumbotron{
+                background-color:#262626;
+                color:white;
+                padding-top: 10px;
+            }
 
-        <!--[if lt IE 9]>
-        <script src="static/js/html5shiv.min.js"></script>
-        <script src="static/js/respond.min.js"></script>
-        <!endif]-->
+  </style>
     </head>
     <body>
 
@@ -114,11 +117,12 @@
                     <h3>Dodaj mecz</h3>
                     <hr>
                     <form class="form-horizontal" method="POST" action="save-game">
+
                         <input type="hidden" name="id" value="${game.id}"/>
                         <div class="form-group">
                             <label class="control-label col-md-3">Numer kolejki</label>
                             <div class="col-md-7">
-                                <input type="text" class="form-control" name="round" value="${game.round}"/>
+                                <input type="number" class="form-control" name="round" max="99" min="0" value="${game.round}"/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -142,22 +146,23 @@
                         <div class="form-group">
                             <label class="control-label col-md-3">Wynik 1 druzyny (gospodarze)</label>
                             <div class="col-md-7">
-                                <input type="text" class="form-control" name="scoreHomea" value="${game.scoreHomea}"/>
+
+                                <input type="number" class="form-control" name="scoreHomea" max="25" min="0"  value="${game.scoreHomea}"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-md-3">Wynik 2 druzyny (goscie)</label>
                             <div class="col-md-7">
-                                <input type="text" class="form-control" name="scoreAwaya" value="${game.scoreAwaya}"/>
+                                <input type="number" class="form-control" name="scoreAwaya" max="25" min="0" value="${game.scoreAwaya}"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-md-3">Zakonczony</label>
                             <div class="col-md-7">
                                 <input type="radio" class="col-sm-1" name="finished" value="true"/>
-                                <div class="col-sm-1">Yes</div>
+                                <div class="col-sm-1">Tak</div>
                                 <input type="radio" class="col-sm-1" name="finished" value="false" checked/>
-                                <div class="col-sm-1">No</div>
+                                <div class="col-sm-1">Nie</div>
                             </div>
                         </div>
                         <div class="form-group">
@@ -213,13 +218,13 @@
                         <div class="form-group">
                             <label class="control-label col-md-3">Wynik 1 druzyny (gospodarze)</label>
                             <div class="col-md-7">
-                                <input type="text" class="form-control" name="scoreHomep" value="${type.scoreHomep}"/>
+                                <input type="number" class="form-control" name="scoreHomep" max="25" min="0" value="${type.scoreHomep}"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-md-3">Wynik 2 druzyny (goscie)</label>
                             <div class="col-md-7">
-                                <input type="text" class="form-control" name="scoreAwayp" value="${type.scoreAwayp}"/>
+                                <input type="number" class="form-control" name="scoreAwayp" max="25" min="0" value="${type.scoreAwayp}"/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -267,24 +272,24 @@
               <c:when test="${mode == 'MODE_KONTAKT'}">
                 <div class="container">
 
-                        <center><h2>Najczesciej zadawane pytania:</h2></center>
+                        <center><h1>Najczesciej zadawane pytania:</h1></center>
 
+                              <center>      <div class="jumbotron">
+<h3>Zglos uwage:</h3>
 
-
-                              <center>      <div class="jumbotron text-center">
-
-
-<b>Zgłoś uwagę/</b>
-<br>
 Masz jakis ciekawy pomysl, ktory usprawni dzialanie serwisu? A moze znalazles/as jakis blad? Napisz nam o tym koniecznie.
-<br><b>Brak punktów w Lidze Typerow?</b>
+<br><h3>Brak punktow w Lidze Typerow?</h3>
 <br>
 Punkty w Lidze Typerow nie zostaly podliczone od razu? Cierpliwosci,
- system automatycznie aktualizuje stan punktow po wprowadzeniu wynikow meczw.
-  W ciagu 24 godzin od wprowadzenia wyniku meczu w serwisie punkty na pewno sie pojawia.
+system automatycznie aktualizuje stan punktow po wprowadzeniu wynikow meczw.
+W ciagu 24 godzin od wprowadzenia wyniku meczu w serwisie punkty na pewno sie pojawia.
+<br><br>
+<b>  Odpowiemy na kazda wiadomosc jesli tylko nie wpadnie do spamu, takze smialo! <b>
                                 </div>
                                   </center>
-
+<center><h1>Kontakt email:</h1></center>
+<center><h2 class="bg-primary">pawelbodo7@gmail.com</h2> <br>
+  <center> <img src="static/images/ligatyperow.png" width="200" height="140"></center>
                                 </div>
                             </div>
                             </div>
