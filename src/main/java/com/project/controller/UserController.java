@@ -58,10 +58,10 @@ public class UserController {
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(Model model, String error, String logout) {
         if (error != null)
-            model.addAttribute("error", "Niewlasciwe haslo lub login.");
+            model.addAttribute("error", "Niewłaściwe hasło lub login.");
 
         if (logout != null)
-            model.addAttribute("message", "Wylogowanie powiodlo sie.");
+            model.addAttribute("message", "Wylogowanie powiodło sie.");
 
         return "login";
     }

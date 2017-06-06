@@ -2,6 +2,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <%@ page contentType="text/html; charset=UTF-8" %>
 
@@ -44,7 +45,9 @@
                             <li><a href="bet-games">Obstaw mecz</a></li>
                             <li><a href="your-games">Twoje typy</a></li>
                         </ul></li>
-                    <li class="dropdown">
+                       
+                           
+                        <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Panel administratora
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu">
@@ -277,14 +280,15 @@
                 </div>
             </c:when>
             <c:when test="${mode == 'MODE_TYPES'}">
-                <div class="container text-center" id="typesDiv">
+                <div class="container text-center" id="gamesDiv">
                     <h3>Wszystkie typy użytkowników</h3>
                     <hr>
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered text-left">
                             <thread>
                                 <tr>
-                                    <th>ID typu</th>
+                                    <th>ID gry</th>
+                                    <th>Info</th>
                                     <th>Rzeczywisty wynik</th>
                                     <th>Wynik użytkownika</th>
                                     <th>Nazwa użytkownika</th>
@@ -292,12 +296,12 @@
                                 </tr>
                             </thread>
                             <tbody>
-                                <c:forEach var="type" items="${types}">
+                                <c:forEach var="game" items="${games}">
                                     <tr>
-                                        <td>${type.id}</td>
-                                        <td>${type.scoreHomep} : ${type.scoreAwayp}</td>
-                                        <td>${game.scoreHomea} : ${game.ScoreHomea}</td>
-
+                                        <td>${game.id}</td>
+                                        <td>${game.homeTeam} vs ${game.awayTeam}</td>
+                                        <td>${game.scoreHomea} : ${game.scoreHomea}</td>
+                                        <td>${game.scoreHomep} : ${game.scoreAwayp}</td>                                       
                                         <td></td>
                                     </tr>
                                 </c:forEach>
