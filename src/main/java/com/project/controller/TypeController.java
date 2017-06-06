@@ -53,7 +53,7 @@ public class TypeController {
 
     @GetMapping("/all-types")
     public String allGames(HttpServletRequest request) {
-        request.setAttribute("games", gameService.fillTypeToGame(gameService.findAll()));
+        request.setAttribute("games", gameService.fillTypeToGame2(typeService.findAll()));
         request.setAttribute("mode", "MODE_TYPES");
         return "index";
     }

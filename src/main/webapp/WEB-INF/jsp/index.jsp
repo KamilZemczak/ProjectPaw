@@ -303,6 +303,7 @@
                                         <td>${game.scoreHomea} : ${game.scoreHomea}</td>
                                         <td>${game.scoreHomep} : ${game.scoreAwayp}</td>                                       
                                         <td></td>
+                                        <td><a href="bet-bet?id=${game.id}"><span class="glyphicon glyphicon-plus"></span></a></td>
                                     </tr>
                                 </c:forEach>
                             </tbody>

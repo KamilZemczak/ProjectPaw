@@ -12,6 +12,7 @@ import com.project.dao.GameRepository;
 import com.project.dao.TypeRepository;
 import com.project.dao.UserRepository;
 import com.project.dto.GameDTO;
+import com.project.dto.TypeDTO;
 import com.project.model.Type;
 import com.project.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
