@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
+<%@ page contentType="text/html; charset=UTF-8" %>
+
 <html>
     <head>
         <meta charset="utf-8">
@@ -31,7 +33,7 @@
         <div class="navbar navbar-inverse">
             <!--<a class="pull-left" href="index.html"><img src="static/images/ligatyperow2.png" width="100" height="50"></a><!-->
 
-            <a href="/" class="navbar-brand">Strona glowna</a>
+            <a href="/" class="navbar-brand">Strona główna</a>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
 
@@ -47,7 +49,7 @@
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="new-game">Dodaj nowy mecz</a></li>
-                            <li><a href="all-games">Zarzadzaj meczami</a></li>
+                            <li><a href="all-games">Zarządzaj meczami</a></li>
                             <li><a href="all-types">Rozdaj punkty</a></li>
                         </ul>  </li>
                     <li><a href="#">Klasyfikacja graczy</a></li>
@@ -72,7 +74,7 @@
             <c:when test="${mode == 'MODE_HOME'}">
                 <div class="container" id="homeDiv">
                     <div class="jumbotron text-center">
-                        <h1>Witaj w lidze typerow ${pageContext.request.userPrincipal.name}.</h1>
+                        <h1>Witaj w lidze typerów ${pageContext.request.userPrincipal.name}.</h1>
                     </div>
                 </div>
             </c:when>
@@ -86,11 +88,11 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Kolejka</th>
-                                    <th>Druzyna 1 (gospodarze)</th>
-                                    <th>Druzyna 2 (goscie)</th>
+                                    <th>Drużyna 1 (gospodarze)</th>
+                                    <th>Drużyna 2 (goście)</th>
                                     <th>Data spotkania</th>
                                     <th>Wynik</th>
-                                    <th>Zakonczony</th>
+                                    <th>Zakończony</th>
                                     <th></th>
                                     <th></th>
                                 </tr>
@@ -128,13 +130,13 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-3">Druzyna 1 (gospodarze)</label>
+                            <label class="control-label col-md-3">Drużyna 1 (gospodarze)</label>
                             <div class="col-md-7">
                                 <input type="text" class="form-control" name="homeTeam" value="${game.homeTeam}"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-3">Druzyna 2 (goscie)</label>
+                            <label class="control-label col-md-3">Drużyna 2 (goście)</label>
                             <div class="col-md-7">
                                 <input type="text" class="form-control" name="awayTeam" value="${game.awayTeam}"/>
                             </div>
@@ -146,30 +148,33 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-3">Wynik 1 druzyny (gospodarze)</label>
+                            <label class="control-label col-md-3">Wynik 1 drużyny (gospodarze)</label>
                             <div class="col-md-7">
 
                                 <input type="number" class="form-control" name="scoreHomea" max="25" min="0"  value="${game.scoreHomea}"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-3">Wynik 2 druzyny (goscie)</label>
+                            <label class="control-label col-md-3">Wynik 2 drużyny (goście)</label>
                             <div class="col-md-7">
                                 <input type="number" class="form-control" name="scoreAwaya" max="25" min="0" value="${game.scoreAwaya}"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-3">Zakonczony</label>
+                            <label class="control-label col-md-3">Zakończony</label>
                             <div class="col-md-7">
-                                <input type="radio" class="col-sm-1" name="finished" value="true"/>
+                                <input type="radio" class="col-sm-1" name="finished" value="tak"/>
                                 <div class="col-sm-1">Tak</div>
-                                <input type="radio" class="col-sm-1" name="finished" value="false" checked/>
+                                <input type="radio" class="col-sm-1" name="finished" value="nie" checked/>
                                 <div class="col-sm-1">Nie</div>
                             </div>
                         </div>
                         <div class="form-group">
                             <input type="submit" class="btn btn-primary" value="Zapisz"/>
                         </div>
+
+                        
+                            
                     </form>
                 </div>
             </c:when>
@@ -182,12 +187,12 @@
                             <thread>
                                 <tr>
                                     <th>Kolejka</th>
-                                    <th>Druzyna 1 (gospodarze)</th>
-                                    <th>Druzyna 2 (goscie)</th>
+                                    <th>Drużyna 1 (gospodarze)</th>
+                                    <th>Drużyna 2 (goście)</th>
                                     <th>Data spotkania</th>
-                                    <th>Twoj wynik</th>
-                                    <th>Wynik koncowy</th>
-                                    <th>Zakonczony</th>
+                                    <th>Twój wynik</th>
+                                    <th>Wynik końcowy</th>
+                                    <th>Zakończony</th>
                                     <th>Punkty</th>
                                 </tr>
                             </thread>
@@ -198,7 +203,7 @@
                                         <td>${game.homeTeam}</td>
                                         <td>${game.awayTeam}</td>
                                         <td>${game.dateGame}</td>
-                                        <td>${type.scoreHomep} : ${type.scoreHomep}</td>
+                                        <td>${game.scoreHomep} : ${game.scoreAwayp}</td>
                                         <td>${game.scoreHomea} : ${game.scoreAwaya}</td>
                                         <td>${game.finished}</td>
                                     </tr>
@@ -218,13 +223,13 @@
                         Mecz ktory wlasnie obstawiasz to: ${game.homeTeam} vs ${game.awayTeam}.<br>
 
                         <div class="form-group">
-                            <label class="control-label col-md-3">Wynik 1 druzyny (gospodarze)</label>
+                            <label class="control-label col-md-3">Wynik 1 drużyny (gospodarze)</label>
                             <div class="col-md-7">
                                 <input type="number" class="form-control" name="scoreHomep" max="25" min="0" value="${type.scoreHomep}"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-3">Wynik 2 druzyny (goscie)</label>
+                            <label class="control-label col-md-3">Wynik 2 drużyny (goście)</label>
                             <div class="col-md-7">
                                 <input type="number" class="form-control" name="scoreAwayp" max="25" min="0" value="${type.scoreAwayp}"/>
                             </div>
@@ -244,12 +249,12 @@
                             <thread>
                                 <tr>
                                     <th>Kolejka</th>
-                                    <th>Druzyna 1 (gospodarze)</th>
-                                    <th>Druzyna 2 (goscie)</th>
+                                    <th>Drużyna 1 (gospodarze)</th>
+                                    <th>Drużyna 2 (goście)</th>
                                     <th>Data spotkania</th>
-                                    <th>Twoj wynik</th>
-                                    <th>Wynik koncowy</th>
-                                    <th>Zakonczony</th>
+                                    <th>Twój wynik</th>
+                                    <th>Wynik końcowy</th>
+                                    <th>Zakończony</th>
                                     <th></th>
                                 </tr>
                             </thread>
@@ -260,7 +265,7 @@
                                         <td>${game.homeTeam}</td>
                                         <td>${game.awayTeam}</td>
                                         <td>${game.dateGame}</td>
-                                        <td>${type.scoreHomep} : ${type.scoreHomep}</td>
+                                        <td>${game.scoreHomep} : ${game.scoreAwayp}</td>
                                         <td>${game.scoreHomea} : ${game.scoreAwaya}</td>
                                         <td>${game.finished}</td>
                                         <td><a href="bet-bet?id=${game.id}"><span class="glyphicon glyphicon-usd"></span></a></td>
@@ -273,7 +278,7 @@
             </c:when>
             <c:when test="${mode == 'MODE_TYPES'}">
                 <div class="container text-center" id="typesDiv">
-                    <h3>Wszystkie typy uzytkownikow</h3>
+                    <h3>Wszystkie typy użytkowników</h3>
                     <hr>
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered text-left">
@@ -281,8 +286,8 @@
                                 <tr>
                                     <th>ID typu</th>
                                     <th>Rzeczywisty wynik</th>
-                                    <th>Wynik uzytkownika</th>
-                                    <th>Nazwa uzytkownika</th>
+                                    <th>Wynik użytkownika</th>
+                                    <th>Nazwa użytkownika</th>
                                     <th></th>
                                 </tr>
                             </thread>
@@ -304,19 +309,19 @@
             <c:when test="${mode == 'MODE_CONTACT'}">
                 <div class="container">
 
-                    <center><h1>Najczesciej zadawane pytania:</h1></center>
+                    <center><h1>Najczęściej zadawane pytania:</h1></center>
 
                     <center>      <div class="jumbotron">
-                            <h3><b>Zglos uwage</b></h3>
+                            <h3><b>Zgłoś uwage</b></h3>
 
-                            Masz jakis ciekawy pomysl, ktory usprawni dzialanie serwisu? A moze znalazles/as jakis blad? Napisz nam o tym koniecznie.
-                            <br><h3><b>Brak przypisanych punktow</b></h3>
+                            Masz jakiś ciekawy pomysł, który usprawni działanie serwisu? A może znalazłeś/aś jakiś błąd? Napisz nam o tym koniecznie.
+                            <br><h3><b>Brak przypisanych punktów</b></h3>
 
-                            Punkty w Lidze Typerow nie zostaly podliczone od razu? Cierpliwosci,
-                            system automatycznie aktualizuje stan punktow po wprowadzeniu wynikow meczw.
-                            W ciagu 24 godzin od wprowadzenia wyniku meczu w serwisie punkty na pewno sie pojawia.
+                            Punkty w naszej Lidze Typerów nie zostały podliczone od razu? Cierpliwości,
+                            system automatycznie aktualizuje stan punktów po wprowadzeniu wyników meczów.
+                            W ciągu 24 godzin od wprowadzenia wyniku meczu w serwisie punkty na pewno sie pojawią.
                             <br><br>
-                            <b>  Odpowiemy na kazda wiadomosc jesli tylko nie wpadnie do spamu, takze smialo! <b>
+                            <b>  Odpowiemy na każdą wiadomość jeśli tylko nie wpadnie do spamu, także śmiało! <b>
                                     </div>
                                     </center>
                                     <center><h1>Kontakt email:</h1></center>
@@ -332,9 +337,9 @@
                             </c:choose>
                             <div class="navbar navbar-fixed-bottom">
                                 <div class="panel-footer">
-                                   
-                                        Copyright: Projekt PAW 2017 (Kamil Zemczak Rafal Michalski). Wszystkie prawa zastrzezone.
-                                    </div></div>
+
+                                    Copyright: Projekt PAW 2017 (Kamil Zemczak Rafal Michalski). Wszystkie prawa zastrzeżone.
+                                </div></div>
                             <script src="static/js/jquery-1.11.1.min.js"></script>
                             <script src="static/js/bootstrap.min.js"></script>
                             </body>

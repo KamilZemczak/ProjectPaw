@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class UserController {
+    
     @Autowired
     private UserService userService;
 
@@ -64,9 +65,4 @@ public class UserController {
 
         return "login";
     }
-
-    /* @RequestMapping(value = {"/", "/home"}, method = RequestMethod.GET)
-    public String main(Model model) {
-    return "index";*/
-   // }
 }

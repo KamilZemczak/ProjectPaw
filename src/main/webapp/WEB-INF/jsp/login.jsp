@@ -1,7 +1,9 @@
 <!DOCTYPE html>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <html lang="pl">
     <head>
         <meta charset="UTF-8">
+        
 
 
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -40,8 +42,8 @@
             <!-- page-header adds space aroundtext and enlarges it. It also adds an underline at the end -->
 
             <center> <img src="static/images/ligatyperow.png" width="200" height="140">
-                <center><h4>Witaj w wirtualnej lidze typerow (tylko mecze pilki noznej). </h4>
-                    <center><h4>Dostep dopiero po zalogowaniu.</h4></center>
+                <center><h4>Witaj w wirtualnej lidze typerów (tylko mecze piłki nożnej). </h4>
+                    <center><h4>Dostęp dopiero po zalogowaniu.</h4></center>
 
                     <div class="row">
                         <div class="col-md-4">
@@ -69,7 +71,7 @@
                     </div>
                     </div>
 
-                    <center><p>Jesli nie masz konta: <a href="${contextPath}/registration"> Zarejestruj sie</a></p></center>
+                    <center><p>Jeśli nie masz konta: <a href="${contextPath}/registration">Zarejestruj sie</a></p></center>
 
                     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
                     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>

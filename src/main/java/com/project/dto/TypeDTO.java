@@ -1,6 +1,6 @@
 package com.project.dto;
 
-public class RentDTO {
+public class TypeDTO {
     
     private Integer id;
     private Integer scoreHomep;

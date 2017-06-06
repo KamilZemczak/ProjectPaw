@@ -19,12 +19,6 @@ import org.springframework.stereotype.Service;
 public class TypeService {
 
     @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private GameRepository gameRepository;
-
-    @Autowired
     private TypeRepository typeRepository;
     
     @Autowired
@@ -80,6 +74,8 @@ public class TypeService {
             gameDTO.setAwayTeam(typeGame.getAwayTeam());
             gameDTO.setDateGame(typeGame.getDateGame());
             gameDTO.setFinished(typeGame.getFinished());
+            gameDTO.setScoreHomep(type.getScoreHomep());
+            gameDTO.setScoreAwayp(type.getScoreAwayp());
             gameDTOArrayList.add(gameDTO);
         }
         return gameDTOArrayList;

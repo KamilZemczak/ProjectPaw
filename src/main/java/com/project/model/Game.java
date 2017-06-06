@@ -102,9 +102,4 @@ public class Game implements Serializable {
     public void setFinished(boolean finished) {
         this.finished = finished;
     }
-    
-    /* @Override
-    public String toString() {
-    return "Game{" + "id=" + id + ", round=" + round + ", scoreHomea=" + scoreHomea + ", scoreAwaya=" + scoreAwaya + ", homeTeam=" + homeTeam + ", awayTeam=" + awayTeam + ", dateGame=" + dateGame + ", finished=" + finished + '}';
-    }*/
 }

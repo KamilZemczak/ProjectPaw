@@ -6,20 +6,8 @@ import java.util.List;
 public class SearchDTO {
 
     private String title;
-
-    /**
-     * książka || użytkownik
-     */
     private Integer searchType = 1;
-
-    /**
-     * treść wyszukiwania
-     */
     private String query;
-
-    /**
-     * Lista wyników
-     */
     List<SearchObjectDTO> resultList = new ArrayList<>();
 
     public String getTitle() {

@@ -6,12 +6,13 @@ import java.util.Set;
 @Entity
 @Table(name = "role")
 public class Role {
+
     private Integer id;
     private String name;
     private Set<User> users;
-    
-    public Role(){
-        
+
+    public Role() {
+
     }
 
     @Id

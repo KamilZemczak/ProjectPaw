@@ -1,6 +1,5 @@
 package com.project.controller;
 
-import com.project.dto.MessageDTO;
 import com.project.model.Game;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,7 +12,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class MainController {
@@ -40,7 +38,6 @@ public class MainController {
         return "index";
     }
 
-    //TODO: nie wiadomo czy to dobrze
     @GetMapping("/your-games")
     public String yourGames(HttpServletRequest request) {
         request.setAttribute("games", typeService.getUserGames());
@@ -50,7 +47,7 @@ public class MainController {
 
     @GetMapping("/bet-games")
     public String betGames(HttpServletRequest request) {
-        request.setAttribute("games", gameService.findAll());
+        request.setAttribute("games", gameService.fillTypeToGame(gameService.findAll()));        
         request.setAttribute("mode", "MODE_BETSS");
         return "index";
     }
@@ -73,6 +70,8 @@ public class MainController {
     public String updateGame(@RequestParam int id, HttpServletRequest request) {
         request.setAttribute("game", gameService.findGame(id));
         request.setAttribute("mode", "MODE_UPDATE");
+        request.setAttribute("message", "treść wiadomości");
+        messageService.addSuccessMessage("Zaktualizowano pozycje!");
         return "index";
     }
 

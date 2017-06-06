@@ -1,5 +1,6 @@
 package com.project.dao;
 
+import com.project.model.Game;
 import com.project.model.Type;
 import com.project.model.User;
 import java.util.List;
@@ -13,5 +14,8 @@ public interface TypeRepository extends JpaRepository<Type, Integer> {
 
     @Query("SELECT t from type t where t.user = :user")
     List<Type> findUserGames(@Param("user") User one);
+    
+    @Query("SELECT t from type t where t.user = :user and t.game = :game")
+    Type findOneByUserAndGame(@Param("user") User one, @Param("game") Game game);
 
 }

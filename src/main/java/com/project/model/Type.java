@@ -25,6 +25,8 @@ public class Type implements Serializable {
     @ManyToOne
     @JoinColumn(name = "userr_id")
     private User user;
+    /*@Column
+    private Integer points;*/
 
     public Type() {
     }
@@ -80,9 +82,4 @@ public class Type implements Serializable {
     public void setUser(User user) {
         this.user = user;
     }
-
-    /*    @Override
-    public String toString() {
-    return "Type{" + "id=" + id + ", scoreHomep=" + scoreHomep + ", scoreAwayp=" + scoreAwayp + ", user=" + user + ", game=" + game + '}';
-    }*/
 }
