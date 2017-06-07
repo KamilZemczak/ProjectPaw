@@ -221,7 +221,7 @@
                     <h3>Obstaw</h3>
                     <hr>
                     <form class="form-horizontal" method="POST" action="save-bet">
-                        <input type="hidden" name="id" value="${type.id}"/>
+                        <input type="hidden" name="game_id" value="${game.id}"/>
 
                         Mecz ktory wlasnie obstawiasz to: ${game.homeTeam} vs ${game.awayTeam}.<br>
 
@@ -237,6 +237,13 @@
                                 <input type="number" class="form-control" name="scoreAwayp" max="25" min="0" value="${type.scoreAwayp}"/>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Punkty</label>
+                            <div class="col-md-7">
+                                <input type="number" class="form-control" name="scoreAwayp" max="25" min="0" value="${type.points}"/>
+                            </div>
+                        </div>
+
                         <div class="form-group">
                             <input type="submit" class="btn btn-primary" value="Obstaw"/>
                         </div>
@@ -302,7 +309,7 @@
                                         <td></td>
                                         <td></td>
                                         <td>${type.scoreHomep} : ${type.scoreAwayp}</td>                                       
-                                        <td>${type.user}</td>
+                                        <td>${type.user}</td>                                      
                                         <td><a href="add-points?id=${type.id}"><span class="glyphicon glyphicon-plus"></span></a></td>
                                     </tr>
                                 </c:forEach>
@@ -310,7 +317,7 @@
                         </table>
                     </div>
                 </div>
-            </c:when>
+            </c:when>         
             <c:when test="${mode == 'MODE_PBETTT'}">
                 <div class="container text-center">
                     <h3>Obstaw</h3>
@@ -336,9 +343,6 @@
                     <hr>
                     <form class="form-horizontal" method="POST" action="save-bet">
                         <input type="hidden" name="id" value="${type.id}"/>
-
-
-
                         <div class="form-group">
                             <label class="control-label col-md-3">Wynik 1 drużyny (gospodarze)</label>
                             <div class="col-md-7">
@@ -359,7 +363,7 @@
                         </div>     
 
                         <div class="form-group">
-                            <input type="submit" class="btn btn-primary" value="Obstaw"/>
+                            <input type="submit" class="btn btn-primary" value="Rozdaj punkty"/>
                         </div>
                     </form>
                 </div>
@@ -388,9 +392,6 @@
                                     </div>
                                     </div>
                                     </div>
-
-
-
                                 </c:when>
                             </c:choose>
                             <div class="navbar navbar-fixed-bottom">

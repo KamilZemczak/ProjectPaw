@@ -10,6 +10,7 @@ import com.project.service.UserServiceImpl;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -60,7 +61,7 @@ public class TypeController {
     }
 
     @GetMapping("/add-points")
-    public String addPoints(@RequestParam int id, HttpServletRequest request) {
+    public String addPoints(@RequestParam int id, HttpServletRequest request) {   
         request.setAttribute("type", typeService.findType(id));
         request.setAttribute("mode", "MODE_PBET");
         return "index";
@@ -72,8 +73,7 @@ public class TypeController {
     request.setAttribute("bet", "MODE_PBETS");
     return "index";
     }*/
-    
-    /*@GetMapping("/save-point")
+ /*@GetMapping("/save-point")
     public String savePoints2(@RequestParam int id, HttpServletRequest request) {
     request.setAttribute("type", typeService.findType(id));
     request.setAttribute("mode", "MODE_PBETS");
