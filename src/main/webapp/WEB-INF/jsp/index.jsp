@@ -216,7 +216,7 @@
                     </div>
                 </div>
             </c:when>
-            <c:when test="${mode == 'MODE_BET' || mode == 'MODE_PBET'}">
+            <c:when test="${mode == 'MODE_BET'}">
                 <div class="container text-center">
                     <h3>Obstaw</h3>
                     <hr>
@@ -317,7 +317,7 @@
                     <hr>
                     <form class="form-horizontal" method="POST" action="save-point">
                         <input type="hidden" name="id" value="${type.id}"/>
-                   
+
                         <div class="form-group">
                             <label class="control-label col-md-3">Punkty:</label>
                             <div class="col-md-7">
@@ -326,6 +326,40 @@
                         </div>                      
                         <div class="form-group">
                             <input type="submit" class="btn btn-primary" value="Dodaj punkty"/>
+                        </div>
+                    </form>
+                </div>
+            </c:when>
+            <c:when test="${mode == 'MODE_PBET'}">
+                <div class="container text-center">
+                    <h3>Rozdaj punkt</h3>
+                    <hr>
+                    <form class="form-horizontal" method="POST" action="save-bet">
+                        <input type="hidden" name="id" value="${type.id}"/>
+
+
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Wynik 1 drużyny (gospodarze)</label>
+                            <div class="col-md-7">
+                                <input type="number" class="form-control" name="scoreHomep" max="25" min="0" value="${type.scoreHomep}"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Wynik 2 drużyny (goście)</label>
+                            <div class="col-md-7">
+                                <input type="number" class="form-control" name="scoreAwayp" max="25" min="0" value="${type.scoreAwayp}"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Punkty</label>
+                            <div class="col-md-7">
+                                <input type="number" class="form-control" name="scoreAwayp" max="25" min="0" value="${type.points}"/>
+                            </div>
+                        </div>     
+
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-primary" value="Obstaw"/>
                         </div>
                     </form>
                 </div>
