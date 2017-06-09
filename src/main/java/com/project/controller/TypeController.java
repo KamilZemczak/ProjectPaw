@@ -43,13 +43,15 @@ public class TypeController {
         Game game = gameService.findGame(id);
         User user = userServiceImpl.getUserId();
         if (typeRepository.findOneByUserAndGame(user, game) != null || game.getFinished()) {
-            return "index";
+            request.setAttribute("message", "Nie możesz obstawiać drugi raz lub jak mecz jest zakończony");
+            return "redirect:/bet-games";
         }
         type.setGame(gameService.findGame(id));
         type.setUser(userServiceImpl.getUserId());
         typeService.save(type);
         request.setAttribute("bet", "MODE_BETS");
-        return "index";
+        //return "index";
+        return "redirect:/bet-games";
     }
 
     @GetMapping("/all-types")
