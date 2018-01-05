@@ -3,7 +3,7 @@
 <html lang="pl">
     <head>
         <meta charset="UTF-8">
-        
+
 
 
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -42,7 +42,7 @@
             <!-- page-header adds space aroundtext and enlarges it. It also adds an underline at the end -->
 
             <center> <img src="static/images/ligatyperow.png" width="200" height="140">
-                <center><h4>Witaj w wirtualnej lidze typerów (tylko mecze piłki nożnej). </h4>
+                <center><h4>Witaj w Fantasy Local League! </h4>
                     <center><h4>Dostęp dopiero po zalogowaniu.</h4></center>
 
                     <div class="row">
