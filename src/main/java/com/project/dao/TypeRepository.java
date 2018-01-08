@@ -1,5 +1,6 @@
 package com.project.dao;
 
+import com.project.model.Clubs;
 import com.project.model.Game;
 import com.project.model.Type;
 import com.project.model.User;

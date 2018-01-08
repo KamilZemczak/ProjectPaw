@@ -12,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Liga Typerow</title>
+    <title>Fantasy Local League</title>
 
     <link href="${contextPath}/static/css/bootstrap.min.css" rel="stylesheet">
 
@@ -26,10 +26,10 @@
       </form>
 
       <h2>Welcome ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['logoutForm'].submit()">Logout</a></h2>
-      
-      <a href="/home" class="navbar-brand">PAPA</a> 
-      
-      
+
+      <a href="/home" class="navbar-brand">PAPA</a>
+
+
 
   </c:if>
   <nav class="navbar-fixed-top">

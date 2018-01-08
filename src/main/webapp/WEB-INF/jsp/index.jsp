@@ -54,7 +54,8 @@
                             <li><a href="new-game">Dodaj nowy mecz</a></li>
                             <li><a href="all-games">Zarządzaj meczami</a></li>
                             <li><a href="all-types">Rozdaj punkty</a></li>
-                        </ul>  </li> 
+                            <li><a href="new-clubs">Dodaj Klub</a></li>
+                        </ul>  </li>
                     <li><a href="#">Klasyfikacja graczy</a></li>
                     <li><a href="contact">Kontakt</a></li>
                 </ul>
@@ -76,30 +77,20 @@
         <c:choose>
             <c:when test="${mode == 'MODE_HOME'}">
                 <div class="container" id="homeDiv">
-                    <center><h2> <span class="label label-default">Witaj w lidze typerów ${pageContext.request.userPrincipal.name}.</span></h2> <br></center>
+                    <center><h2> <span class="label label-default">Witaj w Fantasy Local League ${pageContext.request.userPrincipal.name}.</span></h2> <br></center>
 
                     <div class="jumbotron text-center">
                         <div class="modal-header">
                             <h3><center> Piłkarskie newsy:</center></h3>
                             <br>
-                            <div class="pull-right"> 06/06/17, godzina dodania 21:37 </div>
+
                         </div>
                         <br>
                         <div class="row">
-                            <div class="col-md-6">
-                                <img src="static/images/bosz.jpg" alt="zdjecie niedostepne" >
-                            </div>
-                            <div class="col-md-6">
-                                <center> <h4><b>Oficjalnie: Bosz trenerem Borussii Dortmund.</b></h4></center> <br>
-                                <b>Peter Bosz został nowym trenerem Borussii Dortmund. Holender zastąpił Thomasa Tuchela.</b>
-                                <br>
 
-                                Zmiana trenera w Borussii to pokłosie konfliktu Tuchela z kierownictwem klubu. Strony uznały, że nie są w stanie kontynuować współpracy i postanowiły rozwiązać umowę.
-                                <br>
-                                Następcą Tuchela będzie Bosz. 53-letni szkoleniowiec w minionym sezonie prowadził Ajax Amsterdam. Zdobył z nim wicemistrzostwo Holandii i poprowadził do finału Ligi Europy. W nim jego drużyna uległa Manchesterowi United.
-                                <br>
-                                Holender związał się z Borussią dwuletnim kontraktem. Według niemieckich mediów klub z Dortmundu musiał za niego zapłacić Ajaksowi 3 mln euro odstępnego.
-                                <br>
+                            <div class="col-md-6">
+                                <center> <h4><b>Oficjalnie: Patryk Sieczka to gej!</b></h4></center> <br>
+
                             </div>
                         </div>
                     </div>
@@ -206,6 +197,58 @@
                         </form>
                     </div>
                 </c:when>
+
+
+
+                  <c:when test="${mode == 'MODE_CLUBS'}">
+                    <div class="container text-center">
+                        <h3>Dodaj Klub</h3>
+                        <form class="form-horizontal" method="POST" action="save-clubs">
+                          <input type="hidden" name="id" value="${game.id}"/>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Pełna nazwa Klub</label>
+                            <div class="col-md-7">
+                                <input type="text" class="form-control" name="name" value="${clubs.name}"/>
+                            </div>
+                        <hr>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-primary" value="Dodaj"/>
+                          </form>
+                        </div>
+                        <div class="container text-center" id="gamesDiv">
+                            <h3>Drużyny:</h3>
+                            <hr>
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered text-left">
+                                    <thread>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Nazwa drużyny</th>
+                                            <th></th>
+
+                                        </tr>
+                                    </thread>
+                                    <tbody>
+                                        <c:forEach var="clubs" items="${club}">
+                                            <tr>
+                                                <td>${clubs.id}</td>
+                                                <td>${clubs.name}</td>
+<td><a href="delete-clubs?id=${clubs.id}"><span class="glyphicon glyphicon-trash"></span></a></td>
+
+                                            </tr>
+                                        </c:forEach>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </c:when>
+
+
+
+
+
+
                 <c:when test="${mode == 'MODE_BETS'}">
                     <div class="container text-center" id="gamesDiv">
                         <h3>Twoje typy</h3>
@@ -327,8 +370,8 @@
                                             <td>${type.id}</td>
                                             <td></td>
                                             <td></td>
-                                            <td>${type.scoreHomep} : ${type.scoreAwayp}</td>                                       
-                                            <td>${type.user}</td>                                      
+                                            <td>${type.scoreHomep} : ${type.scoreAwayp}</td>
+                                            <td>${type.user}</td>
                                             <td><a href="add-points?id=${type.id}"><span class="glyphicon glyphicon-plus"></span></a></td>
                                         </tr>
                                     </c:forEach>
@@ -336,7 +379,7 @@
                             </table>
                         </div>
                     </div>
-                </c:when>         
+                </c:when>
                 <c:when test="${mode == 'MODE_PBETTT'}">
                     <div class="container text-center">
                         <h3>Obstaw</h3>
@@ -349,7 +392,7 @@
                                 <div class="col-md-7">
                                     <input type="number" class="form-control" name="scoreHomep" max="25" min="0" value="${type.points}"/>
                                 </div>
-                            </div>                      
+                            </div>
                             <div class="form-group">
                                 <input type="submit" class="btn btn-primary" value="Dodaj punkty"/>
                             </div>
@@ -379,7 +422,7 @@
                                 <div class="col-md-7">
                                     <input type="number" class="form-control" name="scoreAwayp" max="25" min="0" value="${type.points}"/>
                                 </div>
-                            </div>     
+                            </div>
 
                             <div class="form-group">
                                 <input type="submit" class="btn btn-primary" value="Rozdaj punkty"/>
@@ -413,13 +456,9 @@
                                         </div>
                                     </c:when>
                                 </c:choose>
-                                <div class="navbar navbar-fixed-bottom">
-                                    <div class="panel-footer">
 
-                                        Copyright: Projekt PAW 2017 (Kamil Zemczak Rafal Michalski). Wszystkie prawa zastrzeżone.
-                                    </div></div>
-                                        
-                                    
+
+
                                 <script src="static/js/jquery-1.11.1.min.js"></script>
                                 <script src="static/js/bootstrap.min.js"></script>
                                 </body>

@@ -1,9 +1,13 @@
 package com.project.controller;
 
+
+
+import com.project.model.Clubs;
 import com.project.model.Game;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import com.project.service.ClubsService;
 import com.project.service.GameService;
 import com.project.service.MessageService;
 import com.project.service.TypeService;
@@ -16,6 +20,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class MainController {
 
+    @Autowired
+    private ClubsService clubsService;
+    
     @Autowired
     private GameService gameService;
 
@@ -37,7 +44,14 @@ public class MainController {
         request.setAttribute("mode", "MODE_GAMES");
         return "index";
     }
-
+    
+ @GetMapping("/new-clubs")
+    public String newClubs(HttpServletRequest request) {
+        request.setAttribute("club", clubsService.findAll());
+        request.setAttribute("mode", "MODE_CLUBS");
+        return "index";
+    }
+    
     @GetMapping("/your-games")
     public String yourGames(HttpServletRequest request) {
         request.setAttribute("games", typeService.getUserGames());
@@ -45,6 +59,8 @@ public class MainController {
         return "index";
     }
 
+   
+    
     @GetMapping("/bet-games")
     public String betGames(HttpServletRequest request) {
         request.setAttribute("games", gameService.fillTypeToGame(gameService.findAll()));        
@@ -57,7 +73,15 @@ public class MainController {
         request.setAttribute("mode", "MODE_NEW");
         return "index";
     }
-
+    
+    @PostMapping("/save-clubs")
+    public String newClubs(Clubs clubs, BindingResult bindingResult, HttpServletRequest request) {
+        clubsService.save(clubs);
+        request.setAttribute("club", clubsService.findAll());
+        request.setAttribute("mode", "MODE_CLUBS");
+        return "index";
+    }
+    
     @PostMapping("/save-game")
     public String saveGame(@ModelAttribute Game game, BindingResult bindingResult, HttpServletRequest request) {
         gameService.save(game);
@@ -80,6 +104,13 @@ public class MainController {
         gameService.delete(id);
         request.setAttribute("games", gameService.findAll());
         request.setAttribute("mode", "MODE_GAMES");
+        return "index";
+    }
+     @GetMapping("/delete-clubs")
+    public String deleteClubs(@RequestParam int id, HttpServletRequest request) {
+        clubsService.delete(id);
+        request.setAttribute("club", clubsService.findAll());
+        request.setAttribute("mode", "MODE_CLUBS");
         return "index";
     }
 

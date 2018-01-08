@@ -4,6 +4,7 @@ import com.project.dao.TypeRepository;
 import com.project.model.Game;
 import com.project.model.Type;
 import com.project.model.User;
+import com.project.service.ClubsService;
 import com.project.service.GameService;
 import com.project.service.TypeService;
 import com.project.service.UserServiceImpl;
@@ -23,6 +24,9 @@ public class TypeController {
     private TypeService typeService;
 
     @Autowired
+    private ClubsService clubsService;
+    
+    @Autowired
     private GameService gameService;
 
     @Autowired
@@ -37,7 +41,12 @@ public class TypeController {
         request.setAttribute("mode", "MODE_BET");
         return "index";
     }
-
+ @GetMapping("/clubs-b")
+    public String updateClubs (@RequestParam int id, HttpServletRequest request) {
+        request.setAttribute("club", clubsService.findClubs(id));
+        request.setAttribute("mode", "MODE_CLUBSB");
+        return "index";
+    }
     @PostMapping("/save-bet")
     public String saveType(@ModelAttribute Type type, @RequestParam("game_id") Integer id, HttpServletRequest request) {
         Game game = gameService.findGame(id);
