@@ -4,9 +4,13 @@ package com.project.controller;
 
 import com.project.model.Clubs;
 import com.project.model.Game;
+import com.project.model.Player;
+import com.project.model.Playerpoints;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import com.project.service.PlayerService;
+import com.project.service.PlayerpointsService;
 import com.project.service.ClubsService;
 import com.project.service.GameService;
 import com.project.service.MessageService;
@@ -20,6 +24,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class MainController {
 
+    
+    @Autowired
+    private PlayerService playerpointsService;
+    @Autowired
+    private PlayerService playerService;
+    
     @Autowired
     private ClubsService clubsService;
     
@@ -52,6 +62,16 @@ public class MainController {
         return "index";
     }
     
+    @GetMapping("/new-player")
+    public String newPlayer(HttpServletRequest request) {
+       
+        request.setAttribute("club", clubsService.findAll());
+        request.setAttribute("mode", "MODE_CLUBS");
+         request.setAttribute("players", playerService.findAll());
+        request.setAttribute("mode", "MODE_PLAYER");
+        return "index";
+    }
+    
     @GetMapping("/your-games")
     public String yourGames(HttpServletRequest request) {
         request.setAttribute("games", typeService.getUserGames());
@@ -79,6 +99,16 @@ public class MainController {
         clubsService.save(clubs);
         request.setAttribute("club", clubsService.findAll());
         request.setAttribute("mode", "MODE_CLUBS");
+        return "index";
+    }
+    
+     @PostMapping("/save-player")
+    public String newPlayer(Player player, BindingResult bindingResult, HttpServletRequest request) {
+        playerService.save(player);
+        request.setAttribute("club", clubsService.findAll());
+        request.setAttribute("mode", "MODE_CLUBS");
+        request.setAttribute("players", playerService.findAll());
+        request.setAttribute("mode", "MODE_PLAYER"); 
         return "index";
     }
     
@@ -113,10 +143,30 @@ public class MainController {
         request.setAttribute("mode", "MODE_CLUBS");
         return "index";
     }
+    
+       @GetMapping("/delete-player")
+    public String deletePlayer(@RequestParam int id, HttpServletRequest request) {
+        playerService.delete(id);
+        request.setAttribute("club", clubsService.findAll());
+        request.setAttribute("mode", "MODE_CLUBS");
+        request.setAttribute("players", playerService.findAll());
+        request.setAttribute("mode", "MODE_PLAYER");
+        return "index";
+    }
 
     @GetMapping("/contact")
     public String contact(HttpServletRequest request) {
         request.setAttribute("mode", "MODE_CONTACT");
+        return "index";
+    }
+     @GetMapping("/points-manager")
+    public String pointsManager ( HttpServletRequest request) {
+      
+       
+        request.setAttribute("club", clubsService.findAll());
+        request.setAttribute("mode", "MODE_POINTS_MANAGER");
+        request.setAttribute("players", playerService.findAll());
+        request.setAttribute("mode", "MODE_POINTS_MANAGER");
         return "index";
     }
 }

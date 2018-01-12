@@ -8,19 +8,19 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
-import com.project.model.Clubs;
-import com.project.dao.ClubsRepository;
+import com.project.model.Player;
+import com.project.dao.PlayerRepository;
 import com.project.dao.TypeRepository;
-import com.project.dto.ClubsDTO;
+import com.project.dto.PlayerDTO;
 import com.project.model.Type;
 import com.project.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Service
 @Transactional
-public class ClubsService {
+public class PlayerService {
     @Autowired
-    private ClubsRepository clubsRepository;
+    private PlayerRepository playerRepository;
     
     @Autowired
     private TypeRepository typeRepository;
@@ -28,23 +28,23 @@ public class ClubsService {
     @Autowired
     private UserServiceImpl userServiceImpl;
     
-    public List<Clubs> findAll() {
-        List<Clubs> club = new ArrayList<>();
-        for (Clubs clubs : clubsRepository.findAll()) {
-            club.add(clubs);
+    public List<Player> findAll() {
+        List<Player> players = new ArrayList<>();
+        for (Player player : playerRepository.findAll()) {
+            players.add(player);
         }
-        return club;
+        return players;
     }
-    public Clubs findClubs(int id) {
-        return clubsRepository.findOne(id);
+    public Player findPlayer(int id) {
+        return playerRepository.findOne(id);
     }
 
-    public void save(Clubs clubs) {
-        clubsRepository.save(clubs);
+    public void save(Player player) {
+        playerRepository.save(player);
     }
 
     public void delete(int id) {
-        clubsRepository.delete(id);
+        playerRepository.delete(id);
     }
 
    

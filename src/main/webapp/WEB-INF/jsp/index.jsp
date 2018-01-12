@@ -15,7 +15,7 @@
         <meta http-equiv="Cache-Control" content="no-cache">
         <meta http-equiv="Expires" content="Sat, 01 Dec 2001, 00:00:00 GMT">
 
-        <title>Liga typerow</title>
+        <title>Fantasy Local League</title>
 
         <link href="static/css/bootstrap.min.css" rel="stylesheet">
         <link href="static/css/style.css" rel="stylesheet">
@@ -55,6 +55,8 @@
                             <li><a href="all-games">Zarządzaj meczami</a></li>
                             <li><a href="all-types">Rozdaj punkty</a></li>
                             <li><a href="new-clubs">Dodaj Klub</a></li>
+                            <li><a href="new-player">Dodaj Zawodnika</a></li>
+                            <li><a href="points-manager">Zarządzaj punktami</a></li>
                         </ul>  </li>
                     <li><a href="#">Klasyfikacja graczy</a></li>
                     <li><a href="contact">Kontakt</a></li>
@@ -210,7 +212,7 @@
                             <div class="col-md-7">
                                 <input type="text" class="form-control" name="name" value="${clubs.name}"/>
                             </div>
-                        <hr>
+
                         </div>
                         <div class="form-group">
                             <input type="submit" class="btn btn-primary" value="Dodaj"/>
@@ -241,12 +243,200 @@
                                     </tbody>
                                 </table>
                             </div>
-                        </div>
+                        </div>  </div>
                     </c:when>
 
 
 
+                    <c:when test="${mode == 'MODE_PLAYER'}">
+                      <div class="container text-center">
+                          <h3>Dodaj Piłkarza</h3>
+                          <form class="form-horizontal" method="POST" action="save-player">
+                            <input type="hidden" name="id" value="${game.id}"/>
+                          <div class="form-group">
+                              <label class="control-label col-md-3">Imię</label>
+                              <div class="col-md-7">
+                                  <input type="text" class="form-control" name="firstname" value="${player.firstname}"/>
+                              </div>
 
+                          </div>
+                          <div class="form-group">
+                              <label class="control-label col-md-3">Nazwisko</label>
+                              <div class="col-md-7">
+                                  <input type="text" class="form-control" name="lastname" value="${player.lastname}"/>
+                              </div>
+
+                          </div>
+                          <div class="form-group">
+                              <label class="control-label col-md-3">Data urodzin (rrrr-mm-dd)</label>
+                              <div class="col-md-7">
+                                  <input type="date" class="form-control" name="date_birth" value="${player.date_birth}"/>
+                              </div>
+
+                          </div>
+                          <div class="form-group">
+                              <label class="control-label col-md-3">Pozycja</label>
+                              <div class="col-md-7">
+                          <select class="form-control cascadingDropDown" name="position">
+                                <option value="Napastnik"> Napastnik </option>
+                              <option value="Pomocnik"> Pomocnik </option>
+                              <option  value="Obrońca"> Obrońca </option>
+                              <option value="Bramkarz"> Bramkarz </option>
+                            </select>
+                                </div>
+                                </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3">Klub</label>
+                                <div class="col-md-7">
+
+                                  <select class="form-control cascadingDropDown"  name="club">
+                                    <c:forEach var="clubs" items="${club}">
+                                        <option value="${clubs.name}"> ${clubs.name}  </option>
+
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                  <label class="control-label col-md-3">Cena</label>
+                                  <div class="col-md-7">
+                                      <input type="number" class="form-control" name="price" value="${player.price}"/>
+                                  </div>
+                              <hr>
+                              </div>
+                          <div class="form-group">
+                              <input type="submit" class="btn btn-primary" value="Dodaj"/>
+                            </form>
+                          </div>
+                          <div class="container text-center" id="gamesDiv">
+                              <h3>Piłkarze:</h3>
+                              <hr>
+                              <div class="table-responsive">
+                                  <table class="table table-striped table-bordered text-left">
+                                      <thread>
+                                          <tr>
+                                              <th>ID</th>
+                                              <th>Imię</th>
+                                              <th>Nazwisko</th>
+                                              <th>Data urodzenia</th>
+                                              <th>Pozycja</th>
+                                              <th>Klub</th>
+                                              <th>Cena</th>
+                                              <th></th>
+
+                                          </tr>
+                                      </thread>
+                                      <tbody>
+                                          <c:forEach var="player" items="${players}">
+                                              <tr>
+                                                  <td>${player.id}</td>
+                                                  <td>${player.firstname}</td>
+                                                  <td>${player.lastname}</td>
+                                                  <td>${player.date_birth}</td>
+                                                  <td>${player.position}</td>
+                                                  <td>${player.club}</td>
+                                                  <td>${player.price}</td>
+                  <td><a href="delete-player?id=${player.id}"><span class="glyphicon glyphicon-trash"></span></a></td>
+
+                                              </tr>
+                                          </c:forEach>
+                                      </tbody>
+                                  </table>
+                              </div>
+                          </div></div>
+                      </c:when>
+
+
+
+                      <c:when test="${mode == 'MODE_POINTS_MANAGER'}">
+                        <div class="container text-center">
+                            <h3>Zarządzaj punktami</h3>
+
+                              <input type="hidden" name="id" value="${game.id}"/>
+                              <form class="form-horizontal" method="POST" action="points-manager">
+
+
+                    /*            <select class="form-control cascadingDropDown"  name="club">
+                                  <c:forEach var="clubs" items="${club}">
+                                      <option value=""> ${clubs.name}  </option>
+
+                                      </c:forEach>
+                                </select>
+                          */        <input type="submit" class="btn btn-primary" value="Sortuj według klubów"/>
+                                  </form>
+                               </div>
+
+                                  <hr>
+
+                                      <div class="container text-center">
+                              <div class="table-responsive">
+                                  <table class="table table-striped table-bordered text-left">
+                                      <thread>
+                                          <tr>
+                                              <th>Klub</th>
+                                              <th>Imię i Nazwisko</th>
+                                              <th>Pozycja</th>
+                                              <th> Podstawowa 11</th>
+                                              <th>Strzelone gole</th>
+                                              <th>Asysty</th>
+                                              <th>Stracone gole (dla obrońców i bramkarzy)</th>
+                                              <th>Obroniony karny (dla bramkarzy)</th>
+                                              <th>Nie strzelony karny</th>
+                                              <th>Żółta kartka</th>
+                                              <th>Czerwona kartka</th>
+                                              <th>Strzelone samobóje</th>
+                                              <th>Punkty za rundę</th>
+
+                                          </tr>
+                                      </thread>
+                                      <tbody>
+                                          <c:forEach var="player" items="${players}">
+
+
+                                              <tr>
+                                                  <td>${player.club}</td>
+                                                  <td>${player.firstname} ${player.lastname}</td>
+                                                  <td>${player.position}</td>
+
+                                                  <td>  <input type="radio" name="finished" value="tak"/>
+                                                    Tak
+                                                    <input type="radio" name="finished" value="nie" checked/>
+                                                    Nie</td>
+                                                    <td><input type="text" class="form-control" name="price" value="${a}"></td> // Strzelone gole
+                                                    <td><input type="text" class="form-control"></td> //Asysty
+                                  <c:choose>
+                      <c:when test="${player.position eq 'Obrońca'|| player.position eq 'Bramkarz'}"> <td> <input type="text" class="form-control"></td>     </c:when>
+                         <c:otherwise><td> </td> </c:otherwise>
+                                    </c:choose>                       //  Stracone gole (dla obrońców i bramkarzy
+                                              <c:choose>
+              <c:when test="${player.position eq 'Bramkarz'}">  <td><input type="text" class="form-control"></td>  </c:when>
+                      <c:otherwise><td> </td> </c:otherwise>
+                                                  </c:choose>        //Obroniony karny (dla bramkarzy)
+                                                    <td><input type="text" class="form-control"></td> // Nie strzelony karny
+                                                    <td>  <input type="radio" name="finished" value="tak"/>
+                                                      Tak
+                                                      <input type="radio" name="finished" value="nie" />
+                                                      Nie</td>                                            //Żółta kartka
+                                                      <td>  <input type="radio" name="finished" value="tak"/>
+                                                        Tak
+                                                        <input type="radio" name="finished" value="nie" />
+                                                        Nie</td>                                          //Czerwona kartka
+                                                        <td><input type="text" class="form-control"></td>  //Strzelone samoboje
+                                                        <td>${a}</td>
+                                              </tr>
+                                          </c:forEach>
+                                      </tbody>
+                                  </table>
+
+                          </div>
+                          <div class="form-group">
+                              <input type="submit" class="btn btn-primary" value="Dodaj"/>
+                            </form>
+                          </div>
+                          </div>
+
+                              </c:when>
 
 
                 <c:when test="${mode == 'MODE_BETS'}">
