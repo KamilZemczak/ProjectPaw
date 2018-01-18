@@ -349,94 +349,141 @@
 
 
 
-                      <c:when test="${mode == 'MODE_POINTS_MANAGER'}">
+                      <c:when test="${mode == 'MODE_POINTSMANAGER'}">
                         <div class="container text-center">
                             <h3>Zarządzaj punktami</h3>
+                            <form class="form-horizontal" method="POST" action="save-points">
+                            <!--        <input type="hidden" name="id" value="${game.id}"/>
 
-                              <input type="hidden" name="id" value="${game.id}"/>
-                              <form class="form-horizontal" method="POST" action="points-manager">
 
 
-                    /*            <select class="form-control cascadingDropDown"  name="club">
+                         <select class="form-control cascadingDropDown"  name="club">
                                   <c:forEach var="clubs" items="${club}">
                                       <option value=""> ${clubs.name}  </option>
 
                                       </c:forEach>
                                 </select>
-                          */        <input type="submit" class="btn btn-primary" value="Sortuj według klubów"/>
-                                  </form>
+                             <input type="submit" class="btn btn-primary" value="Sortuj według klubów"/> -->
+
                                </div>
 
                                   <hr>
 
                                       <div class="container text-center">
-                              <div class="table-responsive">
-                                  <table class="table table-striped table-bordered text-left">
-                                      <thread>
-                                          <tr>
-                                              <th>Klub</th>
-                                              <th>Imię i Nazwisko</th>
-                                              <th>Pozycja</th>
-                                              <th> Podstawowa 11</th>
-                                              <th>Strzelone gole</th>
-                                              <th>Asysty</th>
-                                              <th>Stracone gole (dla obrońców i bramkarzy)</th>
-                                              <th>Obroniony karny (dla bramkarzy)</th>
-                                              <th>Nie strzelony karny</th>
-                                              <th>Żółta kartka</th>
-                                              <th>Czerwona kartka</th>
-                                              <th>Strzelone samobóje</th>
-                                              <th>Punkty za rundę</th>
 
-                                          </tr>
-                                      </thread>
-                                      <tbody>
-                                          <c:forEach var="player" items="${players}">
+                                        <table class="table table-striped table-bordered text-left">
+                                                            <thread>
+                                                                      <tr>
+                                                            <th>ID gracza</th>
+                                                            <th>Klub</th>
+                                                            <th>Imię i Nazwisko</th>
+                                                            <th>Pozycja</th>
+                                                            <th> Podstawowa 11</th>
+                                                            <th>Strzelone gole</th>
+                                                            <th>Asysty</th>
+                                                            <th>Stracone gole (dla obrońców i  bramkarzy)</th>
+                                                            <th>Obroniony karny (dla bramkarzy)</th>
+                                                            <th>Nie strzelony karny</th>
+                                                            <th>Żółta kartka</th>
+                                                            <th>Czerwona kartka</th>
+                                                            <th>Strzelone samobóje</th>
+                                                                              <th>Nr rundy</th>
+                                                                                      <th> </th>
+                                                                                <!--  <th>Punkty w rundzie</th> -->
+
+                                                                              </tr>
+                                                                          </thread>
+                                                                          <tbody>
+
+                                                                            <c:forEach var="playerpoints" items="${players}" >
 
 
-                                              <tr>
-                                                  <td>${player.club}</td>
-                                                  <td>${player.firstname} ${player.lastname}</td>
-                                                  <td>${player.position}</td>
+                                                                                  <tr>
+                                                                                    <td>${playerpoints.id}</td>
+                                                                                      <td>${playerpoints.club}</td>
+                                                                                      <td>${playerpoints.firstname}${playerpoints.lastname}</td>
+                                                                                      <td>${playerpoints.position}
 
-                                                  <td>  <input type="radio" name="finished" value="tak"/>
-                                                    Tak
-                                                    <input type="radio" name="finished" value="nie" checked/>
-                                                    Nie</td>
-                                                    <td><input type="text" class="form-control" name="price" value="${a}"></td> // Strzelone gole
-                                                    <td><input type="text" class="form-control"></td> //Asysty
-                                  <c:choose>
-                      <c:when test="${player.position eq 'Obrońca'|| player.position eq 'Bramkarz'}"> <td> <input type="text" class="form-control"></td>     </c:when>
-                         <c:otherwise><td> </td> </c:otherwise>
-                                    </c:choose>                       //  Stracone gole (dla obrońców i bramkarzy
-                                              <c:choose>
-              <c:when test="${player.position eq 'Bramkarz'}">  <td><input type="text" class="form-control"></td>  </c:when>
-                      <c:otherwise><td> </td> </c:otherwise>
-                                                  </c:choose>        //Obroniony karny (dla bramkarzy)
-                                                    <td><input type="text" class="form-control"></td> // Nie strzelony karny
-                                                    <td>  <input type="radio" name="finished" value="tak"/>
-                                                      Tak
-                                                      <input type="radio" name="finished" value="nie" />
-                                                      Nie</td>                                            //Żółta kartka
-                                                      <td>  <input type="radio" name="finished" value="tak"/>
-                                                        Tak
-                                                        <input type="radio" name="finished" value="nie" />
-                                                        Nie</td>                                          //Czerwona kartka
-                                                        <td><input type="text" class="form-control"></td>  //Strzelone samoboje
-                                                        <td>${a}</td>
-                                              </tr>
-                                          </c:forEach>
-                                      </tbody>
-                                  </table>
+                                                                                        </td>
 
-                          </div>
-                          <div class="form-group">
-                              <input type="submit" class="btn btn-primary" value="Dodaj"/>
-                            </form>
-                          </div>
-                          </div>
 
-                              </c:when>
+                                                                                      <td>  <input type="radio" name="finished" value="tak"/>
+                                                                                        Tak
+                                                                                        <input type="radio" name="finished" value="nie" checked/>
+                                                                                        Nie</td>
+                                                                                        <td><input type="number" class="form-control" name="roundpoints" max="25" min="0"></td> <!-- Strzelone    gole-->
+                                                                                        <td><input type="number"class="form-control" max="25" min="0"></td> <!-- Asysty-->
+                                                                      <c:choose>
+                                                          <c:when test="${playerpoints.position eq 'Obrońca'|| playerpoints.position eq 'Bramkarz'}"> <td> <input type="number" class="form-control" max="15" min="0"></td>     </c:when>
+                                                             <c:otherwise><td> </td> </c:otherwise>
+                                                                        </c:choose>                      <!--    Stracone gole (dla obrońców i bramkarzy-->
+                                                                                  <c:choose>
+                                                  <c:when test="${playerpoints.position eq 'Bramkarz'}">  <td><input type="number" class="form-control" max="5" min="0"></td>  </c:when>
+                                                          <c:otherwise><td> </td> </c:otherwise>
+                                                                                      </c:choose>     <!--  //Obroniony karny (dla bramkarzy)-->
+                                                                                        <td><input type="number" class="form-control" max="5" min="0"></td> <!--  Nie strzelony karny-->
+                                                                                        <td>  <input type="radio" name="finished" value="tak"/>
+                                                                                          Tak
+                                                                                          <input type="radio" name="finished" value="nie" />
+                                                                                          Nie</td>         <!--    //Żółta kartka-->
+                                                                                          <td>  <input type="radio" name="finished" value="tak"/>
+                                                                                            Tak
+                                                                                            <input type="radio" name="finished" value="nie" />
+                                                                                            Nie</td>         <!--      //Czerwona kartka-->
+                                                                                            <td><input type="number" class="form-control" max="25" min="0"></td> <!--  //Strzelone samoboje-->
+
+                                                                                          <td><div class="form-group">
+                                                                                                  <label class="control-labelcol-md-3">Nr rundy</label>
+                                                                                                  <div class="col-md-7">
+                                                                                              <select class="form-controlcascadingDropDown" name="roundnr">
+                                                                                                    <option value="1"> 1 </option>
+                                                                                                  <option value="2"> 2 </option>
+                                                                                                  <option  value="3"> 3 </option>
+                                                                                                  <option value="4"> 4 </option>
+                                                                                                </select>
+                                                                                                    </div>
+                                                                                                  </div> </td>
+                                                                                                  <td><input type="hidden" name="player.id" value="${playerpoints.id}"/>   <input type="submit" class="btn btn-primary"    value="Zapisz"/>          </td>
+
+
+                                                                                  </tr>
+                                                                                  </c:forEach>
+
+                                                                          </tbody>
+                                                                      </table>
+
+
+                                                                        <input type="submit" class="btn btn-primary"    value="Zapisz"/>
+                                                                        <hr>
+                                                                        <div class="table-responsive">
+                                                                            <table class="table table-striped table- bordered text-left">
+                                                                                <thread>
+                                                                                    <tr>
+                                                                                      <th>id pktów</th>
+                                                                                      <th>id gracza</th>
+
+                                                                                      <th>Nr rundy</th>
+                                                                                      <th>Punkty za rundę</th>
+                                                                                    </tr>
+                                                                                </thread>
+                                                                                <tbody>
+                                                                                  <c:forEach var="playerpoints"   items="${playerpoint}">
+
+
+                                                                                        <tr>
+                                                                                          <td>${playerpoints.id}</td>
+                                                                                          <td>  ${playerpoints.player.id}</td>
+                                                                                          <td>  ${playerpoints.roundnr}</td>
+                                                                                          <td>${playerpoints.roundpoints}</td>
+                                                                                        </tr>
+                                                                                        </c:forEach>
+                                                                                    </tbody>
+                                                                                    </table>
+                                                                                    </div>
+                                                                                    </form>
+
+                                                                </div>  </div>
+                                                                      </c:when>
 
 
                 <c:when test="${mode == 'MODE_BETS'}">

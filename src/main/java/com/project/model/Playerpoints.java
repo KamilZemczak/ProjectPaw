@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue; 
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity(name="playerpoints")
 public class Playerpoints implements Serializable {
@@ -14,26 +15,29 @@ public class Playerpoints implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     @Column
-     private Integer round_nr;
+     private Integer roundnr;
     @Column
-     private Integer player_ide;
+     private Integer roundpoints;
     @Column
-     private Integer round_points;
-    @Column
-     private Integer summary_points;
+     private Integer summarypoints;
     @Column
      private String p;
-
+    
+    @ManyToOne
+    private Player player;
+    
+    
+    
+    
     public Playerpoints() {
     }
     
-    public Playerpoints(Integer id, Integer round_nr, Integer player_ide, Integer round_points, Integer summary_points, String p ) {
+    public Playerpoints(Integer id, Integer roundnr, Integer roundpoints, Integer summarypoints, String p ) {
         super();
         this.id = id;
-        this.round_nr = round_nr;
-        this.player_ide = player_ide;
-        this.round_points = round_points;
-        this.summary_points = summary_points;
+        this.roundnr = roundnr;
+        this.roundpoints = roundpoints;
+        this.summarypoints = summarypoints;
         this.p = p;
     }
 
@@ -45,36 +49,29 @@ public class Playerpoints implements Serializable {
         this.id = id;
     }
 
-    public Integer getRound_nr() {
-        return round_nr;
+    public Integer getRoundnr() {
+        return roundnr;
     }
 
-    public void setRound_nr(Integer round_nr) {
-        this.round_nr = round_nr;
+    public void setRoundnr(Integer roundnr) {
+        this.roundnr = roundnr;
     }
 
-    public Integer getPlayer_ide() {
-        return player_ide;
+
+    public Integer getRoundpoints() {
+        return roundpoints;
     }
 
-    public void setPlayer_ide(Integer player_ide) {
-        this.player_ide = player_ide;
+    public void setRoundpoints(Integer roundpoints) {
+        this.roundpoints = roundpoints;
     }
 
-    public Integer getRound_points() {
-        return round_points;
+    public Integer getSummarypoints() {
+        return summarypoints;
     }
 
-    public void setRound_points(Integer round_points) {
-        this.round_points = round_points;
-    }
-
-    public Integer getSummary_points() {
-        return summary_points;
-    }
-
-    public void setSummary_points(Integer summary_points) {
-        this.summary_points = summary_points;
+    public void setSummarypoints(Integer summarypoints) {
+        this.summarypoints = summarypoints;
     }
 
     public String getP() {
@@ -83,6 +80,14 @@ public class Playerpoints implements Serializable {
 
     public void setP(String p) {
         this.p = p;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 
    

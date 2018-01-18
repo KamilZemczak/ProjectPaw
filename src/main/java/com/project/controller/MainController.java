@@ -26,7 +26,7 @@ public class MainController {
 
     
     @Autowired
-    private PlayerService playerpointsService;
+    private PlayerpointsService playerpointsService;
     @Autowired
     private PlayerService playerService;
     
@@ -55,6 +55,15 @@ public class MainController {
         return "index";
     }
     
+      @GetMapping("/points-manager")
+    public String pointsManager ( HttpServletRequest request) {
+        
+        request.setAttribute("playerpoint", playerpointsService.findAll());
+        request.setAttribute("mode", "MODE_POINTSMANAGER");
+        request.setAttribute("players", playerService.findAll());
+        request.setAttribute("mode", "MODE_POINTSMANAGER");
+        return "index";
+    }
  @GetMapping("/new-clubs")
     public String newClubs(HttpServletRequest request) {
         request.setAttribute("club", clubsService.findAll());
@@ -99,6 +108,18 @@ public class MainController {
         clubsService.save(clubs);
         request.setAttribute("club", clubsService.findAll());
         request.setAttribute("mode", "MODE_CLUBS");
+        return "index";
+    }
+    
+    
+    
+   @PostMapping("/save-points")
+    public String savePoints(Playerpoints playerpoints, Player player, BindingResult bindingResult, HttpServletRequest request) {
+        playerpointsService.save(playerpoints);
+         request.setAttribute("players", playerService.findAll());
+        request.setAttribute("mode", "MODE_POINTSMANAGER"); 
+        request.setAttribute("playerpoint", playerpointsService.findAll());
+        request.setAttribute("mode", "MODE_POINTSMANAGER");
         return "index";
     }
     
@@ -159,14 +180,5 @@ public class MainController {
         request.setAttribute("mode", "MODE_CONTACT");
         return "index";
     }
-     @GetMapping("/points-manager")
-    public String pointsManager ( HttpServletRequest request) {
-      
-       
-        request.setAttribute("club", clubsService.findAll());
-        request.setAttribute("mode", "MODE_POINTS_MANAGER");
-        request.setAttribute("players", playerService.findAll());
-        request.setAttribute("mode", "MODE_POINTS_MANAGER");
-        return "index";
-    }
+   
 }

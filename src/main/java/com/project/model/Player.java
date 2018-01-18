@@ -2,11 +2,13 @@
 package com.project.model;
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity; 
 import javax.persistence.GeneratedValue; 
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity(name="player")
 public class Player implements Serializable {
@@ -26,6 +28,12 @@ public class Player implements Serializable {
     @Column
      private Integer price;
 
+    
+    @OneToMany (mappedBy="player")
+    private List<Playerpoints> playerpoint;
+    
+    
+    
     public Player() {
     }
 
@@ -96,6 +104,14 @@ public class Player implements Serializable {
 
     public void setPrice(Integer price) {
         this.price = price;
+    }
+
+    public List<Playerpoints> getPlayerpoint() {
+        return playerpoint;
+    }
+
+    public void setPlayerpoint(List<Playerpoints> playerpoint) {
+        this.playerpoint = playerpoint;
     }
 
 
