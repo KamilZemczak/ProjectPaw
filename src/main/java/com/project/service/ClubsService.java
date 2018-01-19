@@ -1,6 +1,7 @@
 
 package com.project.service;
 
+import com.project.dao.ClubsRepository;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,12 +10,10 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.project.model.Clubs;
-import com.project.dao.ClubsRepository;
 import com.project.dao.TypeRepository;
 import com.project.dto.ClubsDTO;
-import com.project.model.Type;
-import com.project.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+
 
 @Service
 @Transactional
