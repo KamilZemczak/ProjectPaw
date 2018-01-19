@@ -16,9 +16,10 @@
         <meta http-equiv="Expires" content="Sat, 01 Dec 2001, 00:00:00 GMT">
 
         <title>Fantasy Local League</title>
-
+          <link href="${contextPath}/static/css/bootstrap.css" rel="stylesheet">
         <link href="static/css/bootstrap.min.css" rel="stylesheet">
-        <link href="static/css/style.css" rel="stylesheet">
+
+        <link href="${contextPath}/static/css/style.css" rel="stylesheet">
         <style>
             .jumbotron{
                 background-color:#262626;
@@ -27,16 +28,17 @@
                 padding-bottom: 20px;
             }
 
+
         </style>
     </head>
     <body>
 
 
-        <div class="navbar navbar-inverse">
+        <div class="navbar navbar-default">
             <!--<a class="pull-left" href="index.html"><img src="static/images/ligatyperow2.png" width="100" height="50"></a><!-->
 
             <a href="/" class="navbar-brand">Strona główna</a>
-            <div class="navbar-collapse collapse">
+
                 <ul class="nav navbar-nav">
 
                     <li class="dropdown">
@@ -64,15 +66,13 @@
                 <ul class="nav navbar-nav navbar-right">
                     <c:if test="${pageContext.request.userPrincipal.name != null}">
                         <form id="logoutForm" method="POST" action="${contextPath}/logout">
-                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                            <input type="hidden" name="${_csrf.parameterName } " value="${_csrf.token } "/>
                         </form>
                     </c:if>
 
                     <li><a onclick="document.forms['logoutForm'].submit()" href="#"><span class="glyphicon glyphicon-log-out" ></span> Wyloguj sie ${pageContext.request.userPrincipal.name} </a></li>
 
                 </ul>
-            </div>
-
         </div>
 
 
@@ -97,6 +97,16 @@
                         </div>
                     </div>
                     <br>
+                    <br><br>
+                    <br><br>
+                    <br><br>
+                    <br><br>
+                    <br><br>
+                    <br><br>
+                    <br><br>
+                    <br><br>
+                    <br><br>
+                    <br><br>
                     <br>
                 </c:when>
                 <c:when test="${mode == 'MODE_GAMES'}">
@@ -252,7 +262,7 @@
                       <div class="container text-center">
                           <h3>Dodaj Piłkarza</h3>
                           <form class="form-horizontal" method="POST" action="save-player">
-                            <input type="hidden" name="id" value="${game.id}"/>
+
                           <div class="form-group">
                               <label class="control-label col-md-3">Imię</label>
                               <div class="col-md-7">
@@ -407,11 +417,7 @@
                                      <hr />
                                  </c:forEach>
 
-
-
-
-
-                                                                        <hr>
+                                        <hr>
                                                                         <div class="table-responsive">
                                                                             <table class="table table-striped table- bordered text-left">
                                                                                 <thread>

@@ -17,10 +17,10 @@
 
         <style>
             .jumbotron{
-                background-color:#b5953f;
+                background-color: #339966;
                 color:white;
             }
-            /* Adds borders for tabs */
+            /* Adds borders for tabs #d9ffb3 #66ff99 */
             .tab-content {
                 border-left: 1px solid #ddd;
                 border-right: 1px solid #ddd;
@@ -42,8 +42,8 @@
             <!-- page-header adds space aroundtext and enlarges it. It also adds an underline at the end -->
 
             <center> <img src="static/images/ligatyperow.png" width="200" height="140">
-                <center><h4>Witaj w Fantasy Local League! </h4>
-                    <center><h4>Dostęp dopiero po zalogowaniu.</h4></center>
+                <h4>Witaj w Fantasy Local League! </h4>
+                  <h4>Dostęp dopiero po zalogowaniu.</h4></center>
 
                     <div class="row">
                         <div class="col-md-4">
