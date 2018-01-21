@@ -11,6 +11,7 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+    
     @Column
     private String username;
     @Column
@@ -21,13 +22,16 @@ public class User implements Serializable {
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
+
+   
     public User() {
 
     }
 
-    public User(String username, String password) {
+    public User(String username, String password, Integer teamid) {
         this.username = username;
         this.password = password;
+        
     }
 
     public Integer getId() {
@@ -69,4 +73,9 @@ public class User implements Serializable {
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
+
+
+   
+    
+    
 }

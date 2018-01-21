@@ -10,10 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.project.model.Player;
 import com.project.dao.PlayerRepository;
-import com.project.dao.TypeRepository;
 import com.project.dto.PlayerDTO;
-import com.project.model.Type;
-import com.project.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Service
@@ -22,8 +19,6 @@ public class PlayerService {
     @Autowired
     private PlayerRepository playerRepository;
     
-    @Autowired
-    private TypeRepository typeRepository;
 
     @Autowired
     private UserServiceImpl userServiceImpl;

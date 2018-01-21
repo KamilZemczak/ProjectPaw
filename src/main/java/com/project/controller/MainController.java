@@ -6,6 +6,8 @@ import com.project.model.Clubs;
 import com.project.model.Game;
 import com.project.model.Player;
 import com.project.model.Playerpoints;
+import com.project.model.User;
+import com.project.model.Userteam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,15 +17,23 @@ import com.project.service.ClubsService;
 import com.project.service.GameService;
 import com.project.service.MessageService;
 import com.project.service.TypeService;
+import com.project.service.UserkService;
+import com.project.service.UserteamService;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class MainController {
 
+    @Autowired
+    private UserkService userkService;
+    
+    @Autowired
+    private UserteamService userteamService;
     
     @Autowired
     private PlayerpointsService playerpointsService;
@@ -178,6 +188,26 @@ public class MainController {
     @GetMapping("/contact")
     public String contact(HttpServletRequest request) {
         request.setAttribute("mode", "MODE_CONTACT");
+        return "index";
+    }
+      @GetMapping("/createteam")
+    public String createteam(HttpServletRequest request) {
+       
+      request.setAttribute("players", playerService.findAll());
+        request.setAttribute("mode", "MODE_CREATETEAM");
+      
+        return "createteam";
+    }
+    
+       @PostMapping("/save-userteam")
+    public String saveteam ( Userteam userteam, Player player, BindingResult bindingResult, HttpServletRequest request) {
+        userteamService.save(userteam);
+       
+       
+        request.setAttribute("userteams", userteamService.findAll());
+        request.setAttribute("mode", "MODE_CREATETEAM"); 
+        request.setAttribute("players", playerService.findAll());
+        request.setAttribute("mode", "MODE_CREATETEAM"); 
         return "index";
     }
    

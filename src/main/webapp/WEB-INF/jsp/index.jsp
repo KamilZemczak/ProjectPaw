@@ -34,7 +34,7 @@
     <body>
 
 
-        <div class="navbar navbar-default">
+        <div class="navbar navbar-inverse">
             <!--<a class="pull-left" href="index.html"><img src="static/images/ligatyperow2.png" width="100" height="50"></a><!-->
 
             <a href="/" class="navbar-brand">Strona główna</a>
