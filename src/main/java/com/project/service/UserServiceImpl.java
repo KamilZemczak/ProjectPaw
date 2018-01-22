@@ -3,6 +3,8 @@ package com.project.service;
 import com.project.model.User;
 import com.project.dao.RoleRepository;
 import com.project.dao.UserRepository;
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -53,4 +55,11 @@ public class UserServiceImpl implements UserService {
         }
         return user;
     }
+     public List<User> findAll() {
+        List<User> users = new ArrayList<>();
+        for (User user : userRepository.findAll()) {
+            users.add(user);
+        }
+        return users;
+}
 }

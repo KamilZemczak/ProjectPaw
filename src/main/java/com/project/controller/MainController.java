@@ -17,6 +17,8 @@ import com.project.service.ClubsService;
 import com.project.service.GameService;
 import com.project.service.MessageService;
 import com.project.service.TypeService;
+import com.project.service.UserService;
+import com.project.service.UserServiceImpl;
 import com.project.service.UserkService;
 import com.project.service.UserteamService;
 import javax.servlet.http.HttpServletRequest;
@@ -30,7 +32,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class MainController {
 
     @Autowired
-    private UserkService userkService;
+    private UserServiceImpl userServiceImpl;
     
     @Autowired
     private UserteamService userteamService;
@@ -118,7 +120,7 @@ public class MainController {
         clubsService.save(clubs);
         request.setAttribute("club", clubsService.findAll());
         request.setAttribute("mode", "MODE_CLUBS");
-        return "index";
+        return "redirect:/new-clubs";
     }
     
     
@@ -140,7 +142,7 @@ public class MainController {
         request.setAttribute("mode", "MODE_CLUBS");
         request.setAttribute("players", playerService.findAll());
         request.setAttribute("mode", "MODE_PLAYER"); 
-        return "index";
+        return "redirect:/new-player";
     }
     
     @PostMapping("/save-game")
@@ -195,15 +197,19 @@ public class MainController {
        
       request.setAttribute("players", playerService.findAll());
         request.setAttribute("mode", "MODE_CREATETEAM");
-      
+      request.setAttribute("users", userServiceImpl.findAll());
+        request.setAttribute("mode", "MODE_CREATETEAM"); 
         return "createteam";
     }
     
        @PostMapping("/save-userteam")
-    public String saveteam ( Userteam userteam, Player player, BindingResult bindingResult, HttpServletRequest request) {
+    public String saveteam (Userteam userteam, Player player, BindingResult bindingResult, HttpServletRequest request) {
+          User user = userServiceImpl.getUserId();
+        userteam.setUser(userServiceImpl.getUserId());
         userteamService.save(userteam);
        
-       
+       request.setAttribute("users", userServiceImpl.findAll());
+        request.setAttribute("mode", "MODE_CREATETEAM"); 
         request.setAttribute("userteams", userteamService.findAll());
         request.setAttribute("mode", "MODE_CREATETEAM"); 
         request.setAttribute("players", playerService.findAll());
@@ -211,4 +217,5 @@ public class MainController {
         return "index";
     }
    
+
 }

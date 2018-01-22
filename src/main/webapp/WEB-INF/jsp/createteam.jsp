@@ -80,7 +80,9 @@
       </div>
         <br>
 
-            <form class="form-horizontal" method="PUT" action="save-userteam">
+            <form class="form-horizontal" method="POST" action="save-userteam">
+
+
           <div container>
           <div class="row">
             <div class="col-12 col-md-8 col-sm-12">
@@ -228,12 +230,12 @@
 
               </tbody>
               </table>
-              
+
             </div>
             </div>
             <div class="col-6 col-md-4">.col-6 .col-md-4</div>
           </div><div class="text-center">
-
+          <input type="hidden" name="user.id" value="${userteam.id}"/>
         <input type="submit" class="btn btn-primary" value="Zapisz"/></div></div>
       </form>
           <br>
