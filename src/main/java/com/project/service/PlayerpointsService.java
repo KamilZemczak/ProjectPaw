@@ -54,4 +54,8 @@ public class PlayerpointsService {
        round_points= a+b+c+d;
        
    }
+
+    public void save(List playerpoints) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

@@ -21,6 +21,8 @@ import com.project.service.UserService;
 import com.project.service.UserServiceImpl;
 import com.project.service.UserkService;
 import com.project.service.UserteamService;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -177,6 +179,8 @@ public class MainController {
         return "index";
     }
     
+    
+    
        @GetMapping("/delete-player")
     public String deletePlayer(@RequestParam int id, HttpServletRequest request) {
         playerService.delete(id);
@@ -201,21 +205,70 @@ public class MainController {
         request.setAttribute("mode", "MODE_CREATETEAM"); 
         return "createteam";
     }
+     @GetMapping("/createteame")
+    public String createteame(HttpServletRequest request) {
+       
+      request.setAttribute("players", playerService.findAll());
+        request.setAttribute("mode", "MODE_CREATETEAME");
+      request.setAttribute("users", userServiceImpl.findAll());
+        request.setAttribute("mode", "MODE_CREATETEAME"); 
+        return "createteam";
+    }
     
        @PostMapping("/save-userteam")
     public String saveteam (Userteam userteam, Player player, BindingResult bindingResult, HttpServletRequest request) {
-          User user = userServiceImpl.getUserId();
+        User user = userServiceImpl.getUserId();
         userteam.setUser(userServiceImpl.getUserId());
+        Player pricePlayer;
+        int totalPrice = 0;
+        for(int i=1; i<=15; i++){
+            pricePlayer = playerService.findPlayer(Integer.parseInt(request.getParameter("player"+i)));
+            totalPrice += pricePlayer.getPrice();
+            
+            for(int o=1; o<=15; o++) {
+                if(o!=i) 
+                    if( request.getParameter("player"+i).equals((request.getParameter("player"+o))) ) {
+                        return "redirect:/createteame";
+                    }
+            }     
+        }
+    
+    
+        
+        userteam.setTcounter(totalPrice);
         userteamService.save(userteam);
+        
+        if(totalPrice > 100000) {
+              
+
+              userteamService.delete(userteam.getId());
+              request.setAttribute("error", "1");
+            request.setAttribute("users", userServiceImpl.findAll());
+            request.setAttribute("mode", "MODE_CREATETEAM"); 
+            request.setAttribute("userteams", userteamService.findAll());
+            request.setAttribute("mode", "MODE_CREATETEAM"); 
+            request.setAttribute("players", playerService.findAll());
+            request.setAttribute("mode", "MODE_CREATETEAM"); 
+            return "redirect:/createteame";
+        }
        
-       request.setAttribute("users", userServiceImpl.findAll());
+        request.setAttribute("users", userServiceImpl.findAll());
         request.setAttribute("mode", "MODE_CREATETEAM"); 
         request.setAttribute("userteams", userteamService.findAll());
         request.setAttribute("mode", "MODE_CREATETEAM"); 
         request.setAttribute("players", playerService.findAll());
         request.setAttribute("mode", "MODE_CREATETEAM"); 
-        return "index";
+        return "redirect:/";
     }
-   
+     @GetMapping("/myteam-4-2-2")
+    public String myteam(HttpServletRequest request) {
+       
+      request.setAttribute("players", playerService.findAll());
+        request.setAttribute("mode", "MODE_4-4-2");
+      request.setAttribute("users", userServiceImpl.findAll());
+        request.setAttribute("mode", "MODE_4-4-2"); 
+        return "myteam";
+    }
+    
 
 }

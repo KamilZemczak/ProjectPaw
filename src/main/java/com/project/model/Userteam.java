@@ -1,12 +1,15 @@
 
 package com.project.model;
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity; 
 import javax.persistence.GeneratedValue; 
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
 @Entity(name="userteam")
@@ -49,10 +52,19 @@ public class Userteam implements Serializable {
     @OneToOne
     private User user;
     
+    
+    @ManyToMany
+   @JoinTable(
+            name="rosters",
+            joinColumns = {@JoinColumn(name = "userteam_id")},
+            inverseJoinColumns = {@JoinColumn(name = "player_id")}
+    )  List <Player> players;
+    
     public Userteam() {
     }
 
     public Userteam(Integer id, String player1, String player2, String player3, String player4, String player5, String player6, String player7, String player8, String player9, String player10, String player11, String player12, String player13, String player14, String player15, Integer tcounter) {
+       super();
         this.id = id;
         this.player1 = player1;
         this.player2 = player2;
@@ -217,6 +229,14 @@ public class Userteam implements Serializable {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public List<Player> getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(List<Player> players) {
+        this.players = players;
     }
 
  

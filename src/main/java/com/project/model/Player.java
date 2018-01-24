@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue; 
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 @Entity(name="player")
@@ -28,10 +29,15 @@ public class Player implements Serializable {
     @Column
      private Integer price;
 
-    
     @OneToMany (mappedBy="player")
     private List<Playerpoints> playerpoint;
     
+   
+    
+    @ManyToMany(mappedBy = "players")
+    private List<Userteam> userteams1;
+    
+  
     
     
     public Player() {
@@ -113,6 +119,16 @@ public class Player implements Serializable {
     public void setPlayerpoint(List<Playerpoints> playerpoint) {
         this.playerpoint = playerpoint;
     }
+
+    public List<Userteam> getUserteams1() {
+        return userteams1;
+    }
+
+    public void setUserteams1(List<Userteam> userteams1) {
+        this.userteams1 = userteams1;
+    }
+
+   
 
 
     
