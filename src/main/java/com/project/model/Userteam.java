@@ -15,7 +15,7 @@ import javax.persistence.OneToOne;
 @Entity(name="userteam")
 public class Userteam implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+ 
     private Integer id;
     @Column
      private String player1;
@@ -49,9 +49,10 @@ public class Userteam implements Serializable {
      private String player15;
      @Column
      private Integer tcounter;
-    @OneToOne
+    @OneToOne 
     private User user;
     
+   
     
     @ManyToMany
    @JoinTable(
@@ -238,6 +239,8 @@ public class Userteam implements Serializable {
     public void setPlayers(List<Player> players) {
         this.players = players;
     }
+
+ 
 
  
   

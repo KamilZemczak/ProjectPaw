@@ -37,7 +37,7 @@ public class Player implements Serializable {
     @ManyToMany(mappedBy = "players")
     private List<Userteam> userteams1;
     
-  
+ 
     
     
     public Player() {
@@ -129,7 +129,6 @@ public class Player implements Serializable {
     }
 
    
-
 
     
 }

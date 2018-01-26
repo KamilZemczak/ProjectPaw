@@ -23,7 +23,7 @@
 
         <style>
             .jumbotron{
-                background-color:#b5953f;
+                background-color:#009500;
                 color:white;
             }
         </style>
@@ -33,7 +33,7 @@
 
         <div class="container">
 
-            <center> <img src="static/images/ligatyperow.png" width="200" height="140"> </center>
+          <center> <img src="static/images/fantasylocal.png" width="210" height="120">
 
             <div class="row">
                 <div class="col-md-4">
@@ -73,12 +73,8 @@
                 </div>
             </div>
         </div>
-        <div class="navbar navbar-fixed-bottom">
-            <div class="panel-footer">
+        
 
-                Copyright: Projekt PAW 2017 (Kamil Zemczak Rafal Michalski). Wszystkie prawa zastrzeżone.
-            </div></div>
-    
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script src="${contextPath}/static/js/bootstrap.min.js"></script>
     </body>

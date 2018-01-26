@@ -44,7 +44,9 @@
               margin-right:  20px;
               margin-left:  20px;
             }
-
+            .well {
+              background-color:#80ff80;
+            }
 
         </style>
     </head>
@@ -80,8 +82,8 @@
       </div>
         <br>
 
+          <form class="form-horizontal" method="POST" action="save-myteam">
 
-<c:set var = "budget" value = "${100000}"/>
 
           <div container>
           <div class="row">
@@ -101,12 +103,10 @@
 
                 </td>
               <th width="20%">  <h5 class="bg-primary">Bramkarz</h>
-                    <select class="form-control cascadingDropDown" id="p1" name="player1">
+                    <select class="form-control cascadingDropDown" name="mplayer1">
                     <c:forEach var="player" items="${players}"><c:choose><c:when test="${player.position eq 'Bramkarz'}">
                       <option value="${player.id}">
-                        ${player.firstname} ${player.lastname}, cena: ${player.price}
-
-    <
+                        ${player.firstname} ${player.lastname}
                       </option> </c:when>  </c:choose>
                     </c:forEach></select></td>
               <th class="text-center">
@@ -120,35 +120,35 @@
             </tr>
               <tr>
               <td class="text-center" ><h5 class="bg-primary">OBROŃCA</h>
-                 <select class="form-control cascadingDropDown"  name="player3">
+                 <select class="form-control cascadingDropDown"  name="mplayer2">
                 <c:forEach var="player" items="${players}"><c:choose><c:when test="${player.position eq 'Obrońca'}">
                   <option value="${player.id}">
-                    ${player.firstname} ${player.lastname}, cena: ${player.price}
+                    ${player.firstname} ${player.lastname}
 
                   </option>   </c:when>  </c:choose>
                 </c:forEach></select></td>
               <td class="text-center"><h5 class="bg-primary">OBROŃCA</h>
-                 <select class="form-control cascadingDropDown"  name="player4">
+                 <select class="form-control cascadingDropDown"  name="mplayer3">
                 <c:forEach var="player" items="${players}"><c:choose><c:when test="${player.position eq 'Obrońca'}">
                   <option value="${player.id}">
-                    ${player.firstname} ${player.lastname}, cena: ${player.price}
+                    ${player.firstname} ${player.lastname}
 
                   </option> </c:when>  </c:choose>
                 </c:forEach></select></td>
           <td>  </td>
               <td class="text-center"><h5 class="bg-primary">OBROŃCA</h>
-                 <select class="form-control cascadingDropDown"  name="player6" name="tcounter">
+                 <select class="form-control cascadingDropDown"  name="mplayer4" name="tcounter">
                 <c:forEach var="player" items="${players}"><c:choose><c:when test="${player.position eq 'Obrońca'}">
                   <option value="${player.id}" value="${player.price}">
-                    ${player.firstname} ${player.lastname}, cena: ${player.price}
+                    ${player.firstname} ${player.lastname}
 
                   </option> </c:when>  </c:choose>
                 </c:forEach></select></td>
               <td class="text-center"><h5 class="bg-primary">OBROŃCA</h>
-                <select class="form-control cascadingDropDown"  name="player7">
+                <select class="form-control cascadingDropDown"  name="mplayer5">
                 <c:forEach var="player" items="${players}"><c:choose><c:when test="${player.position eq 'Obrońca'}">
                   <option value="${player.id}">
-                    ${player.firstname} ${player.lastname}, cena: ${player.price}
+                    ${player.firstname} ${player.lastname}
 
                   </option> </c:when>  </c:choose>
                 </c:forEach></select></td>
@@ -158,35 +158,35 @@
               </tr>
               <tr>
               <td><h5 class="bg-primary">POMOCNIK</h>
-                  <select class="form-control cascadingDropDown"  name="player8">
+                  <select class="form-control cascadingDropDown"  name="mplayer6">
                 <c:forEach var="player" items="${players}"><c:choose><c:when test="${player.position eq 'Pomocnik'}">
                   <option value="${player.id}">
-                    ${player.firstname} ${player.lastname}, cena: ${player.price}
+                    ${player.firstname} ${player.lastname}
 
                   </option> </c:when>  </c:choose>
                 </c:forEach></select></td>
               <td><h5 class="bg-primary">POMOCNIK</h>
-                 <select class="form-control cascadingDropDown"  name="player9">
+                 <select class="form-control cascadingDropDown"  name="mplayer7">
                 <c:forEach var="player" items="${players}"><c:choose><c:when test="${player.position eq 'Pomocnik'}">
                   <option value="${player.id}">
-                    ${player.firstname} ${player.lastname}, cena: ${player.price}
+                    ${player.firstname} ${player.lastname}
 
                   </option> </c:when>  </c:choose>
                 </c:forEach></select></td>
               <td></td>
               <td><h5 class="bg-primary">POMOCNIK</h>
-                 <select class="form-control cascadingDropDown"  name="player11">
+                 <select class="form-control cascadingDropDown"  name="mplayer8">
                 <c:forEach var="player" items="${players}"><c:choose><c:when test="${player.position eq 'Pomocnik'}">
                   <option value="${player.id}">
-                    ${player.firstname} ${player.lastname}, cena: ${player.price}
+                    ${player.firstname} ${player.lastname}
 
                   </option> </c:when>  </c:choose>
                 </c:forEach></select></td>
               <td><h5 class="bg-primary">POMOCNIK</h>
-                 <select class="form-control cascadingDropDown"  name="player12">
+                 <select class="form-control cascadingDropDown"  name="mplayer9">
                 <c:forEach var="player" items="${players}"><c:choose><c:when test="${player.position eq 'Pomocnik'}">
                   <option value="${player.id}">
-                    ${player.firstname} ${player.lastname}, cena: ${player.price}
+                    ${player.firstname} ${player.lastname}
 
                   </option> </c:when>  </c:choose>
                 </c:forEach></select></td>
@@ -197,19 +197,19 @@
               <tr>
               <td></td>
               <td><h5 class="bg-primary">NAPASTNIK</h>
-                 <select class="form-control cascadingDropDown"  name="player13">
+                 <select class="form-control cascadingDropDown"  name="mplayer10">
                 <c:forEach var="player" items="${players}"><c:choose><c:when test="${player.position eq 'Napastnik'}">
                   <option value="${player.id}">
-                    ${player.firstname} ${player.lastname}, cena: ${player.price}
+                    ${player.firstname} ${player.lastname}
 
                   </option> </c:when>  </c:choose>
                 </c:forEach></select></td>
               <td></td>
               <td><h5 class="bg-primary">NAPASTNIK</h>
-                <select class="form-control cascadingDropDown"  name="player15">
+                <select class="form-control cascadingDropDown"  name="mplayer11">
                 <c:forEach var="player" items="${players}"><c:choose><c:when test="${player.position eq 'Napastnik'}">
                   <option value="${player.id}">
-                    ${player.firstname} ${player.lastname}, cena: ${player.price}
+                    ${player.firstname} ${player.lastname}
 
                   </option> </c:when>  </c:choose>
 
@@ -222,13 +222,19 @@
 
             </div>
             </div>
-            <div class="col-6 col-md-4">Twój budżet:  <c:out value = "${budget}"/> <br>
-            <c:out value = "${p1+p2}"/> <br>
-          </div>
-          </div><div class="text-center">
-          <input type="hidden" name="user.id" value="${userteam.id}"/>
+            <div class="col-6 col-md-4">  <div class="well well-sm"><div class="text-center">
+                <c:set var = "budgett" scope = "session" value = "${100000-budget}"/>
+            Twój aktualny budżet to:  <b><c:out value = "${budgett}"/></b> <br>
+            Wybierz formację i wybierz piłkarzy, którzy będą grali w twojej podstawowej 11.
+             <br>
+               <input type="submit" class="btn btn-primary" value="Zapisz"/>
 
-        </div></div>
+          </div></div>
+          </div><div class="text-center">
+
+
+
+        </div></div></div>
 
 
 
@@ -257,7 +263,7 @@
                   </tbody>
                   </table>
                 </div> -->
-          <br>
+          <br></form>
 
                                         <script src="static/js/jquery-1.11.1.min.js"></script>
                                 <script src="static/js/bootstrap.min.js"></script>

@@ -4,6 +4,7 @@ package com.project.controller;
 
 import com.project.model.Clubs;
 import com.project.model.Game;
+import com.project.model.Myteam;
 import com.project.model.Player;
 import com.project.model.Playerpoints;
 import com.project.model.User;
@@ -16,10 +17,10 @@ import com.project.service.PlayerpointsService;
 import com.project.service.ClubsService;
 import com.project.service.GameService;
 import com.project.service.MessageService;
+import com.project.service.MyteamService;
 import com.project.service.TypeService;
 import com.project.service.UserService;
 import com.project.service.UserServiceImpl;
-import com.project.service.UserkService;
 import com.project.service.UserteamService;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +37,9 @@ public class MainController {
     @Autowired
     private UserServiceImpl userServiceImpl;
     
+     @Autowired
+    private MyteamService myteamService;
+     
     @Autowired
     private UserteamService userteamService;
     
@@ -129,7 +133,13 @@ public class MainController {
     
    @PostMapping("/save-points")
     public String savePoints(Playerpoints playerpoints, Player player, BindingResult bindingResult, HttpServletRequest request) {
-        playerpointsService.save(playerpoints);
+        //playerpointsService.save(playerpoints);
+        System.out.println(playerpoints.toString());
+        System.out.println(request.getParameter("roundpoints"));
+        System.out.println(request.getParameter("roundnr"));
+        
+        
+        
          request.setAttribute("players", playerService.findAll());
         request.setAttribute("mode", "MODE_POINTSMANAGER"); 
         request.setAttribute("playerpoint", playerpointsService.findAll());
@@ -218,6 +228,8 @@ public class MainController {
        @PostMapping("/save-userteam")
     public String saveteam (Userteam userteam, Player player, BindingResult bindingResult, HttpServletRequest request) {
         User user = userServiceImpl.getUserId();
+        user.getId();
+        userteam.setId(user.getId());
         userteam.setUser(userServiceImpl.getUserId());
         Player pricePlayer;
         int totalPrice = 0;
@@ -232,9 +244,7 @@ public class MainController {
                     }
             }     
         }
-    
-    
-        
+
         userteam.setTcounter(totalPrice);
         userteamService.save(userteam);
         
@@ -260,15 +270,89 @@ public class MainController {
         request.setAttribute("mode", "MODE_CREATETEAM"); 
         return "redirect:/";
     }
-     @GetMapping("/myteam-4-2-2")
-    public String myteam(HttpServletRequest request) {
+    
+
+    
+     @GetMapping("/myteam-4-4-2")
+    public String myteam442(HttpServletRequest request) {
+       User user = userServiceImpl.getUserId();
+       Userteam userteam = new Userteam();
        
-      request.setAttribute("players", playerService.findAll());
-        request.setAttribute("mode", "MODE_4-4-2");
-      request.setAttribute("users", userServiceImpl.findAll());
-        request.setAttribute("mode", "MODE_4-4-2"); 
+       userteam = userteamService.findUserteam(user.getId());
+        int budget= userteam.getTcounter();
+     
+       List<Player> playerList = new ArrayList<>();
+//       for(int i=1; i<=15; i++) {
+//            int playerNum = Integer.parseInt(userteam.getPlayer1());
+//            System.out.println(playerNum);
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer1())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer2())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer3())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer4())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer5())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer6())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer7())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer8())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer9())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer10())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer11())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer12())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer13())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer14())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer15())));
+//       }
+
+        request.setAttribute("budget", budget);
+        request.setAttribute("players", playerList);
+        request.setAttribute("mode", "MODE_MYTEAM-4-4-2");
+        request.setAttribute("users", userServiceImpl.findAll());
+        request.setAttribute("mode", "MODE_MYTEAM-4-4-2"); 
+         
         return "myteam";
     }
+          @PostMapping("/save-myteam")
+    public String savemyteam (Myteam myteam, Userteam userteam,  Player player, BindingResult bindingResult, HttpServletRequest request) {
+        User user = userServiceImpl.getUserId();
+        user.getId();
+        myteam.setId(user.getId());
+       
+System.out.println(request.getParameter("mplayer3")); 
+        for(int i=1; i<=15; i++){
+                
+            for(int o=1; o<=15; o++) {
+                if(o!=i) 
+                    if( request.getParameter("mplayer"+i).equals((request.getParameter("mplayer"+o))) ) {
+                        return "redirect:/myteam-4-4-2";}
+                     }       }
+         System.out.println(request.getParameter("mplayer3")); 
+//        myteam.setMplayer1(request.getParameter("mplayer1"));
+//        myteam.setMplayer2(request.getParameter("mplayer2"));
+//        myteam.setMplayer3(request.getParameter("mplayer3"));
+//        myteam.setMplayer4(request.getParameter("mplayer4"));
+//        myteam.setMplayer5(request.getParameter("mplayer5"));
+//        myteam.setMplayer6(request.getParameter("mplayer6"));
+//        myteam.setMplayer7(request.getParameter("mplayer7"));
+//        myteam.setMplayer8(request.getParameter("mplayer8"));
+//        myteam.setMplayer9(request.getParameter("mplayer9"));
+//        myteam.setMplayer10(request.getParameter("mplayer10"));
+//        myteam.setMplayer11(request.getParameter("mplayer11"));
+   
+        
+    myteamService.save(myteam);
+        
+          
+        request.setAttribute("users", userServiceImpl.findAll());
+        request.setAttribute("mode", "MODE_MYTEAM-4-4-2"); 
+        request.setAttribute("myteams", myteamService.findAll());
+        request.setAttribute("mode", "MODE_MYTEAM-4-4-2"); 
+        request.setAttribute("players", playerService.findAll());
+        request.setAttribute("mode", "MODE_MYTEAM-4-4-2"); 
+        
+        return "redirect:/";
+    }
+    
+    
+     
     
 
 }

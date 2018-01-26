@@ -44,6 +44,9 @@
               margin-right:  20px;
               margin-left:  20px;
             }
+            .well {
+              background-color:#80ff80;
+            }
 
 
         </style>
@@ -74,15 +77,15 @@
                       </form>
                   </c:if>
 
-                  <li><a onclick="document.forms['logoutForm'].submit()" href="#"><span class="glyphicon glyphicon-log-out" ></span> Wyloguj sie ${pageContext.request.userPrincipal.name} </a></li>
+                  <li><a onclick="document.forms['logoutForm'].submit()" href="#"><span class="glyphicon glyphicon-log-out" ></span> Wyloguj sie ${pageContext.request.userPrincipal.name}. </a></li>
 
               </ul>
       </div>
         <br>
-          
+
           <c:if test="${mode == 'MODE_CREATETEAME'}">
           <div class="alert alert-danger">
-        <h5 color="red">Przekroczyłeś Budżet! Zbuduj drużynę jeszcze raz!</h5>
+        <h5 color="red">Przekroczyłeś Budżet lub wybrałeś takich samych zawodników! Zbuduj drużynę jeszcze raz!</h5>
       </div>
         </c:if>
             <form class="form-horizontal" method="POST" action="save-userteam">
@@ -257,19 +260,28 @@
 
             </div>
             </div>
-            <div class="col-6 col-md-4">
-
+            <div class="col-6 col-md-4" >
+              <div class="well well-sm">
+<div class="text-center">
+            <h2>Witaj ${pageContext.request.userPrincipal.name} w Fantasy Local League! </h2>
             <br>
-          Twój budżet:  <c:out value = "${budget}"/> <br>
+  <p>      Tutaj stworzysz swój zespół złożony z zawdoników Twojej lokalnej ligi piłkarskiej.
+          Wybieraj jednak mądrze, twój budżet to <b>100 000 zł</b>. W tej kwocie możesz wybrać 15 zawodników: <b>3</b> napastników,
+          <b>5</b> pomocników, <b>5</b> obrońców i <b>2</b> bramkarzy. Piłkarze nie mogą się też powtarzać. Gdy wybierzesz ich poprawnie kliknij
+           przycisk "Zapisz" aby przejść do następnego etapu. Tam wybierzesz formację i podstawą 11.</p>
+           <br>
+          <h3> Życzymy udanej selekcji!</h3>
+
+<input type="submit" class="btn btn-primary" value="Zapisz"/>
 
 
-            <c:out value = "${p1+p2}"/> <br>
-          <c:out value = "${b}"/></div>
+           <br>
+        </div></div></div></div>
           </div><div class="text-center">
 
-          <input type="hidden" name="tcounter" value="${n3}"/>
+
           <input type="hidden" name="user.id" value="${userteam.id}"/>
-          <input type="submit" class="btn btn-primary" value="Zapisz"/>
+
 </div></div>
     <!--     <input type="hidden" name="tcounter" value="${budget}"/>
         <c:if test = "${budget > 80000}">

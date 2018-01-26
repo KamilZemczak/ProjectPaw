@@ -60,7 +60,7 @@ public class UserController {
 
         securityService.autologin(userForm.getUsername(), userForm.getPasswordConfirm());
 
-          return "redirect:/";
+          return "redirect:/createteam";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
