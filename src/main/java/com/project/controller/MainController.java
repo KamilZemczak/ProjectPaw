@@ -312,31 +312,40 @@ public class MainController {
     }
           @PostMapping("/save-myteam")
     public String savemyteam (Myteam myteam, Userteam userteam,  Player player, BindingResult bindingResult, HttpServletRequest request) {
-        User user = userServiceImpl.getUserId();
+        
+       
+          
+User user = userServiceImpl.getUserId();
         user.getId();
         myteam.setId(user.getId());
-       
-System.out.println(request.getParameter("mplayer3")); 
-        for(int i=1; i<=15; i++){
-                
+        System.out.println(request.getParameter("mplayer1"));
+        System.out.println(request.getParameter("mplayer2"));
+        System.out.println(request.getParameter("mplayer3"));
+        System.out.println(request.getParameter("mplayer4"));
+        System.out.println(request.getParameter("mplayer5"));
+        System.out.println(request.getParameter("mplayer6"));
+        System.out.println(request.getParameter("mplayer7"));
+        System.out.println(request.getParameter("mplayer8"));
+         System.out.println(request.getParameter("mplayer9"));
+         System.out.println(request.getParameter("mplayer10"));
+         System.out.println(request.getParameter("mplayer11"));
+        myteam.setMplayer1(request.getParameter("mplayer1"));
+        myteam.setMplayer2(request.getParameter("mplayer2"));
+        myteam.setMplayer3(request.getParameter("mplayer3"));
+        myteam.setMplayer4(request.getParameter("mplayer4"));
+        myteam.setMplayer5(request.getParameter("mplayer5"));
+        myteam.setMplayer6(request.getParameter("mplayer6"));
+        myteam.setMplayer7(request.getParameter("mplayer7"));
+        myteam.setMplayer8(request.getParameter("mplayer8"));
+        myteam.setMplayer9(request.getParameter("mplayer9"));
+        myteam.setMplayer10(request.getParameter("mplayer10"));
+        myteam.setMplayer11(request.getParameter("mplayer11"));
+     for(int i=1; i<=15; i++){
             for(int o=1; o<=15; o++) {
                 if(o!=i) 
-                    if( request.getParameter("mplayer"+i).equals((request.getParameter("mplayer"+o))) ) {
-                        return "redirect:/myteam-4-4-2";}
-                     }       }
-         System.out.println(request.getParameter("mplayer3")); 
-//        myteam.setMplayer1(request.getParameter("mplayer1"));
-//        myteam.setMplayer2(request.getParameter("mplayer2"));
-//        myteam.setMplayer3(request.getParameter("mplayer3"));
-//        myteam.setMplayer4(request.getParameter("mplayer4"));
-//        myteam.setMplayer5(request.getParameter("mplayer5"));
-//        myteam.setMplayer6(request.getParameter("mplayer6"));
-//        myteam.setMplayer7(request.getParameter("mplayer7"));
-//        myteam.setMplayer8(request.getParameter("mplayer8"));
-//        myteam.setMplayer9(request.getParameter("mplayer9"));
-//        myteam.setMplayer10(request.getParameter("mplayer10"));
-//        myteam.setMplayer11(request.getParameter("mplayer11"));
-   
+                    if( request.getParameter("player"+i)==(request.getParameter("player"+o)) ) 
+                        return "redirect:/myteam-4-4-2";
+                       }      }
         
     myteamService.save(myteam);
         

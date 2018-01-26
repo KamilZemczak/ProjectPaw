@@ -40,27 +40,17 @@ public class Myteam implements Serializable {
      private String mplayer10;
     @Column
      private String mplayer11;
-    @Column
-     private String mplayer12;
-    @Column
-     private String mplayer13;
-    @Column
-     private String mplayer14;
-    @Column
-     private String mplayer15;
+    
      @Column
      private String formation;
-    @OneToOne
-    private User user;
-     @OneToOne 
-    private Userteam userteam;
     
+   
     
     
     public Myteam() {
     }
 
-    public Myteam(Integer id, String mplayer1, String mplayer2, String mplayer3, String mplayer4, String mplayer5, String mplayer6, String mplayer7, String mplayer8, String mplayer9, String mplayer10, String mplayer11, String mplayer12, String mplayer13, String mplayer14, String mplayer15, String formation) {
+    public Myteam(Integer id, String mplayer1, String mplayer2, String mplayer3, String mplayer4, String mplayer5, String mplayer6, String mplayer7, String mplayer8, String mplayer9, String mplayer10, String mplayer11, String formation) {
        super();
         this.id = id;
         this.mplayer1 = mplayer1;
@@ -74,10 +64,7 @@ public class Myteam implements Serializable {
         this.mplayer9 = mplayer9;
         this.mplayer10 = mplayer10;
         this.mplayer11 = mplayer11;
-        this.mplayer12 = mplayer12;
-        this.mplayer13 = mplayer13;
-        this.mplayer14 = mplayer14;
-        this.mplayer15 = mplayer15;
+    
         this.formation = formation;
     
     }
@@ -180,37 +167,7 @@ public class Myteam implements Serializable {
         this.mplayer11 = mplayer11;
     }
 
-    public String getMplayer12() {
-        return mplayer12;
-    }
 
-    public void setMplayer12(String mplayer12) {
-        this.mplayer12 = mplayer12;
-    }
-
-    public String getMplayer13() {
-        return mplayer13;
-    }
-
-    public void setMplayer13(String mplayer13) {
-        this.mplayer13 = mplayer13;
-    }
-
-    public String getMplayer14() {
-        return mplayer14;
-    }
-
-    public void setMplayer14(String mplayer14) {
-        this.mplayer14 = mplayer14;
-    }
-
-    public String getMplayer15() {
-        return mplayer15;
-    }
-
-    public void setMplayer15(String mplayer15) {
-        this.mplayer15 = mplayer15;
-    }
 
     public String getFormation() {
         return formation;
@@ -221,13 +178,7 @@ public class Myteam implements Serializable {
     }
 
 
-    public User getUser() {
-        return user;
-    }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
 
    
     
