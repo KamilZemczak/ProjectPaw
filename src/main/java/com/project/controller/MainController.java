@@ -142,6 +142,7 @@ public class MainController {
     public String newGame(HttpServletRequest request) {
         User panel = userServiceImpl.getUserId();
          request.setAttribute("adminu", panel.getId());
+          request.setAttribute("club", clubsService.findAll());
         request.setAttribute("mode", "MODE_NEW");
         return "index";
     }
@@ -184,6 +185,8 @@ public class MainController {
     @PostMapping("/save-game")
     public String saveGame(@ModelAttribute Game game, BindingResult bindingResult, HttpServletRequest request) {
         gameService.save(game);
+         request.setAttribute("club", clubsService.findAll());
+        request.setAttribute("mode", "MODE_GAME");
         request.setAttribute("games", gameService.findAll());
         request.setAttribute("mode", "MODE_GAMES");
         return "index";
@@ -192,6 +195,7 @@ public class MainController {
     @GetMapping("/update-game")
     public String updateGame(@RequestParam int id, HttpServletRequest request) {
         request.setAttribute("game", gameService.findGame(id));
+         request.setAttribute("club", clubsService.findAll());
         request.setAttribute("mode", "MODE_UPDATE");
         request.setAttribute("message", "treść wiadomości"); //TODO
         messageService.addSuccessMessage("Zaktualizowano pozycje!");

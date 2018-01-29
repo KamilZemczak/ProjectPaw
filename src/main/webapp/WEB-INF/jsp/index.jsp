@@ -237,19 +237,31 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3">Drużyna 1 (gospodarze)</label>
                                 <div class="col-md-7">
-                                    <input type="text" class="form-control" name="homeTeam" value="${game.homeTeam}"/>
+                                  <select class="form-control cascadingDropDown"  name="homeTeam">
+                                    <c:forEach var="clubs" items="${club}">
+                                        <option value="${clubs.name}"> ${clubs.name}  </option>
+
+                                        </c:forEach>
+                                    </select>
+
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3">Drużyna 2 (goście)</label>
                                 <div class="col-md-7">
-                                    <input type="text" class="form-control" name="awayTeam" value="${game.awayTeam}"/>
+                                  <select class="form-control cascadingDropDown"  name="awayTeam">
+                                    <c:forEach var="clubs" items="${club}">
+                                        <option value="${clubs.name}"> ${clubs.name}  </option>
+
+                                        </c:forEach>
+                                    </select>
+
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3">Data spotkania</label>
                                 <div class="col-md-7">
-                                    <input type="text" class="form-control" name="dateGame" value="${game.dateGame}"/>
+                                    <input type="date" class="form-control" name="dateGame" value="${game.dateGame}"/>
                                 </div>
                             </div>
                             <div class="form-group">
