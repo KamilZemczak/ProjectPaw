@@ -76,6 +76,7 @@ public class UserController {
      @RequestMapping(value = "/pointss")
     public String allGames(HttpServletRequest request) {
         
+      
       request.setAttribute("players", playerService.findAll());
         request.setAttribute("mode", "MODE_PLAYER");
       

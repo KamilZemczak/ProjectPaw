@@ -41,26 +41,22 @@
 
                 <ul class="nav navbar-nav">
 
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Panel uzytkownika
-                            <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="bet-games">Obstaw mecz</a></li>
-                            <li><a href="your-games">Twoje typy</a></li>
-                        </ul></li>
-                    <li class="dropdown">
+                    <li><a href="myteam-4-4-2">Edytuj swoją drużynę</a></li>
+                    <li><a href="bet-games">Terminarz i wyniki meczów</a></li>
+
+
+    <c:if test="${adminu eq '28'}">             <li class="dropdown">
 
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Panel administratora
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="new-game">Dodaj nowy mecz</a></li>
-                            <li><a href="all-games">Zarządzaj meczami</a></li>
-                            <li><a href="all-types">Rozdaj punkty</a></li>
                             <li><a href="new-clubs">Dodaj Klub</a></li>
                             <li><a href="new-player">Dodaj Zawodnika</a></li>
                             <li><a href="points-manager">Zarządzaj punktami</a></li>
-                        </ul>  </li>
+                        </ul>  </li></c:if>
                     <li><a href="#">Klasyfikacja graczy</a></li>
+                    <li><a href="rules">Zasady</a></li>
                     <li><a href="contact">Kontakt</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -79,7 +75,7 @@
         <c:choose>
             <c:when test="${mode == 'MODE_HOME'}">
                 <div class="container" id="homeDiv">
-                    <center><h2> <span class="label label-default">Witaj w Fantasy Local League ${pageContext.request.userPrincipal.name}.</span></h2> <br></center>
+                    <center><h2> <span color="green" class="label label-default">Witaj w Fantasy Local League ${pageContext.request.userPrincipal.name}.</span></h2> <br></center>
 
                     <div class="jumbotron text-center">
                         <div class="modal-header">
@@ -91,7 +87,7 @@
                         <div class="row">
 
                             <div class="col-md-6">
-                                <center> <h4><b>Oficjalnie: Patryk Sieczka to gej!</b></h4></center> <br>
+                                <center> <h4><b></b></h4></center> <br>
 
                             </div>
                         </div>
@@ -109,6 +105,84 @@
                     <br><br>
                     <br>
                 </c:when>
+                <c:when test="${mode == 'MODE_RULES'}">
+                    <div class="container" id="homeDiv">
+                        <center><h2> <span color="green" class="label label-default">Witaj w Fantasy Local League ${pageContext.request.userPrincipal.name}.</span></h2> <br></center>
+
+                        <div class="jumbotron">
+                            <div class="modal-header">
+                                <h3>Tworzenie drużyny:</h3>
+                                <br>
+                                  Spośród wszystkich piłkarzy grających w Lokalnej lidze kupujemy piętnastu (2 bramkarzy, 5 obrońców, 5 pomocników, 3 napastników). Pamiętajmy, że musimy zmieścić się w budżecie, który wynosi 100 000 wirtualnych złotych. Zawodników kupuje się, wybierając ich spóśród list przypisanych do danych pozycji, następnie klikając przycisk "zapisz".
+                                  Po zakupie 15 zawodników decydujemy, którzy będą grać w składzie podstawowym, a którzy zostaną rezerwowymi. Przy okazji wybieramy też formację drużyny (1-3-4-3, 1-3-5-2, 1-4-3-3, 1-4-4-2, 1-4-5-1, 1-5-3-2, 1-5-4-1). W taki sam sposób możemy edytować skład przed rozpoczęciem następnej kolejki spotkań.
+                                  <br>
+                                    <hr>
+                                    <h3>Punktacja:</h3>
+                                      <br>
+                                    a) Bramki.  <br>
+                                    - napastnicy: 4 punkty,  <br>
+                                    - pomocnicy: 5 punktów,  <br>
+                                    - obrońcy: 6 punktów,  <br>
+                                    - bramkarze: 8 punktów,  <br>
+
+                                    b) Asysty.  <br>
+                                    - napastnicy i pomocnicy: 3 punkty,  <br>
+                                    - obrońcy: 4 punkty,  <br>
+                                    - bramkarze: 6 punktów,  <br>
+
+                                    c) Mecz bez straconej bramki.  <br>
+                                    - obrońcy i bramkarze: 3 punkty,  <br>
+                                    - pomocnicy: 1 punkt,  <br>
+
+                                    d) Obrona rzutu karnego.  <br>
+                                    - bramkarz (inny): 4 pkt.  <br>
+
+                                    e) Za udział w meczu w pierwszej 11.  <br>
+                                    - skład podstawowy: 2 punkty,  <br>
+
+                                    f) Wynik meczu.  <br>
+                                    - zwycięstwo: 2 punkty,   <br>
+                                    - remis: 1 punkt,   <br>
+
+                                    g) Strata bramki.  <br>
+                                    - tylko bramkarze i obrońcy - po minus 1 pkt. za każdą straconą bramkę.  <br>
+
+                                    h) Żółtą kartkę.  <br>
+                                    - wszyscy: minus 1 punkt,  <br>
+
+                                    i) Czerwoną kartkę.  <br>
+                                    - wszyscy: minus 3 punkty,  <br>
+
+                                    j) Niewykorzystany rzut karny.  <br>
+                                    - wszyscy: minus 3 pkt.  <br>
+
+                                    k) Bramka samobójcza.  <br>
+                                    - wszyscy: minus 3 pkt.  <br>
+
+
+                            </div>
+                            <br>
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <center> <h4><b></b></h4></center> <br>
+
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <br><br>
+                        <br><br>
+                        <br><br>
+                        <br><br>
+                        <br><br>
+                        <br><br>
+                        <br><br>
+                        <br><br>
+                        <br><br>
+                        <br><br>
+                        <br>
+                    </c:when>
                 <c:when test="${mode == 'MODE_GAMES'}">
                     <div class="container text-center" id="gamesDiv">
                         <h3>Wszystkie mecze</h3>
@@ -378,42 +452,101 @@
                                          </div>
                                                  <hr>
                                              <div class="container text-center" >
-                                     <div class="table-responsive">
 
-                                         <c:forEach var="playerpoints" items="${players}" >
-                                           <table>
-                                             <tr>
-                                                 <th>ID gracza</th>
-                                                 <td>${playerpoints.id}</td>
-                                             </tr>
-                                               <tr>
-                                                   <th>Imie i nazwisko</th>
-                                                   <td>${playerpoints.firstname} ${playerpoints.lastname}</td>
-                                               </tr>
-                                               <tr>
-                                                   <th>Strzelone gole </th>
-                                                   <td><input type="number" class="form-control" name="roundpoints" max="25" min="0"> </td>
-                                               </tr>
-                                               <tr>
-                                                   <th><div class="form-group">
-                                                           <label class="control-labelcol-md-3">Nr rundy</label>
-                                                           <div class="col-md-7">
-                                                       <select class="form-controlcascadingDropDown" name="roundnr">
-                                                             <option value="1"> 1 </option>
-                                                           <option value="2"> 2 </option>
-                                                           <option  value="3"> 3 </option>
-                                                           <option value="4"> 4 </option>
-                                                         </select>
-                                                             </div>
-                                                           </div></th>
-                                                   <td><input type="hidden" name="player.id" value="${playerpoints.id}"/> </td>
-                                               </tr>
-                                               <tr>
-                                                 <td>  <input type="submit" class="btn btn-primary"    value="Zapisz"/></td>
-                                               </tr>
-                                           </table>
+                                               <table class="table table-striped table-bordered text-left">
+                                                                                 <thread>
+                                                                                     <tr>
+                                                                                       <th>ID gracza</th>
+                                                                                         <th>Klub</th>
+                                                                                         <th>Imię i Nazwisko</th>
+                                                                                         <th>Pozycja</th>
+                                                                                         <th> Podstawowa 11</th>
+                                                                                         <th>Strzelone gole</th>
+                                                                                         <th>Asysty</th>
+                                                                                         <th>Stracone gole (dla obrońców i
 
-                                       </c:forEach>
+                                               bramkarzy)</th>
+                                                                                         <th>Obroniony karny (dla
+
+                                               bramkarzy)</th>
+                                                                                         <th>Nie strzelony karny</th>
+                                                                                         <th>Żółta kartka</th>
+                                                                                         <th>Czerwona kartka</th>
+                                                                                         <th>Strzelone samobóje</th>
+                                                                                     <th>   <div class="form-group">
+                                                                                             <label class="control-labelcol-md-3">Nr rundy</label>
+                                                                                             <div class="col-md-7">
+                                                                                         <select class="form-controlcascadingDropDown" name="roundnr">
+                                                                                               <option value="1"> 1
+                                                                                               </option>
+                                                                                             <option value="2"> 2 </option>
+                                                                                             <option  value="3"> 3 </option>
+                                                                                             <option value="4"> 4 </option>
+                                                                                           </select>
+                                                                                               </div>
+                                                                                             </div></th>
+                                                                                       <!--  <th>Punkty w rundzie</th> -->
+
+                                                                                     </tr>
+                                                                                 </thread>
+                                                                                 <tbody>
+
+                                                                                   <c:forEach var="playerpoints" items="${players}" >
+
+
+                                                                                         <tr>
+                                                                                           <td>${playerpoints.id}</td>
+                                                                                             <td>${playerpoints.club}</td>
+                                                                                             <td>${playerpoints.firstname}${playerpoints.lastname}</td>
+                                                                                             <td>${playerpoints.position}
+
+                                               </td>
+
+
+                                                                                             <td>  <input type="radio" name="finished" value="tak"/>
+                                                                                               Tak
+                                                                                               <input type="radio" name="finished" value="nie" checked/>
+                                                                                               Nie</td>
+                                                                                               <td><input type="number" class="form-control" name="roundpoints" max="25" min="0"></td> <!-- Strzelone
+
+                                               gole-->
+                                                                                               <td><input type="number"class="form-control" max="25" min="0"></td> <!-- Asysty-->
+                                                                             <c:choose>
+                                                                 <c:when test="${playerpoints.position eq 'Obrońca'|| playerpoints.position eq 'Bramkarz'}"> <td> <input type="number" class="form-control" max="15" min="0"></td>     </c:when>
+                                                                    <c:otherwise><td> </td> </c:otherwise>
+                                                                               </c:choose>                      <!--
+
+                                               Stracone gole (dla obrońców i bramkarzy-->
+                                                                                         <c:choose>
+                                                         <c:when test="${playerpoints.position eq 'Bramkarz'}">  <td><input type="number" class="form-control" max="5" min="0"></td>  </c:when>
+                                                                 <c:otherwise><td> </td> </c:otherwise>
+                                                                                             </c:choose>     <!--
+
+                                               //Obroniony karny (dla bramkarzy)-->
+                                                                                               <td><input type="number" class="form-control" max="5" min="0"></td> <!--  Nie strzelony karny-->
+                                                                                               <td>  <input type="radio" name="finished" value="tak"/>
+                                                                                                 Tak
+                                                                                                 <input type="radio" name="finished" value="nie" />
+                                                                                                 Nie</td>
+
+                                                                <!--    //Żółta kartka-->
+                                                                                                 <td>  <input type="radio" name="finished" value="tak"/>
+                                                                                                   Tak
+                                                                                                   <input type="radio" name="finished" value="nie" />
+                                                                                                   Nie</td>
+
+                                                              <!--      //Czerwona kartka-->
+                                                                                                   <td><input type="number" class="form-control" max="25" min="0"></td> <!--  //Strzelone samoboje-->
+
+                                                                                                 <td> </td>
+                                                                                                 <input type="hidden" name="player.id" value="${playerpoints.id}"/>
+                                                                                         </tr>
+                                                                                         </c:forEach>
+                                                                                 </tbody>
+                                                                             </table>
+<br>
+                                                  <div class="text-center">         <input type="submit" class="btn btn-primary" value="Zapisz"/>  </div>
+<br>
 
 
                                        <hr>
@@ -510,7 +643,7 @@
                 </c:when>
                 <c:when test="${mode == 'MODE_BETSS'}">
                     <div class="container text-center" id="gamesDiv">
-                        <h3>Wszystkie mecze do obstawienia</h3>
+                        <h3>Wszystkie mecze</h3>
                         <hr>
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered text-left">
@@ -520,10 +653,10 @@
                                         <th>Drużyna 1 (gospodarze)</th>
                                         <th>Drużyna 2 (goście)</th>
                                         <th>Data spotkania</th>
-                                        <th>Twój wynik</th>
+
                                         <th>Wynik końcowy</th>
                                         <th>Zakończony</th>
-                                        <th></th>
+
                                     </tr>
                                 </thread>
                                 <tbody>
@@ -533,10 +666,10 @@
                                             <td>${game.homeTeam}</td>
                                             <td>${game.awayTeam}</td>
                                             <td>${game.dateGame}</td>
-                                            <td>${game.scoreHomep} : ${game.scoreAwayp}</td>
+
                                             <td>${game.scoreHomea} : ${game.scoreAwaya}</td>
                                             <td>${game.finished}</td>
-                                            <td><a href="bet-bet?id=${game.id}"><span class="glyphicon glyphicon-usd"></span></a></td>
+
                                         </tr>
                                     </c:forEach>
                                 </tbody>
@@ -629,24 +762,21 @@
                 <c:when test="${mode == 'MODE_CONTACT'}">
                     <div class="container">
 
-                        <center><h1>Najczęściej zadawane pytania:</h1></center>
+
 
                         <center>      <div class="jumbotron">
-                                <h3><b>Zgłoś uwage</b></h3>
+
 
                                 Masz jakiś ciekawy pomysł, który usprawni działanie serwisu? A może znalazłeś/aś jakiś błąd? Napisz nam o tym koniecznie.
-                                <br><h3><b>Brak przypisanych punktów</b></h3>
 
-                                Punkty w naszej Lidze Typerów nie zostały podliczone od razu? Cierpliwości,
-                                system automatycznie aktualizuje stan punktów po wprowadzeniu wyników meczów.
-                                W ciągu 24 godzin od wprowadzenia wyniku meczu w serwisie punkty na pewno sie pojawią.
-                                <br><br>
-                                <b>  Odpowiemy na każdą wiadomość jeśli tylko nie wpadnie do spamu, także śmiało! <b>
+
+                                <br>
+
                                         </div>
                                         </center>
                                         <center><h1>Kontakt email:</h1></center>
                                         <center><h2> <span class="label label-default">pawelbodo7@gmail.com</span></h2> <br></center>
-                                        <center> <img src="static/images/ligatyperow.png" width="200" height="140"></center>
+                                        <center> <img src="static/images/fantasylocal.png" width="210" height="120"></center>
                                         </div>
                                         </div>
                                         </div>

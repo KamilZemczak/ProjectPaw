@@ -63,11 +63,26 @@ public class MainController {
     @GetMapping("/")
     public String home(HttpServletRequest request) {
         request.setAttribute("mode", "MODE_HOME");
+        User panel = userServiceImpl.getUserId();
+        
+        request.setAttribute("adminu", panel.getId());
+        return "index";
+    }
+    
+    @GetMapping("/rules")
+    public String rules(HttpServletRequest request) {
+        
+        User panel = userServiceImpl.getUserId();
+        
+        request.setAttribute("adminu", panel.getId());
+        request.setAttribute("mode", "MODE_RULES");
         return "index";
     }
 
     @GetMapping("/all-games")
     public String allGames(HttpServletRequest request) {
+         User panel = userServiceImpl.getUserId();
+         request.setAttribute("adminu", panel.getId());
         request.setAttribute("games", gameService.findAll());
         request.setAttribute("mode", "MODE_GAMES");
         return "index";
@@ -75,32 +90,38 @@ public class MainController {
     
       @GetMapping("/points-manager")
     public String pointsManager ( HttpServletRequest request) {
-        
+        User panel = userServiceImpl.getUserId();
         request.setAttribute("playerpoint", playerpointsService.findAll());
         request.setAttribute("mode", "MODE_POINTSMANAGER");
         request.setAttribute("players", playerService.findAll());
         request.setAttribute("mode", "MODE_POINTSMANAGER");
+        request.setAttribute("adminu", panel.getId());
         return "index";
     }
  @GetMapping("/new-clubs")
     public String newClubs(HttpServletRequest request) {
+        User panel = userServiceImpl.getUserId();
         request.setAttribute("club", clubsService.findAll());
         request.setAttribute("mode", "MODE_CLUBS");
+         request.setAttribute("adminu", panel.getId());
         return "index";
     }
     
     @GetMapping("/new-player")
     public String newPlayer(HttpServletRequest request) {
-       
+        User panel = userServiceImpl.getUserId();
         request.setAttribute("club", clubsService.findAll());
         request.setAttribute("mode", "MODE_CLUBS");
          request.setAttribute("players", playerService.findAll());
         request.setAttribute("mode", "MODE_PLAYER");
+         request.setAttribute("adminu", panel.getId());
         return "index";
     }
     
     @GetMapping("/your-games")
     public String yourGames(HttpServletRequest request) {
+        User panel = userServiceImpl.getUserId();
+         request.setAttribute("adminu", panel.getId());
         request.setAttribute("games", typeService.getUserGames());
         request.setAttribute("mode", "MODE_BETS");
         return "index";
@@ -110,6 +131,8 @@ public class MainController {
     
     @GetMapping("/bet-games")
     public String betGames(HttpServletRequest request) {
+        User panel = userServiceImpl.getUserId();
+         request.setAttribute("adminu", panel.getId());
         request.setAttribute("games", gameService.fillTypeToGame(gameService.findAll()));        
         request.setAttribute("mode", "MODE_BETSS");
         return "index";
@@ -117,6 +140,8 @@ public class MainController {
 
     @GetMapping("/new-game")
     public String newGame(HttpServletRequest request) {
+        User panel = userServiceImpl.getUserId();
+         request.setAttribute("adminu", panel.getId());
         request.setAttribute("mode", "MODE_NEW");
         return "index";
     }
@@ -138,8 +163,7 @@ public class MainController {
         System.out.println(request.getParameter("roundpoints"));
         System.out.println(request.getParameter("roundnr"));
         
-        
-        
+
          request.setAttribute("players", playerService.findAll());
         request.setAttribute("mode", "MODE_POINTSMANAGER"); 
         request.setAttribute("playerpoint", playerpointsService.findAll());
@@ -202,6 +226,7 @@ public class MainController {
     }
 
     @GetMapping("/contact")
+    
     public String contact(HttpServletRequest request) {
         request.setAttribute("mode", "MODE_CONTACT");
         return "index";
@@ -268,7 +293,7 @@ public class MainController {
         request.setAttribute("mode", "MODE_CREATETEAM"); 
         request.setAttribute("players", playerService.findAll());
         request.setAttribute("mode", "MODE_CREATETEAM"); 
-        return "redirect:/";
+        return "redirect:/myteam-4-4-2";
     }
     
 
@@ -303,6 +328,7 @@ public class MainController {
 //       }
 
         request.setAttribute("budget", budget);
+         request.setAttribute("mode", "MODE_MYTEAM-4-4-2");
         request.setAttribute("players", playerList);
         request.setAttribute("mode", "MODE_MYTEAM-4-4-2");
         request.setAttribute("users", userServiceImpl.findAll());
@@ -310,6 +336,196 @@ public class MainController {
          
         return "myteam";
     }
+    
+     @GetMapping("/myteam-4-3-3")
+    public String myteam433(HttpServletRequest request) {
+       User user = userServiceImpl.getUserId();
+       Userteam userteam = new Userteam();
+       
+       userteam = userteamService.findUserteam(user.getId());
+        int budget= userteam.getTcounter();
+     
+       List<Player> playerList = new ArrayList<>();
+//       for(int i=1; i<=15; i++) {
+//            int playerNum = Integer.parseInt(userteam.getPlayer1());
+//            System.out.println(playerNum);
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer1())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer2())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer3())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer4())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer5())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer6())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer7())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer8())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer9())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer10())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer11())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer12())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer13())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer14())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer15())));
+//       }
+
+        request.setAttribute("budget", budget);
+         request.setAttribute("mode", "MODE_MYTEAM-4-3-3");
+        request.setAttribute("players", playerList);
+        request.setAttribute("mode", "MODE_MYTEAM-4-3-3");
+        request.setAttribute("users", userServiceImpl.findAll());
+        request.setAttribute("mode", "MODE_MYTEAM-4-3-3"); 
+         
+        return "myteam";
+    }
+    
+    @GetMapping("/myteam-4-5-1")
+    public String myteam451(HttpServletRequest request) {
+       User user = userServiceImpl.getUserId();
+       Userteam userteam = new Userteam();
+       
+       userteam = userteamService.findUserteam(user.getId());
+        int budget= userteam.getTcounter();
+     
+       List<Player> playerList = new ArrayList<>();
+//       for(int i=1; i<=15; i++) {
+//            int playerNum = Integer.parseInt(userteam.getPlayer1());
+//            System.out.println(playerNum);
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer1())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer2())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer3())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer4())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer5())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer6())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer7())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer8())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer9())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer10())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer11())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer12())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer13())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer14())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer15())));
+//       }
+
+        request.setAttribute("budget", budget);
+        request.setAttribute("players", playerList);
+        request.setAttribute("mode", "MODE_MYTEAM-4-5-1");
+        request.setAttribute("users", userServiceImpl.findAll());
+        request.setAttribute("mode", "MODE_MYTEAM-4-5-1"); 
+         
+        return "myteam";
+    }
+    
+    @GetMapping("/myteam-5-4-1")
+    public String myteam541(HttpServletRequest request) {
+       User user = userServiceImpl.getUserId();
+       Userteam userteam = new Userteam();
+       
+       userteam = userteamService.findUserteam(user.getId());
+        int budget= userteam.getTcounter();
+     
+       List<Player> playerList = new ArrayList<>();
+//       for(int i=1; i<=15; i++) {
+//            int playerNum = Integer.parseInt(userteam.getPlayer1());
+//            System.out.println(playerNum);
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer1())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer2())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer3())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer4())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer5())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer6())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer7())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer8())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer9())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer10())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer11())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer12())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer13())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer14())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer15())));
+//       }
+
+        request.setAttribute("budget", budget);
+        request.setAttribute("players", playerList);
+        request.setAttribute("mode", "MODE_MYTEAM-5-4-1");
+        request.setAttribute("users", userServiceImpl.findAll());
+        request.setAttribute("mode", "MODE_MYTEAM-5-4-1"); 
+         
+        return "myteam";
+    }
+    @GetMapping("/myteam-5-3-2")
+    public String myteam532(HttpServletRequest request) {
+       User user = userServiceImpl.getUserId();
+       Userteam userteam = new Userteam();
+       
+       userteam = userteamService.findUserteam(user.getId());
+        int budget= userteam.getTcounter();
+     
+       List<Player> playerList = new ArrayList<>();
+//       for(int i=1; i<=15; i++) {
+//            int playerNum = Integer.parseInt(userteam.getPlayer1());
+//            System.out.println(playerNum);
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer1())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer2())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer3())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer4())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer5())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer6())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer7())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer8())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer9())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer10())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer11())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer12())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer13())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer14())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer15())));
+//       }
+
+        request.setAttribute("budget", budget);
+        request.setAttribute("players", playerList);
+        request.setAttribute("mode", "MODE_MYTEAM-5-3-2");
+        request.setAttribute("users", userServiceImpl.findAll());
+        request.setAttribute("mode", "MODE_MYTEAM-5-3-2"); 
+         
+        return "myteam";
+    }
+    @GetMapping("/myteam-3-5-2")
+    public String myteam352(HttpServletRequest request) {
+       User user = userServiceImpl.getUserId();
+       Userteam userteam = new Userteam();
+       
+       userteam = userteamService.findUserteam(user.getId());
+        int budget= userteam.getTcounter();
+     
+       List<Player> playerList = new ArrayList<>();
+//       for(int i=1; i<=15; i++) {
+//            int playerNum = Integer.parseInt(userteam.getPlayer1());
+//            System.out.println(playerNum);
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer1())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer2())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer3())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer4())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer5())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer6())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer7())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer8())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer9())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer10())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer11())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer12())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer13())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer14())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer15())));
+//       }
+
+        request.setAttribute("budget", budget);
+        request.setAttribute("players", playerList);
+        request.setAttribute("mode", "MODE_MYTEAM-3-5-2");
+        request.setAttribute("users", userServiceImpl.findAll());
+        request.setAttribute("mode", "MODE_MYTEAM-3-5-2"); 
+         
+        return "myteam";
+    }
+    
           @PostMapping("/save-myteam")
     public String savemyteam (Myteam myteam, Userteam userteam,  Player player, BindingResult bindingResult, HttpServletRequest request) {
         
@@ -318,17 +534,7 @@ public class MainController {
 User user = userServiceImpl.getUserId();
         user.getId();
         myteam.setId(user.getId());
-        System.out.println(request.getParameter("mplayer1"));
-        System.out.println(request.getParameter("mplayer2"));
-        System.out.println(request.getParameter("mplayer3"));
-        System.out.println(request.getParameter("mplayer4"));
-        System.out.println(request.getParameter("mplayer5"));
-        System.out.println(request.getParameter("mplayer6"));
-        System.out.println(request.getParameter("mplayer7"));
-        System.out.println(request.getParameter("mplayer8"));
-         System.out.println(request.getParameter("mplayer9"));
-         System.out.println(request.getParameter("mplayer10"));
-         System.out.println(request.getParameter("mplayer11"));
+   
         myteam.setMplayer1(request.getParameter("mplayer1"));
         myteam.setMplayer2(request.getParameter("mplayer2"));
         myteam.setMplayer3(request.getParameter("mplayer3"));
@@ -340,22 +546,17 @@ User user = userServiceImpl.getUserId();
         myteam.setMplayer9(request.getParameter("mplayer9"));
         myteam.setMplayer10(request.getParameter("mplayer10"));
         myteam.setMplayer11(request.getParameter("mplayer11"));
-     for(int i=1; i<=15; i++){
-            for(int o=1; o<=15; o++) {
-                if(o!=i) 
-                    if( request.getParameter("player"+i)==(request.getParameter("player"+o)) ) 
-                        return "redirect:/myteam-4-4-2";
-                       }      }
+    
         
     myteamService.save(myteam);
         
           
         request.setAttribute("users", userServiceImpl.findAll());
-        request.setAttribute("mode", "MODE_MYTEAM-4-4-2"); 
+        request.setAttribute("mode", "MODE_MYTEAM"); 
         request.setAttribute("myteams", myteamService.findAll());
-        request.setAttribute("mode", "MODE_MYTEAM-4-4-2"); 
+        request.setAttribute("mode", "MODE_MYTEAM"); 
         request.setAttribute("players", playerService.findAll());
-        request.setAttribute("mode", "MODE_MYTEAM-4-4-2"); 
+        request.setAttribute("mode", "MODE_MYTEAM"); 
         
         return "redirect:/";
     }
