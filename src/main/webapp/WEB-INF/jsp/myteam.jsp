@@ -40,14 +40,27 @@
                 padding-top: 5px;
                 padding-bottom: 20px;
             }
-            .container{
-              margin-right:  20px;
-              margin-left:  20px;
-            }
+
             .well {
               background-color:#80ff80;
             }
-
+            .bg-success{
+              background-color: blue;
+              text-align: center;
+              color:black;
+            }
+            .bg-primary{
+              background-color: purple;
+              color:black;
+            }
+            .bg-danger{
+              background-color: yellow;
+              color:black;
+            }
+            .bg-info{
+              background-color: red;
+              color:black;
+            }
         </style>
     </head>
     <body>
@@ -64,6 +77,16 @@
                   <li><a href="#">Klasyfikacja graczy</a></li>
                     <li><a href="rules">Zasady</a></li>
                   <li><a href="contact">Kontakt</a></li>
+                  <c:if test="${adminu eq '28'}">             <li class="dropdown">
+
+                                      <a class="dropdown-toggle" data-toggle="dropdown" href="#">Panel administratora
+                                          <span class="caret"></span></a>
+                                      <ul class="dropdown-menu">
+                                          <li><a href="new-game">Dodaj nowy mecz</a></li>
+                                          <li><a href="new-clubs">Dodaj Klub</a></li>
+                                          <li><a href="new-player">Dodaj Zawodnika</a></li>
+                                          <li><a href="points-manager">Zarządzaj punktami</a></li>
+                                      </ul>  </li></c:if>
               </ul>
               <ul class="nav navbar-nav navbar-right">
                   <c:if test="${pageContext.request.userPrincipal.name != null}">
@@ -76,8 +99,10 @@
 
               </ul>
       </div>
-        <br>   <c:choose> <c:when test="${mode == 'MODE_MYTEAM-4-4-2'}">
+      <center><h2> <span color="green" class="label label-default">Witaj w Fantasy Local League ${pageContext.request.userPrincipal.name}.</span></h2> <br></center>
 
+        <br>   <c:choose>
+<c:when test="${mode == 'MODE_MYTEAM-4-4-2'}">
 <form class="form-horizontal" method="POST" action="save-myteam">
 
 
@@ -93,7 +118,7 @@
                     Formacja
                 <span class="caret"></span></button>
                    <ul class="dropdown-menu">
-                 <li>    <a href="myteam-4-4-2"> 4-4-2 </a</li>
+                 <li>    <a href="myteam-4-4-2"> 4-4-2 </a></li>
                  <li>     <a href="myteam-4-3-3"> 4-3-3 </a></li>
                  <li>     <a href="myteam-4-5-1"> 4-5-1 </a></li>
                  <li>     <a href="myteam-5-4-1"> 5-4-1 </a></li>
@@ -111,7 +136,7 @@
               <th class="text-center">
 
                 </td>
-              <th width="20%">  <h5 class="bg-primary">Bramkarz</h>
+              <th width="20%">  <h5 class="bg-success">Bramkarz</h>
                     <select class="form-control cascadingDropDown" name="mplayer1">
                     <c:forEach var="player" items="${players}"><c:choose><c:when test="${player.position eq 'Bramkarz'}">
                       <option value="${player.id}">
@@ -123,7 +148,7 @@
              </td>
               <th width="20%"></td>
               </tr>
-            </tr>
+
             <tr height="40px">
 
             </tr>
@@ -166,7 +191,7 @@
 
               </tr>
               <tr>
-              <td><h5 class="bg-primary">POMOCNIK</h>
+              <td><h5 class="bg-danger">POMOCNIK</h>
                   <select class="form-control cascadingDropDown"  name="mplayer6">
                 <c:forEach var="player" items="${players}"><c:choose><c:when test="${player.position eq 'Pomocnik'}">
                   <option value="${player.id}">
@@ -174,7 +199,7 @@
 
                   </option> </c:when>  </c:choose>
                 </c:forEach></select></td>
-              <td><h5 class="bg-primary">POMOCNIK</h>
+              <td><h5 class="bg-danger">POMOCNIK</h>
                  <select class="form-control cascadingDropDown"  name="mplayer7">
                 <c:forEach var="player" items="${players}"><c:choose><c:when test="${player.position eq 'Pomocnik'}">
                   <option value="${player.id}">
@@ -183,7 +208,7 @@
                   </option> </c:when>  </c:choose>
                 </c:forEach></select></td>
               <td></td>
-              <td><h5 class="bg-primary">POMOCNIK</h>
+              <td><h5 class="bg-danger">POMOCNIK</h>
                  <select class="form-control cascadingDropDown"  name="mplayer8">
                 <c:forEach var="player" items="${players}"><c:choose><c:when test="${player.position eq 'Pomocnik'}">
                   <option value="${player.id}">
@@ -191,7 +216,7 @@
 
                   </option> </c:when>  </c:choose>
                 </c:forEach></select></td>
-              <td><h5 class="bg-primary">POMOCNIK</h>
+              <td><h5 class="bg-danger">POMOCNIK</h>
                  <select class="form-control cascadingDropDown"  name="mplayer9">
                 <c:forEach var="player" items="${players}"><c:choose><c:when test="${player.position eq 'Pomocnik'}">
                   <option value="${player.id}">
@@ -205,7 +230,7 @@
               </tr>
               <tr>
               <td></td>
-              <td><h5 class="bg-primary">NAPASTNIK</h>
+              <td><h5 class="bg-info">NAPASTNIK</h>
                  <select class="form-control cascadingDropDown"  name="mplayer10">
                 <c:forEach var="player" items="${players}"><c:choose><c:when test="${player.position eq 'Napastnik'}">
                   <option value="${player.id}">
@@ -214,7 +239,7 @@
                   </option> </c:when>  </c:choose>
                 </c:forEach></select></td>
               <td></td>
-              <td><h5 class="bg-primary">NAPASTNIK</h>
+              <td><h5 class="bg-info">NAPASTNIK</h>
                 <select class="form-control cascadingDropDown"  name="mplayer11">
                 <c:forEach var="player" items="${players}"><c:choose><c:when test="${player.position eq 'Napastnik'}">
                   <option value="${player.id}">
@@ -237,20 +262,12 @@
             Twój aktualny budżet to:  <b><c:out value = "${budgett}"/></b> <br>
             Wybierz formację i wybierz piłkarzy, którzy będą grali w twojej podstawowej 11.
              <br>
-
-
-               <input type="submit" class="btn btn-primary" value="Zapisz"/>
-
-          </div></div>
-          </div><div class="text-center">
-
-
-
-        </div></div>
-
-      </div>
+<input type="hidden" name="formation" value="4-4-2"/>
+        <input type="submit" class="btn btn-primary" value="Zapisz"/>
+</div></div></div></div></div>
 </form>
- </c:when>
+</c:when>
+
  <c:when test="${mode == 'MODE_MYTEAM-4-3-3'}">
 <form class="form-horizontal" method="POST" action="save-myteam">
 
@@ -267,7 +284,7 @@
              Formacja
          <span class="caret"></span></button>
             <ul class="dropdown-menu">
-          <li>    <a href="myteam-4-4-2"> 4-4-2 </a</li>
+          <li>    <a href="myteam-4-4-2"> 4-4-2 </a></li>
           <li>     <a href="myteam-4-3-3"> 4-3-3 </a></li>
           <li>     <a href="myteam-4-5-1"> 4-5-1 </a></li>
           <li>     <a href="myteam-5-4-1"> 5-4-1 </a></li>
@@ -285,7 +302,7 @@
        <th class="text-center">
 
          </td>
-       <th width="20%">  <h5 class="bg-primary">Bramkarz</h>
+       <th width="20%">  <h5 class="bg-success">Bramkarz</h>
              <select class="form-control cascadingDropDown" name="mplayer1">
              <c:forEach var="player" items="${players}"><c:choose><c:when test="${player.position eq 'Bramkarz'}">
                <option value="${player.id}">
@@ -297,7 +314,7 @@
       </td>
        <th width="20%"></td>
        </tr>
-     </tr>
+
      <tr height="40px">
 
      </tr>
@@ -341,7 +358,7 @@
        </tr>
        <tr>
        <td></td>
-       <td><h5 class="bg-primary">POMOCNIK</h>
+       <td><h5 class="bg-danger">POMOCNIK</h>
           <select class="form-control cascadingDropDown"  name="mplayer6">
          <c:forEach var="player" items="${players}"><c:choose><c:when test="${player.position eq 'Pomocnik'}">
            <option value="${player.id}">
@@ -349,7 +366,7 @@
 
            </option> </c:when>  </c:choose>
          </c:forEach></select></td>
-       <td><h5 class="bg-primary">POMOCNIK</h>
+       <td><h5 class="bg-danger">POMOCNIK</h>
           <select class="form-control cascadingDropDown"  name="mplayer7">
          <c:forEach var="player" items="${players}"><c:choose><c:when test="${player.position eq 'Pomocnik'}">
            <option value="${player.id}">
@@ -357,7 +374,7 @@
 
            </option> </c:when>  </c:choose>
          </c:forEach></select></td>
-       <td><h5 class="bg-primary">POMOCNIK</h>
+       <td><h5 class="bg-danger">POMOCNIK</h>
           <select class="form-control cascadingDropDown"  name="mplayer8">
          <c:forEach var="player" items="${players}"><c:choose><c:when test="${player.position eq 'Pomocnik'}">
            <option value="${player.id}">
@@ -372,7 +389,7 @@
        </tr>
        <tr>
        <td></td>
-       <td><h5 class="bg-primary">NAPASTNIK</h>
+       <td><h5 class="bg-info">NAPASTNIK</h>
           <select class="form-control cascadingDropDown"  name="mplayer9">
          <c:forEach var="player" items="${players}"><c:choose><c:when test="${player.position eq 'Napastnik'}">
            <option value="${player.id}">
@@ -380,7 +397,7 @@
 
            </option> </c:when>  </c:choose>
          </c:forEach></select></td>
-         <td><h5 class="bg-primary">NAPASTNIK</h>
+         <td><h5 class="bg-info">NAPASTNIK</h>
            <select class="form-control cascadingDropDown"  name="mplayer10">
            <c:forEach var="player" items="${players}"><c:choose><c:when test="${player.position eq 'Napastnik'}">
              <option value="${player.id}">
@@ -389,7 +406,7 @@
              </option> </c:when>  </c:choose>
 
            </c:forEach></select></td>
-       <td><h5 class="bg-primary">NAPASTNIK</h>
+       <td><h5 class="bg-info">NAPASTNIK</h>
          <select class="form-control cascadingDropDown"  name="mplayer11">
          <c:forEach var="player" items="${players}"><c:choose><c:when test="${player.position eq 'Napastnik'}">
            <option value="${player.id}">
@@ -412,18 +429,9 @@
      Twój aktualny budżet to:  <b><c:out value = "${budgett}"/></b> <br>
      Wybierz formację i wybierz piłkarzy, którzy będą grali w twojej podstawowej 11.
       <br>
-
-
+<input type="hidden" name="formation" value="4-3-3"/>
         <input type="submit" class="btn btn-primary" value="Zapisz"/>
-
-   </div></div>
-   </div><div class="text-center">
-
-
-
- </div></div>
-
-</div>
+</div></div></div></div></div>
 </form>
 </c:when>
 
@@ -443,7 +451,7 @@
             Formacja
         <span class="caret"></span></button>
            <ul class="dropdown-menu">
-         <li>    <a href="myteam-4-4-2"> 4-4-2 </a</li>
+         <li>    <a href="myteam-4-4-2"> 4-4-2 </a></li>
          <li>     <a href="myteam-4-3-3"> 4-3-3 </a></li>
          <li>     <a href="myteam-4-5-1"> 4-5-1 </a></li>
          <li>     <a href="myteam-5-4-1"> 5-4-1 </a></li>
@@ -461,7 +469,7 @@
       <th class="text-center">
 
         </td>
-      <th width="20%">  <h5 class="bg-primary">Bramkarz</h>
+      <th width="20%">  <h5 class="bg-success">Bramkarz</h>
             <select class="form-control cascadingDropDown" name="mplayer1">
             <c:forEach var="player" items="${players}"><c:choose><c:when test="${player.position eq 'Bramkarz'}">
               <option value="${player.id}">
@@ -473,7 +481,7 @@
      </td>
       <th width="20%"></td>
       </tr>
-    </tr>
+
     <tr height="40px">
 
     </tr>
@@ -516,7 +524,7 @@
 
       </tr>
       <tr>
-      <td><h5 class="bg-primary">POMOCNIK</h>
+      <td><h5 class="bg-danger">POMOCNIK</h>
          <select class="form-control cascadingDropDown"  name="mplayer6">
         <c:forEach var="player" items="${players}"><c:choose><c:when test="${player.position eq 'Pomocnik'}">
           <option value="${player.id}">
@@ -524,7 +532,7 @@
 
           </option> </c:when>  </c:choose>
         </c:forEach></select></td>
-      <td><h5 class="bg-primary">POMOCNIK</h>
+      <td><h5 class="bg-danger">POMOCNIK</h>
          <select class="form-control cascadingDropDown"  name="mplayer7">
         <c:forEach var="player" items="${players}"><c:choose><c:when test="${player.position eq 'Pomocnik'}">
           <option value="${player.id}">
@@ -532,7 +540,7 @@
 
           </option> </c:when>  </c:choose>
         </c:forEach></select></td>
-      <td><h5 class="bg-primary">POMOCNIK</h>
+      <td><h5 class="bg-danger">POMOCNIK</h>
          <select class="form-control cascadingDropDown"  name="mplayer8">
         <c:forEach var="player" items="${players}"><c:choose><c:when test="${player.position eq 'Pomocnik'}">
           <option value="${player.id}">
@@ -540,7 +548,7 @@
 
           </option> </c:when>  </c:choose>
         </c:forEach></select></td>
-      <td><h5 class="bg-primary">POMOCNIK</h>
+      <td><h5 class="bg-danger">POMOCNIK</h>
          <select class="form-control cascadingDropDown"  name="mplayer9">
         <c:forEach var="player" items="${players}"><c:choose><c:when test="${player.position eq 'Pomocnik'}">
           <option value="${player.id}">
@@ -548,7 +556,7 @@
 
           </option> </c:when>  </c:choose>
         </c:forEach></select></td>
-      <td><h5 class="bg-primary">POMOCNIK</h>
+      <td><h5 class="bg-danger">POMOCNIK</h>
          <select class="form-control cascadingDropDown"  name="mplayer10">
         <c:forEach var="player" items="${players}"><c:choose><c:when test="${player.position eq 'Pomocnik'}">
           <option value="${player.id}">
@@ -563,7 +571,7 @@
       <tr>
       <td></td>
       <td></td>
-        <td><h5 class="bg-primary">NAPASTNIK</h>
+        <td><h5 class="bg-info">NAPASTNIK</h>
           <select class="form-control cascadingDropDown"  name="mplayer11">
           <c:forEach var="player" items="${players}"><c:choose><c:when test="${player.position eq 'Napastnik'}">
             <option value="${player.id}">
@@ -587,18 +595,9 @@
     Twój aktualny budżet to:  <b><c:out value = "${budgett}"/></b> <br>
     Wybierz formację i wybierz piłkarzy, którzy będą grali w twojej podstawowej 11.
      <br>
-
-
+<input type="hidden" name="formation" value="4-5-1"/>
        <input type="submit" class="btn btn-primary" value="Zapisz"/>
-
-  </div></div>
-  </div><div class="text-center">
-
-
-
-</div></div>
-
-</div>
+</div></div></div></div></div>
 </form>
 </c:when>
 
@@ -619,7 +618,7 @@
             Formacja
         <span class="caret"></span></button>
            <ul class="dropdown-menu">
-         <li>    <a href="myteam-4-4-2"> 4-4-2 </a</li>
+         <li>    <a href="myteam-4-4-2"> 4-4-2 </a></li>
          <li>     <a href="myteam-4-3-3"> 4-3-3 </a></li>
          <li>     <a href="myteam-4-5-1"> 4-5-1 </a></li>
          <li>     <a href="myteam-5-4-1"> 5-4-1 </a></li>
@@ -637,7 +636,7 @@
       <th class="text-center">
 
         </td>
-      <th width="20%">  <h5 class="bg-primary">Bramkarz</h>
+      <th width="20%">  <h5 class="bg-success">Bramkarz</h>
             <select class="form-control cascadingDropDown" name="mplayer1">
             <c:forEach var="player" items="${players}"><c:choose><c:when test="${player.position eq 'Bramkarz'}">
               <option value="${player.id}">
@@ -649,7 +648,7 @@
      </td>
       <th width="20%"></td>
       </tr>
-    </tr>
+
     <tr height="40px">
 
     </tr>
@@ -699,7 +698,7 @@
 
       </tr>
       <tr>
-      <td><h5 class="bg-primary">POMOCNIK</h>
+      <td><h5 class="bg-danger">POMOCNIK</h>
          <select class="form-control cascadingDropDown"  name="mplayer7">
         <c:forEach var="player" items="${players}"><c:choose><c:when test="${player.position eq 'Pomocnik'}">
           <option value="${player.id}">
@@ -707,7 +706,7 @@
 
           </option> </c:when>  </c:choose>
         </c:forEach></select></td>
-      <td><h5 class="bg-primary">POMOCNIK</h>
+      <td><h5 class="bg-danger">POMOCNIK</h>
          <select class="form-control cascadingDropDown"  name="mplayer8">
         <c:forEach var="player" items="${players}"><c:choose><c:when test="${player.position eq 'Pomocnik'}">
           <option value="${player.id}">
@@ -716,7 +715,7 @@
           </option> </c:when>  </c:choose>
         </c:forEach></select></td>
       <td></td>
-      <td><h5 class="bg-primary">POMOCNIK</h>
+      <td><h5 class="bg-danger">POMOCNIK</h>
          <select class="form-control cascadingDropDown"  name="mplayer9">
         <c:forEach var="player" items="${players}"><c:choose><c:when test="${player.position eq 'Pomocnik'}">
           <option value="${player.id}">
@@ -724,7 +723,7 @@
 
           </option> </c:when>  </c:choose>
         </c:forEach></select></td>
-      <td><h5 class="bg-primary">POMOCNIK</h>
+      <td><h5 class="bg-danger">POMOCNIK</h>
          <select class="form-control cascadingDropDown"  name="mplayer10">
         <c:forEach var="player" items="${players}"><c:choose><c:when test="${player.position eq 'Pomocnik'}">
           <option value="${player.id}">
@@ -739,7 +738,7 @@
       <tr>
       <td></td>
       <td></td>
-        <td><h5 class="bg-primary">NAPASTNIK</h>
+        <td><h5 class="bg-info">NAPASTNIK</h>
           <select class="form-control cascadingDropDown"  name="mplayer11">
           <c:forEach var="player" items="${players}"><c:choose><c:when test="${player.position eq 'Napastnik'}">
             <option value="${player.id}">
@@ -763,18 +762,9 @@
     Twój aktualny budżet to:  <b><c:out value = "${budgett}"/></b> <br>
     Wybierz formację i wybierz piłkarzy, którzy będą grali w twojej podstawowej 11.
      <br>
-
-
+<input type="hidden" name="formation" value="5-4-1"/>
        <input type="submit" class="btn btn-primary" value="Zapisz"/>
-
-  </div></div>
-  </div><div class="text-center">
-
-
-
-</div></div>
-
-</div>
+  </div></div></div></div></div>
 </form>
 </c:when>
 
@@ -794,7 +784,7 @@
             Formacja
         <span class="caret"></span></button>
            <ul class="dropdown-menu">
-         <li>    <a href="myteam-4-4-2"> 4-4-2 </a</li>
+         <li>    <a href="myteam-4-4-2"> 4-4-2 </a></li>
          <li>     <a href="myteam-4-3-3"> 4-3-3 </a></li>
          <li>     <a href="myteam-4-5-1"> 4-5-1 </a></li>
          <li>     <a href="myteam-5-4-1"> 5-4-1 </a></li>
@@ -812,7 +802,7 @@
       <th class="text-center">
 
         </td>
-      <th width="20%">  <h5 class="bg-primary">Bramkarz</h>
+      <th width="20%">  <h5 class="bg-success">Bramkarz</h>
             <select class="form-control cascadingDropDown" name="mplayer1">
             <c:forEach var="player" items="${players}"><c:choose><c:when test="${player.position eq 'Bramkarz'}">
               <option value="${player.id}">
@@ -824,7 +814,7 @@
      </td>
       <th width="20%"></td>
       </tr>
-    </tr>
+
     <tr height="40px">
 
     </tr>
@@ -875,7 +865,7 @@
       </tr>
       <tr>
       <td></td>
-      <td><h5 class="bg-primary">POMOCNIK</h>
+      <td><h5 class="bg-danger">POMOCNIK</h>
          <select class="form-control cascadingDropDown"  name="mplayer9">
         <c:forEach var="player" items="${players}"><c:choose><c:when test="${player.position eq 'Pomocnik'}">
           <option value="${player.id}">
@@ -883,7 +873,7 @@
 
           </option> </c:when>  </c:choose>
         </c:forEach></select></td>
-      <td><h5 class="bg-primary">POMOCNIK</h>
+      <td><h5 class="bg-danger">POMOCNIK</h>
          <select class="form-control cascadingDropDown"  name="mplayer7">
         <c:forEach var="player" items="${players}"><c:choose><c:when test="${player.position eq 'Pomocnik'}">
           <option value="${player.id}">
@@ -891,7 +881,7 @@
 
           </option> </c:when>  </c:choose>
         </c:forEach></select></td>
-      <td><h5 class="bg-primary">POMOCNIK</h>
+      <td><h5 class="bg-danger">POMOCNIK</h>
          <select class="form-control cascadingDropDown"  name="mplayer8">
         <c:forEach var="player" items="${players}"><c:choose><c:when test="${player.position eq 'Pomocnik'}">
           <option value="${player.id}">
@@ -906,7 +896,7 @@
       </tr>
       <tr>
       <td></td>
-      <td><h5 class="bg-primary">NAPASTNIK</h>
+      <td><h5 class="bg-info">NAPASTNIK</h>
          <select class="form-control cascadingDropDown"  name="mplayer10">
         <c:forEach var="player" items="${players}"><c:choose><c:when test="${player.position eq 'Napastnik'}">
           <option value="${player.id}">
@@ -915,7 +905,7 @@
           </option> </c:when>  </c:choose>
         </c:forEach></select></td>
         <td></td>
-      <td><h5 class="bg-primary">NAPASTNIK</h>
+      <td><h5 class="bg-info">NAPASTNIK</h>
         <select class="form-control cascadingDropDown"  name="mplayer11">
         <c:forEach var="player" items="${players}"><c:choose><c:when test="${player.position eq 'Napastnik'}">
           <option value="${player.id}">
@@ -938,22 +928,13 @@
     Twój aktualny budżet to:  <b><c:out value = "${budgett}"/></b> <br>
     Wybierz formację i wybierz piłkarzy, którzy będą grali w twojej podstawowej 11.
      <br>
-
-
+<input type="hidden" name="formation" value="5-3-2"/>
        <input type="submit" class="btn btn-primary" value="Zapisz"/>
-
-  </div></div>
-  </div><div class="text-center">
-
-
-
-</div></div>
-
-</div>
+  </div></div></div></div></div>
 </form>
-</c:when>
+  </c:when>
 
-<c:when test="${mode == 'MODE_MYTEAM-3-5-2'}">
+  <c:when test="${mode == 'MODE_MYTEAM-3-5-2'}">
 <form class="form-horizontal" method="POST" action="save-myteam">
 
 
@@ -969,7 +950,7 @@
             Formacja
         <span class="caret"></span></button>
            <ul class="dropdown-menu">
-         <li>    <a href="myteam-4-4-2"> 4-4-2 </a</li>
+         <li>    <a href="myteam-4-4-2"> 4-4-2 </a></li>
          <li>     <a href="myteam-4-3-3"> 4-3-3 </a></li>
          <li>     <a href="myteam-4-5-1"> 4-5-1 </a></li>
          <li>     <a href="myteam-5-4-1"> 5-4-1 </a></li>
@@ -987,7 +968,7 @@
       <th class="text-center">
 
         </td>
-      <th width="20%">  <h5 class="bg-primary">Bramkarz</h>
+      <th width="20%">  <h5 class="bg-success">Bramkarz</h>
             <select class="form-control cascadingDropDown" name="mplayer1">
             <c:forEach var="player" items="${players}"><c:choose><c:when test="${player.position eq 'Bramkarz'}">
               <option value="${player.id}">
@@ -999,7 +980,7 @@
      </td>
       <th width="20%"></td>
       </tr>
-    </tr>
+
     <tr height="40px">
 
     </tr>
@@ -1035,7 +1016,7 @@
 
       </tr>
       <tr>
-      <td><h5 class="bg-primary">POMOCNIK</h>
+      <td><h5 class="bg-danger">POMOCNIK</h>
          <select class="form-control cascadingDropDown"  name="mplayer5">
         <c:forEach var="player" items="${players}"><c:choose><c:when test="${player.position eq 'Pomocnik'}">
           <option value="${player.id}">
@@ -1043,7 +1024,7 @@
 
           </option> </c:when>  </c:choose>
         </c:forEach></select></td>
-      <td><h5 class="bg-primary">POMOCNIK</h>
+      <td><h5 class="bg-danger">POMOCNIK</h>
          <select class="form-control cascadingDropDown"  name="mplayer6">
         <c:forEach var="player" items="${players}"><c:choose><c:when test="${player.position eq 'Pomocnik'}">
           <option value="${player.id}">
@@ -1051,7 +1032,7 @@
 
           </option> </c:when>  </c:choose>
         </c:forEach></select></td>
-      <td><h5 class="bg-primary">POMOCNIK</h>
+      <td><h5 class="bg-danger">POMOCNIK</h>
          <select class="form-control cascadingDropDown"  name="mplayer7">
         <c:forEach var="player" items="${players}"><c:choose><c:when test="${player.position eq 'Pomocnik'}">
           <option value="${player.id}">
@@ -1059,7 +1040,7 @@
 
           </option> </c:when>  </c:choose>
         </c:forEach></select></td>
-      <td><h5 class="bg-primary">POMOCNIK</h>
+      <td><h5 class="bg-danger">POMOCNIK</h>
          <select class="form-control cascadingDropDown"  name="mplayer8">
         <c:forEach var="player" items="${players}"><c:choose><c:when test="${player.position eq 'Pomocnik'}">
           <option value="${player.id}">
@@ -1067,7 +1048,7 @@
 
           </option> </c:when>  </c:choose>
         </c:forEach></select></td>
-      <td><h5 class="bg-primary">POMOCNIK</h>
+      <td><h5 class="bg-danger">POMOCNIK</h>
          <select class="form-control cascadingDropDown"  name="mplayer9">
         <c:forEach var="player" items="${players}"><c:choose><c:when test="${player.position eq 'Pomocnik'}">
           <option value="${player.id}">
@@ -1081,7 +1062,7 @@
       </tr>
       <tr>
       <td></td>
-      <td><h5 class="bg-primary">NAPASTNIK</h>
+      <td><h5 class="bg-info">NAPASTNIK</h>
          <select class="form-control cascadingDropDown"  name="mplayer10">
         <c:forEach var="player" items="${players}"><c:choose><c:when test="${player.position eq 'Napastnik'}">
           <option value="${player.id}">
@@ -1090,7 +1071,7 @@
           </option> </c:when>  </c:choose>
         </c:forEach></select></td>
         <td></td>
-      <td><h5 class="bg-primary">NAPASTNIK</h>
+      <td><h5 class="bg-info">NAPASTNIK</h>
         <select class="form-control cascadingDropDown"  name="mplayer11">
         <c:forEach var="player" items="${players}"><c:choose><c:when test="${player.position eq 'Napastnik'}">
           <option value="${player.id}">
@@ -1113,26 +1094,403 @@
     Twój aktualny budżet to:  <b><c:out value = "${budgett}"/></b> <br>
     Wybierz formację i wybierz piłkarzy, którzy będą grali w twojej podstawowej 11.
      <br>
-
-
+<input type="hidden" name="formation" value="3-5-2"/>
        <input type="submit" class="btn btn-primary" value="Zapisz"/>
-
-  </div></div>
-  </div><div class="text-center">
-
-
-
-</div></div>
-
-</div>
+</div></div></div></div></div>
 </form>
 </c:when>
 
+<c:when test="${mode == 'MODE_MYTEAM'}">
 
- </c:choose>
+<div class="container">
+      <h3><center> Twój aktualny skład:</center></h3>
+    
 
+<c:if test="${formation eq '4-4-2'}">
+ <div class="jumbotron">    <table class="table  text-center">
 
+   <tr height="85px">
 
+   </tr>
+
+   <tbody>
+   <tr>
+   <th width="20%"></td>
+   <th width="20%"></td>
+   <th width="20%">  <h3 class="bg-success">${p1.firstname}<br> ${p1.lastname}</h>
+         </td>
+   <th width="20%"></td>
+   <th width="20%"></td>
+   </tr>
+
+ <tr height="40px">
+
+ </tr>
+   <tr>
+   <td class="text-center" ><h3 class="bg-primary">${p2.firstname}<br> ${p2.lastname}</h>
+   </td>
+   <td class="text-center"><h3 class="bg-primary">${p3.firstname}<br> ${p3.lastname}</h>
+    </td>
+ <td>  </td>
+   <td class="text-center"><h3 class="bg-primary">${p4.firstname}<br> ${p4.lastname}</h>
+    </td>
+   <td class="text-center"><h3 class="bg-primary">${p5.firstname}<br> ${p5.lastname}</h>
+    </td>
+   </tr>
+   <tr height="40px">
+
+   </tr>
+   <tr>
+   <td><h3 class="bg-danger">${p6.firstname}<br> ${p6.lastname}</h>
+      </td>
+   <td><h3 class="bg-danger">${p7.firstname}<br> ${p7.lastname}</h>
+    </td>
+   <td></td>
+   <td><h3 class="bg-danger">${p8.firstname}<br> ${p8.lastname}</h>
+    </td>
+   <td><h3 class="bg-danger">${p9.firstname}<br> ${p9.lastname}</h>
+    </td>
+   </tr>
+   <tr height="40px">
+
+   </tr>
+   <tr>
+   <td></td>
+   <td><h3 class="bg-info">${p10.firstname}<br> ${p10.lastname}</h>
+      </td>
+   <td></td>
+   <td><h3 class="bg-info">${p11.firstname}<br> ${p11.lastname}</h>
+     </td>
+   <td></td>
+   </tr>
+
+   </tbody>
+   </table>
+
+ </div>
+</c:if>
+<c:if test="${formation eq '4-3-3'}">
+
+ <div class="jumbotron">    <table class="table  text-center">
+
+   <tr height="85px">
+
+   </tr>
+   <tbody>
+   <tr>
+   <th width="20%"></td>
+   <th width="20%">
+
+     </td>
+   <th width="20%">  <h3 class="bg-success">${p1.firstname}<br> ${p1.lastname}</h>
+         </td>
+   <th width="20%">
+
+  </td>
+   <th width="20%"></td>
+   </tr>
+
+ <tr height="40px">
+
+ </tr>
+   <tr>
+   <td class="text-center" ><h3 class="bg-primary">${p2.firstname} <br> ${p2.lastname}</h>
+   </td>
+   <td class="text-center"><h3 class="bg-primary">${p3.firstname}<br>  ${p3.lastname}</h>
+    </td>
+ <td>  </td>
+   <td class="text-center"><h3 class="bg-primary">${p4.firstname} <br> ${p4.lastname}</h>
+    </td>
+   <td class="text-center"><h3 class="bg-primary">${p5.firstname} <br> ${p5.lastname}</h>
+    </td>
+   </tr>
+   <tr height="40px">
+
+   </tr>
+   <tr>
+   <td>  </td>
+   <td><h3 class="bg-danger">${p6.firstname}<br>  ${p6.lastname}</h>
+  </td>
+   <td><h3 class="bg-danger">${p7.firstname}<br>  ${p7.lastname}</h>
+ </td>
+   <td><h3 class="bg-danger">${p8.firstname}<br>  ${p8.lastname}</h>
+    </td>
+   <td>
+    </td>
+   </tr>
+   <tr height="40px">
+
+   </tr>
+   <tr>
+   <td></td>
+   <td><h3 class="bg-info">${p9.firstname} <br> ${p9.lastname}</h>
+      </td>
+   <td><h3 class="bg-info">${p10.firstname}<br>  ${p10.lastname}</h>
+ </td>
+   <td><h3 class="bg-info">${p11.firstname}<br>  ${p11.lastname}</h>
+     </td>
+   <td></td>
+   </tr>
+
+   </tbody>
+   </table>
+
+ </div>
+</c:if>
+<c:if test="${formation eq '4-5-1'}">
+ <div class="jumbotron">    <table class="table  text-center">
+
+   <tr height="85px">
+
+   </tr>
+
+   <tbody>
+   <tr>
+   <th width="20%"></td>
+   <th width="20%"></td>
+   <th width="20%">  <h3 class="bg-success">${p1.firstname}<br> ${p1.lastname}</h>
+         </td>
+   <th width="20%"></td>
+   <th width="20%"></td>
+   </tr>
+
+ <tr height="40px">
+
+ </tr>
+   <tr>
+   <td class="text-center" ><h3 class="bg-primary">${p2.firstname}<br> ${p2.lastname}</h>
+   </td>
+   <td class="text-center"><h3 class="bg-primary">${p3.firstname}<br> ${p3.lastname}</h>
+    </td>
+ <td>  </td>
+   <td class="text-center"><h3 class="bg-primary">${p4.firstname}<br> ${p4.lastname}</h>
+    </td>
+   <td class="text-center"><h3 class="bg-primary">${p5.firstname}<br> ${p5.lastname}</h>
+    </td>
+   </tr>
+   <tr height="40px">
+
+   </tr>
+   <tr>
+   <td><h3 class="bg-danger">${p6.firstname}<br> ${p6.lastname}</h>
+      </td>
+   <td><h3 class="bg-danger">${p7.firstname}<br> ${p7.lastname}</h>
+    </td>
+   <td><h3 class="bg-danger">${p8.firstname}<br> ${p8.lastname}</h>
+   </td>
+   <td><h3 class="bg-danger">${p9.firstname}<br> ${p9.lastname}</h>
+    </td>
+   <td><h3 class="bg-danger">${p10.firstname}<br> ${p10.lastname}</h>
+    </td>
+   </tr>
+   <tr height="40px">
+
+   </tr>
+   <tr>
+   <td></td>
+   <td></td>
+   <td><h3 class="bg-info">${p11.firstname}<br> ${p11.lastname}</h></td>
+   <td></td>
+   <td></td>
+   </tr>
+
+   </tbody>
+   </table>
+
+ </div>
+</c:if>
+<c:if test="${formation eq '5-4-1'}">
+ <div class="jumbotron">    <table class="table  text-center">
+
+   <tr height="85px">
+
+   </tr>
+
+   <tbody>
+   <tr>
+   <th width="20%"></td>
+   <th width="20%"></td>
+   <th width="20%">  <h3 class="bg-success">${p1.firstname}<br> ${p1.lastname}</h>
+         </td>
+   <th width="20%"></td>
+   <th width="20%"></td>
+   </tr>
+
+ <tr height="40px">
+
+ </tr>
+   <tr>
+   <td class="text-center"><h3 class="bg-primary">${p2.firstname}<br> ${p2.lastname}</h>
+   </td>
+   <td class="text-center"><h3 class="bg-primary">${p3.firstname}<br> ${p3.lastname}</h>
+    </td>
+ <td> <h3 class="bg-primary">${p4.firstname}<br> ${p4.lastname}</h>
+  </td>
+   <td class="text-center"><h3 class="bg-primary">${p5.firstname}<br> ${p5.lastname}</h>
+    </td>
+   <td class="text-center"><h3 class="bg-primary">${p6.firstname}<br> ${p6.lastname}</h>
+    </td>
+   </tr>
+   <tr height="40px">
+
+   </tr>
+   <tr>
+   <td><h3 class="bg-danger">${p7.firstname}<br> ${p7.lastname}</h>
+      </td>
+   <td><h3 class="bg-danger">${p8.firstname}<br> ${p8.lastname}</h>
+    </td>
+   <td>
+   </td>
+   <td><h3 class="bg-danger">${p9.firstname}<br> ${p9.lastname}</h>
+    </td>
+   <td><h3 class="bg-danger">${p10.firstname}<br> ${p10.lastname}</h>
+    </td>
+   </tr>
+   <tr height="40px">
+
+   </tr>
+   <tr>
+   <td></td>
+   <td></td>
+   <td><h3 class="bg-info">${p11.firstname}<br> ${p11.lastname}</h></td>
+   <td></td>
+   <td></td>
+   </tr>
+
+   </tbody>
+   </table>
+
+ </div>
+</c:if>
+<c:if test="${formation eq '5-3-2'}">
+ <div class="jumbotron">    <table class="table  text-center">
+
+   <tr height="85px">
+
+   </tr>
+
+   <tbody>
+   <tr>
+   <th width="20%"></td>
+   <th width="20%"></td>
+   <th width="20%">  <h3 class="bg-success">${p1.firstname}<br> ${p1.lastname}</h>
+         </td>
+   <th width="20%"></td>
+   <th width="20%"></td>
+   </tr>
+
+ <tr height="40px">
+
+ </tr>
+   <tr>
+   <td class="text-center"><h3 class="bg-primary">${p2.firstname}<br> ${p2.lastname}</h>
+   </td>
+   <td class="text-center"><h3 class="bg-primary">${p3.firstname}<br> ${p3.lastname}</h>
+    </td>
+ <td> <h3 class="bg-primary">${p4.firstname}<br> ${p4.lastname}</h>
+  </td>
+   <td class="text-center"><h3 class="bg-primary">${p5.firstname}<br> ${p5.lastname}</h>
+    </td>
+   <td class="text-center"><h3 class="bg-primary">${p6.firstname}<br> ${p6.lastname}</h>
+    </td>
+   </tr>
+   <tr height="40px">
+
+   </tr>
+   <tr>
+   <td>
+      </td>
+   <td><h3 class="bg-danger">${p7.firstname}<br> ${p7.lastname}</h>
+    </td>
+   <td><h3 class="bg-danger">${p8.firstname}<br> ${p8.lastname}</h>
+   </td>
+   <td><h3 class="bg-danger">${p9.firstname}<br> ${p9.lastname}</h>
+    </td>
+   <td>
+    </td>
+   </tr>
+   <tr height="40px">
+
+   </tr>
+   <tr>
+   <td></td>
+   <td><h3 class="bg-info">${p10.firstname}<br> ${p10.lastname}</h></td>
+   <td></td>
+   <td><h3 class="bg-info">${p11.firstname}<br> ${p11.lastname}</h></td>
+   <td></td>
+   </tr>
+
+   </tbody>
+   </table>
+
+ </div>
+</c:if>
+<c:if test="${formation eq '3-5-2'}">
+ <div class="jumbotron">    <table class="table  text-center">
+
+   <tr height="85px">
+
+   </tr>
+
+   <tbody>
+   <tr>
+   <th width="20%"></td>
+   <th width="20%"></td>
+   <th width="20%">  <h3 class="bg-success">${p1.firstname}<br> ${p1.lastname}</h>
+         </td>
+   <th width="20%"></td>
+   <th width="20%"></td>
+   </tr>
+
+ <tr height="40px">
+
+ </tr>
+   <tr>
+   <td class="text-center">
+   </td>
+   <td class="text-center"><h3 class="bg-primary">${p2.firstname}<br> ${p2.lastname}</h>
+    </td>
+ <td><h3 class="bg-primary">${p3.firstname}<br> ${p3.lastname}</h>  </td>
+   <td class="text-center"><h3 class="bg-primary">${p4.firstname}<br> ${p4.lastname}</h>
+    </td>
+   <td class="text-center">
+    </td>
+   </tr>
+   <tr height="40px">
+
+   </tr>
+   <tr>
+   <td><h3 class="bg-danger">${p5.firstname}<br> ${p5.lastname}</h>
+      </td>
+   <td><h3 class="bg-danger">${p6.firstname}<br> ${p6.lastname}</h>
+    </td>
+   <td><h3 class="bg-danger">${p7.firstname}<br> ${p7.lastname}</h></td>
+   <td><h3 class="bg-danger">${p8.firstname}<br> ${p8.lastname}</h>
+    </td>
+   <td><h3 class="bg-danger">${p9.firstname}<br> ${p9.lastname}</h>
+    </td>
+   </tr>
+   <tr height="40px">
+
+   </tr>
+   <tr>
+   <td></td>
+   <td><h3 class="bg-info">${p10.firstname}<br> ${p10.lastname}</h>
+      </td>
+   <td></td>
+   <td><h3 class="bg-info">${p11.firstname}<br> ${p11.lastname}</h>
+     </td>
+   <td></td>
+   </tr>
+
+   </tbody>
+   </table>
+
+ </div>
+</c:if>
+</div>
+</c:when>
+</c:choose>
           <br>
 
                                         <script src="static/js/jquery-1.11.1.min.js"></script>

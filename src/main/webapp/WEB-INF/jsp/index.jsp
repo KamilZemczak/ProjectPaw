@@ -302,7 +302,7 @@
                     <div class="container text-center">
                         <h3>Dodaj Klub</h3>
                         <form class="form-horizontal" method="POST" action="save-clubs">
-                          <input type="hidden" name="id" value="${game.id}"/>
+
                         <div class="form-group">
                             <label class="control-label col-md-3">Pełna nazwa Klub</label>
                             <div class="col-md-7">

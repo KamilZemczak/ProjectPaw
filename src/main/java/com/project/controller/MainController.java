@@ -60,7 +60,7 @@ public class MainController {
     @Autowired
     private TypeService typeService;
 
-    @GetMapping("/")
+    @GetMapping("/s")
     public String home(HttpServletRequest request) {
         request.setAttribute("mode", "MODE_HOME");
         User panel = userServiceImpl.getUserId();
@@ -300,7 +300,57 @@ public class MainController {
         return "redirect:/myteam-4-4-2";
     }
     
+    
+     @GetMapping("/")
+    public String myteam(HttpServletRequest request) {
+         User panel = userServiceImpl.getUserId();
+         request.setAttribute("adminu", panel.getId());
+       User user = userServiceImpl.getUserId();
+       Userteam userteam;
+       Player player1, player2, player3, player4, player5, player6, player7, player8, player9, player10, player11;
+       userteam = userteamService.findUserteam(user.getId());
+        int budget= userteam.getTcounter();
+       Myteam myteam;
+       myteam = myteamService.findMyteam(user.getId());
+      String formation = myteam.getFormation();
+       
+     player1 = playerService.findPlayer(Integer.parseInt(myteam.getMplayer1()));
+     player2 = playerService.findPlayer(Integer.parseInt(myteam.getMplayer2()));
+     player3 = playerService.findPlayer(Integer.parseInt(myteam.getMplayer3()));
+     player4 = playerService.findPlayer(Integer.parseInt(myteam.getMplayer4()));
+     player5 = playerService.findPlayer(Integer.parseInt(myteam.getMplayer5()));
+     player6 = playerService.findPlayer(Integer.parseInt(myteam.getMplayer6()));
+     player7 = playerService.findPlayer(Integer.parseInt(myteam.getMplayer7()));
+     player8 = playerService.findPlayer(Integer.parseInt(myteam.getMplayer8()));
+     player9 = playerService.findPlayer(Integer.parseInt(myteam.getMplayer9()));
+     player10 = playerService.findPlayer(Integer.parseInt(myteam.getMplayer10()));
+     player11 = playerService.findPlayer(Integer.parseInt(myteam.getMplayer11()));
+     
+       List<Player> mplayerList = new ArrayList<>();
+       
+       request.setAttribute("formation", formation);
+        request.setAttribute("p1", player1);
+        request.setAttribute("p2", player2);
+        request.setAttribute("p3", player3);
+        request.setAttribute("p4", player4);
+        request.setAttribute("p5", player5);
+        request.setAttribute("p6", player6);
+        request.setAttribute("p7", player7);
+        request.setAttribute("p8", player8);
+        request.setAttribute("p9", player9);
+        request.setAttribute("p10", player10);
+        request.setAttribute("p11", player11);
+        request.setAttribute("budget", budget);
+        request.setAttribute("mode", "MODE_MYTEAM");
+        request.setAttribute("players", mplayerList);
+        request.setAttribute("mode", "MODE_MYTEAM");
+        request.setAttribute("users", userServiceImpl.findAll());
+        request.setAttribute("mode", "MODE_MYTEAM"); 
+         
+        return "myteam";
+    }
 
+    
     
      @GetMapping("/myteam-4-4-2")
     public String myteam442(HttpServletRequest request) {
@@ -311,9 +361,7 @@ public class MainController {
         int budget= userteam.getTcounter();
      
        List<Player> playerList = new ArrayList<>();
-//       for(int i=1; i<=15; i++) {
-//            int playerNum = Integer.parseInt(userteam.getPlayer1());
-//            System.out.println(playerNum);
+
             playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer1())));
             playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer2())));
             playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer3())));
@@ -329,7 +377,6 @@ public class MainController {
             playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer13())));
             playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer14())));
             playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer15())));
-//       }
 
         request.setAttribute("budget", budget);
          request.setAttribute("mode", "MODE_MYTEAM-4-4-2");
@@ -532,12 +579,18 @@ public class MainController {
     
           @PostMapping("/save-myteam")
     public String savemyteam (Myteam myteam, Userteam userteam,  Player player, BindingResult bindingResult, HttpServletRequest request) {
-        
-       
-          
+     
 User user = userServiceImpl.getUserId();
         user.getId();
         myteam.setId(user.getId());
+
+ for(int i=1; i<=11; i++){
+            for(int o=1; o<=11; o++) {
+                if(o!=i) 
+                    if( request.getParameter("mplayer"+i).equals((request.getParameter("mplayer"+o))) ) 
+                        return "redirect:/myteam-4-4-2";
+                       }}
+
    
         myteam.setMplayer1(request.getParameter("mplayer1"));
         myteam.setMplayer2(request.getParameter("mplayer2"));
@@ -556,11 +609,11 @@ User user = userServiceImpl.getUserId();
         
           
         request.setAttribute("users", userServiceImpl.findAll());
-        request.setAttribute("mode", "MODE_MYTEAM"); 
+        request.setAttribute("mode", "MODE_MYTEAMS"); 
         request.setAttribute("myteams", myteamService.findAll());
-        request.setAttribute("mode", "MODE_MYTEAM"); 
+        request.setAttribute("mode", "MODE_MYTEAMS"); 
         request.setAttribute("players", playerService.findAll());
-        request.setAttribute("mode", "MODE_MYTEAM"); 
+        request.setAttribute("mode", "MODE_MYTEAMS"); 
         
         return "redirect:/";
     }
