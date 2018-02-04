@@ -18,7 +18,6 @@
         <title>Fantasy Local League</title>
           <link href="${contextPath}/static/css/bootstrap.css" rel="stylesheet">
         <link href="static/css/bootstrap.min.css" rel="stylesheet">
-
         <link href="${contextPath}/static/css/style.css" rel="stylesheet">
         <style>
             .jumbotron{
@@ -35,29 +34,25 @@
 
 
         <div class="navbar navbar-inverse">
-            <!--<a class="pull-left" href="index.html"><img src="static/images/ligatyperow2.png" width="100" height="50"></a><!-->
-
             <a href="/" class="navbar-brand">Strona główna</a>
 
                 <ul class="nav navbar-nav">
 
                     <li><a href="myteam-4-4-2">Edytuj swoją drużynę</a></li>
+                    <li><a href="transfers">Transfery</a></li>
                     <li><a href="bet-games">Terminarz i wyniki meczów</a></li>
-
-
-    <c:if test="${adminu eq '28'}">             <li class="dropdown">
-
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Panel administratora
-                            <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="new-game">Dodaj nowy mecz</a></li>
-                            <li><a href="new-clubs">Dodaj Klub</a></li>
-                            <li><a href="new-player">Dodaj Zawodnika</a></li>
-                            <li><a href="points-manager">Zarządzaj punktami</a></li>
-                        </ul>  </li></c:if>
                     <li><a href="#">Klasyfikacja graczy</a></li>
                     <li><a href="rules">Zasady</a></li>
                     <li><a href="contact">Kontakt</a></li>
+                    <c:if test="${adminu eq '28'}">             <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Panel administratora
+                    <span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                          <li><a href="new-game">Dodaj nowy mecz</a></li>
+                          <li><a href="new-clubs">Dodaj Klub</a></li>
+                          <li><a href="new-player">Dodaj Zawodnika</a></li>
+                         <li><a href="points-manager">Zarządzaj punktami</a></li>
+                      </ul>  </li></c:if>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <c:if test="${pageContext.request.userPrincipal.name != null}">
@@ -66,14 +61,14 @@
                         </form>
                     </c:if>
 
-                    <li><a onclick="document.forms['logoutForm'].submit()" href="#"><span class="glyphicon glyphicon-log-out" ></span> Wyloguj sie ${pageContext.request.userPrincipal.name} </a></li>
+    <li><a onclick="document.forms['logoutForm'].submit()" href="#"><span class="glyphicon glyphicon-log-out" ></span> Wyloguj sie ${pageContext.request.userPrincipal.name} </a></li>
 
                 </ul>
         </div>
 
 
         <c:choose>
-            <c:when test="${mode == 'MODE_HOME'}">
+<c:when test="${mode == 'MODE_HOME'}">
                 <div class="container" id="homeDiv">
                     <center><h2> <span color="green" class="label label-default">Witaj w Fantasy Local League ${pageContext.request.userPrincipal.name}.</span></h2> <br></center>
 
@@ -104,8 +99,9 @@
                     <br><br>
                     <br><br>
                     <br>
-                </c:when>
-                <c:when test="${mode == 'MODE_RULES'}">
+</c:when>
+
+<c:when test="${mode == 'MODE_RULES'}">
                     <div class="container" id="homeDiv">
                         <center><h2> <span color="green" class="label label-default">Witaj w Fantasy Local League ${pageContext.request.userPrincipal.name}.</span></h2> <br></center>
 
@@ -182,8 +178,9 @@
                         <br><br>
                         <br><br>
                         <br>
-                    </c:when>
-                <c:when test="${mode == 'MODE_GAMES'}">
+</c:when>
+
+<c:when test="${mode == 'MODE_GAMES'}">
                     <div class="container text-center" id="gamesDiv">
                         <h3>Wszystkie mecze</h3>
                         <hr>
@@ -220,8 +217,9 @@
                             </table>
                         </div>
                     </div>
-                </c:when>
-                <c:when test="${mode == 'MODE_NEW' || mode == 'MODE_UPDATE'}">
+</c:when>
+
+<c:when test="${mode == 'MODE_NEW' || mode == 'MODE_UPDATE'}">
                     <div class="container text-center">
                         <h3>Dodaj mecz</h3>
                         <hr>
@@ -294,11 +292,9 @@
 
                         </form>
                     </div>
-                </c:when>
+</c:when>
 
-
-
-                  <c:when test="${mode == 'MODE_CLUBS'}">
+<c:when test="${mode == 'MODE_CLUBS'}">
                     <div class="container text-center">
                         <h3>Dodaj Klub</h3>
                         <form class="form-horizontal" method="POST" action="save-clubs">
@@ -332,7 +328,7 @@
                                             <tr>
                                                 <td>${clubs.id}</td>
                                                 <td>${clubs.name}</td>
-<td><a href="delete-clubs?id=${clubs.id}"><span class="glyphicon glyphicon-trash"></span></a></td>
+      <td><a href="delete-clubs?id=${clubs.id}"><span class="glyphicon glyphicon-trash"></span></a></td>
 
                                             </tr>
                                         </c:forEach>
@@ -340,11 +336,10 @@
                                 </table>
                             </div>
                         </div>  </div>
-                    </c:when>
+</c:when>
 
 
-
-                    <c:when test="${mode == 'MODE_PLAYER'}">
+<c:when test="${mode == 'MODE_PLAYER'}">
                       <div class="container text-center">
                           <h3>Dodaj Piłkarza</h3>
                           <form class="form-horizontal" method="POST" action="save-player">
@@ -441,11 +436,10 @@
                                   </table>
                               </div>
                           </div></div>
-                      </c:when>
+</c:when>
 
 
-
-                      <c:when test="${mode == 'MODE_POINTSMANAGER'}">
+<c:when test="${mode == 'MODE_POINTSMANAGER'}">
                                <div class="container text-center">
                                    <h3>Zarządzaj punktami</h3>
                                    <form class="form-horizontal" method="POST" action="save-points">
@@ -458,109 +452,80 @@
                                              </c:forEach>
                                        </select> -->
 
-
-
                                          <hr>
                                          </div>
                                                  <hr>
                                              <div class="container text-center" >
 
                                                <table class="table table-striped table-bordered text-left">
-                                                                                 <thread>
-                                                                                     <tr>
-                                                                                       <th>ID gracza</th>
-                                                                                         <th>Klub</th>
-                                                                                         <th>Imię i Nazwisko</th>
-                                                                                         <th>Pozycja</th>
-                                                                                         <th> Podstawowa 11</th>
-                                                                                         <th>Strzelone gole</th>
-                                                                                         <th>Asysty</th>
-                                                                                         <th>Stracone gole (dla obrońców i
+                                                   <thread>
+                                                     <tr>
+                                                     <th>ID gracza</th>
+                                                       <th>Klub</th>
+                                                   <th>Imię i Nazwisko</th>
+                                                     <th>Pozycja</th>
+                                                   <th> Podstawowa 11</th>
+                                                     <th>Strzelone gole</th>
+                                                   <th>Asysty</th>
+                                      <th>Stracone gole (dla obrońców i bramkarzy)</th>
+                                       <th>Obroniony karny (dla bramkarzy)</th>
+                                               <th>Nie strzelony karny</th>
+                                               <th>Żółta kartka</th>
+                                                     <th>Czerwona kartka</th>
+                                                       <th>Strzelone samobóje</th>
+                                             <th>   <div class="form-group">
+                                                  <label class="control-labelcol-md-3">Nr rundy</label>
+                                                       <div class="col-md-7">
+                                                 <select class="form-controlcascadingDropDown" name="roundnr">
+                                                               <option value="1"> 1
+                                                                     </option>
+                                                   <option value="2"> 2 </option>
+                                                   <option  value="3"> 3 </option>
+                                                   <option value="4"> 4 </option>
+                                                                 </select>
+                                                                 </div>
+                                                               </div></th>     <!--  <th>Punkty w rundzie</th> -->
+                                                              </tr>
+                                                              </thread>
+                                                                 <tbody>
 
-                                               bramkarzy)</th>
-                                                                                         <th>Obroniony karny (dla
-
-                                               bramkarzy)</th>
-                                                                                         <th>Nie strzelony karny</th>
-                                                                                         <th>Żółta kartka</th>
-                                                                                         <th>Czerwona kartka</th>
-                                                                                         <th>Strzelone samobóje</th>
-                                                                                     <th>   <div class="form-group">
-                                                                                             <label class="control-labelcol-md-3">Nr rundy</label>
-                                                                                             <div class="col-md-7">
-                                                                                         <select class="form-controlcascadingDropDown" name="roundnr">
-                                                                                               <option value="1"> 1
-                                                                                               </option>
-                                                                                             <option value="2"> 2 </option>
-                                                                                             <option  value="3"> 3 </option>
-                                                                                             <option value="4"> 4 </option>
-                                                                                           </select>
-                                                                                               </div>
-                                                                                             </div></th>
-                                                                                       <!--  <th>Punkty w rundzie</th> -->
-
-                                                                                     </tr>
-                                                                                 </thread>
-                                                                                 <tbody>
-
-                                                                                   <c:forEach var="playerpoints" items="${players}" >
-
-
-                                                                                         <tr>
-                                                                                           <td>${playerpoints.id}</td>
-                                                                                             <td>${playerpoints.club}</td>
-                                                                                             <td>${playerpoints.firstname}${playerpoints.lastname}</td>
-                                                                                             <td>${playerpoints.position}
-
-                                               </td>
-
-
-                                                                                             <td>  <input type="radio" name="finished" value="tak"/>
-                                                                                               Tak
-                                                                                               <input type="radio" name="finished" value="nie" checked/>
-                                                                                               Nie</td>
-                                                                                               <td><input type="number" class="form-control" name="roundpoints" max="25" min="0"></td> <!-- Strzelone
-
-                                               gole-->
-                                                                                               <td><input type="number"class="form-control" max="25" min="0"></td> <!-- Asysty-->
-                                                                             <c:choose>
-                                                                 <c:when test="${playerpoints.position eq 'Obrońca'|| playerpoints.position eq 'Bramkarz'}"> <td> <input type="number" class="form-control" max="15" min="0"></td>     </c:when>
-                                                                    <c:otherwise><td> </td> </c:otherwise>
-                                                                               </c:choose>                      <!--
-
-                                               Stracone gole (dla obrońców i bramkarzy-->
-                                                                                         <c:choose>
-                                                         <c:when test="${playerpoints.position eq 'Bramkarz'}">  <td><input type="number" class="form-control" max="5" min="0"></td>  </c:when>
-                                                                 <c:otherwise><td> </td> </c:otherwise>
-                                                                                             </c:choose>     <!--
-
-                                               //Obroniony karny (dla bramkarzy)-->
-                                                                                               <td><input type="number" class="form-control" max="5" min="0"></td> <!--  Nie strzelony karny-->
-                                                                                               <td>  <input type="radio" name="finished" value="tak"/>
-                                                                                                 Tak
-                                                                                                 <input type="radio" name="finished" value="nie" />
-                                                                                                 Nie</td>
-
-                                                                <!--    //Żółta kartka-->
-                                                                                                 <td>  <input type="radio" name="finished" value="tak"/>
-                                                                                                   Tak
-                                                                                                   <input type="radio" name="finished" value="nie" />
-                                                                                                   Nie</td>
-
-                                                              <!--      //Czerwona kartka-->
-                                                                                                   <td><input type="number" class="form-control" max="25" min="0"></td> <!--  //Strzelone samoboje-->
-
-                                                                                                 <td> </td>
-                                                                                                 <input type="hidden" name="player.id" value="${playerpoints.id}"/>
-                                                                                         </tr>
-                                                                                         </c:forEach>
-                                                                                 </tbody>
-                                                                             </table>
-<br>
-                                                  <div class="text-center">         <input type="submit" class="btn btn-primary" value="Zapisz"/>  </div>
-<br>
-
-
+                                                 <c:forEach var="playerpoints" items="${players}" >
+                                                     <tr>
+                                                   <td>${playerpoints.id}</td>
+                                               <td>${playerpoints.club}</td>
+                                                 <td>${playerpoints.firstname}${playerpoints.lastname}</td>
+                                                    <td>${playerpoints.position}     </td>
+                                 <td>  <input type="radio" name="finished" value="tak"/>  Tak
+                           <input type="radio" name="finished" value="nie" checked/>Nie</td>
+           <td><input type="number" class="form-control" name="roundpoints" max="25" min="0"></td> <!-- Strzelone   gole-->
+                                   <td><input type="number"class="form-control" max="25" min="0"></td> <!-- Asysty-->
+                                             <c:choose>
+       <c:when test="${playerpoints.position eq 'Obrońca'|| playerpoints.position eq 'Bramkarz'}">
+         <td> <input type="number" class="form-control" max="15" min="0"></td>     </c:when>
+                                      <c:otherwise><td> </td> </c:otherwise>
+                                         </c:choose>                      <!--Stracone gole (dla obrońców i bramkarzy-->
+                                                 <c:choose>
+                                     <c:when test="${playerpoints.position eq 'Bramkarz'}">
+                                        <td><input type="number" class="form-control" max="5" min="0"></td>  </c:when>
+                                             <c:otherwise><td> </td> </c:otherwise>
+                                         </c:choose>     <!-- //Obroniony karny (dla bramkarzy)-->
+           <td><input type="number" class="form-control" max="5" min="0"></td> <!--  Nie strzelony karny-->
+                               <td>  <input type="radio" name="finished" value="tak"/>   Tak
+                        <input type="radio" name="finished" value="nie" />   Nie</td>      <!--    //Żółta kartka-->
+                                  <td>  <input type="radio" name="finished" value="tak"/>
+                                                   Tak
+                         <input type="radio" name="finished" value="nie" />     Nie</td>    <!--      //Czerwona kartka-->
+                      <td><input type="number" class="form-control" max="25" min="0"></td> <!--  //Strzelone samoboje-->
+                                                              <td> </td>
+                               <input type="hidden" name="player.id" value="${playerpoints.id}"/>
+                                                     </tr>
+                                                   </c:forEach>
+                                                 </tbody>
+                                                             </table>
+                                                             <br>
+                                                  <div class="text-center">
+                     <input type="submit" class="btn btn-primary" value="Zapisz"/>  </div>
+                                                        <br>
                                        <hr>
                                <div class="table-responsive">
                          <table class="table table-striped table- bordered text-left">
@@ -587,10 +552,10 @@
                                         <hr>
                                       </form>
                                     </div>  </div>
-                                          </c:when>
+</c:when>
 
 
-                <c:when test="${mode == 'MODE_BETS'}">
+<c:when test="${mode == 'MODE_BETS'}">
                     <div class="container text-center" id="gamesDiv">
                         <h3>Twoje typy</h3>
                         <hr>
@@ -624,8 +589,9 @@
                             </table>
                         </div>
                     </div>
-                </c:when>
-                <c:when test="${mode == 'MODE_BET'}">
+</c:when>
+
+<c:when test="${mode == 'MODE_BET'}">
                     <div class="container text-center">
                         <h3>Obstaw</h3>
                         <hr>
@@ -652,8 +618,9 @@
                             </div>
                         </form>
                     </div>
-                </c:when>
-                <c:when test="${mode == 'MODE_BETSS'}">
+</c:when>
+
+<c:when test="${mode == 'MODE_BETSS'}">
                     <div class="container text-center" id="gamesDiv">
                         <h3>Wszystkie mecze</h3>
                         <hr>
@@ -688,8 +655,9 @@
                             </table>
                         </div>
                     </div>
-                </c:when>
-                <c:when test="${mode == 'MODE_TYPES'}">
+</c:when>
+
+<c:when test="${mode == 'MODE_TYPES'}">
                     <div class="container text-center" id="typesDiv">
                         <h3>Wszystkie typy użytkowników</h3>
                         <hr>
@@ -720,8 +688,9 @@
                             </table>
                         </div>
                     </div>
-                </c:when>
-                <c:when test="${mode == 'MODE_PBETTT'}">
+</c:when>
+
+<c:when test="${mode == 'MODE_PBETTT'}">
                     <div class="container text-center">
                         <h3>Obstaw</h3>
                         <hr>
@@ -739,8 +708,9 @@
                             </div>
                         </form>
                     </div>
-                </c:when>
-                <c:when test="${mode == 'MODE_PBET'}">
+</c:when>
+
+<c:when test="${mode == 'MODE_PBET'}">
                     <div class="container text-center">
                         <h3>Rozdaj punkty</h3>
                         <hr>
@@ -770,8 +740,9 @@
                             </div>
                         </form>
                     </div>
-                </c:when>
-                <c:when test="${mode == 'MODE_CONTACT'}">
+</c:when>
+
+<c:when test="${mode == 'MODE_CONTACT'}">
                     <div class="container">
 
 
@@ -792,10 +763,279 @@
                                         </div>
                                         </div>
                                         </div>
-                                    </c:when>
-                                </c:choose>
+</c:when>
+<c:when test="${mode == 'MODE_TRANSFERS'}">
+  <c:set var = "budgett" scope = "session" value = "${100000-budget}"/>
+    <center><h2> <span color="green" class="label label-default">${pageContext.request.userPrincipal.name} twój aktualny budżet to: <c:out value = "${budgett}"/></span></h2> <br></center>
+                    <div class="container">
+
+                  <div class="text-center"></h3>    Twoi zawodnicy: </h3></div>
+                      <table class="table table-striped table-bordered text-left">
+                          <thread>
+                              <tr>
+                                  <th>Imię i Nazwisko</th>
+                                  <th>Klub</th>
+                                  <th>Pozycja</th>
+                                  <th>Cena</th>
+                              </tr>
+                          </thread>
+                          <tbody>
+                            <c:forEach var="player" items="${players}">
+                                <tr>
+                                      <td>  ${player.firstname} ${player.lastname}</td>
+                                      <td>${player.club}</td>
+                                        <td>${player.position}</td>
+                                          <td>${player.price}</td>
 
 
+                                  </tr>
+                              </c:forEach>
+                          </tbody>
+                      </table>
+                      </div>
+                      <div class="container">
+                        <form class="form-horizontal" method="POST" action="sell-player">
+
+                <h3>      Wybierz zawodnika którego chcesz sprzedać, aby móc kupić nowego na tę samą pozycję: </h3>
+
+                      <select class="form-control cascadingDropDown"  name="pl">
+                     <c:forEach var="player" items="${players}">
+                       <option value="${player.id}">
+                         ${player.firstname} ${player.lastname}, pozycja: ${player.position}, wartość: ${player.price}
+                       </option>
+                     </c:forEach></select>
+                     <br>
+          <div class="text-center">   <input type="submit" class="btn btn-success" value="Sprzedaj wybranego zawodnika"/></div>
+                      <br>
+                        </form>
+                    </div>
+
+</c:when>
+
+<c:when test="${mode == 'MODE_STRIKER'}">
+    <c:set var = "budgett" scope = "session" value = "${100000-budget}"/>
+      <center><h2> <span color="green" class="label label-default">${pageContext.request.userPrincipal.name} twój aktualny budżet to: <c:out value = "${budgett}"/></span></h2> <br></center>
+      <div class="container">
+      <div class="text-center"><h3>    Twoi napastnicy: </h3></div>
+          <div class="table-responsive">
+              <table class="table table-striped table-bordered text-left">
+                  <thread>
+                      <tr>
+
+                          <th>Imię</th>
+                          <th>Nazwisko</th>
+                          <th>Data urodzenia</th>
+                          <th>Pozycja</th>
+                          <th>Klub</th>
+                          <th>Wartość</th>
+
+
+                      </tr>
+                  </thread>
+                  <tbody>
+                      <c:forEach var="player" items="${playerss}">
+                          <tr>
+
+                              <td>${player.firstname}</td>
+                              <td>${player.lastname}</td>
+                              <td>${player.date_birth}</td>
+                              <td>${player.position}</td>
+                              <td>${player.club}</td>
+                              <td>${player.price}</td>
+
+
+                          </tr>
+                      </c:forEach>
+                  </tbody>
+              </table>
+          </div>
+          </div>
+
+    <div class="container">
+        <form class="form-horizontal" method="POST" action="buy-player">
+
+        <h3>     Wybierz napastnika którego chcesz kupić w miejsce sprzedanego. Pamiętaj, że twój budżet nie może zostać przekroczony. </h3>
+        <select class="form-control cascadingDropDown"  name="bs">
+          <c:forEach var="player" items="${players}"><c:choose><c:when test="${player.position eq 'Napastnik'}">
+      <option value="${player.id}">
+        ${player.firstname} ${player.lastname}, cena: ${player.price}
+      </option> </c:when>  </c:choose>
+      </c:forEach></select>
+      <br>
+        <div class="text-center">  <input type="submit" class="btn btn-success" value="Kup"/></div>
+    <br>
+      </form>
+    </div>
+</c:when>
+
+<c:when test="${mode == 'MODE_MIDFIELDER'}">
+    <c:set var = "budgett" scope = "session" value = "${100000-budget}"/>
+      <center><h2> <span color="green" class="label label-default">${pageContext.request.userPrincipal.name} twój aktualny budżet to: <c:out value = "${budgett}"/></span></h2> <br></center>
+      <div class="container">
+      <div class="text-center"><h3>    Twoi pomocnicy: </h3></div>
+          <div class="table-responsive">
+              <table class="table table-striped table-bordered text-left">
+                  <thread>
+                      <tr>
+
+                          <th>Imię</th>
+                          <th>Nazwisko</th>
+                          <th>Data urodzenia</th>
+                          <th>Pozycja</th>
+                          <th>Klub</th>
+                          <th>Wartość</th>
+
+
+                      </tr>
+                  </thread>
+                  <tbody>
+                      <c:forEach var="player" items="${playerss}">
+                          <tr>
+
+                              <td>${player.firstname}</td>
+                              <td>${player.lastname}</td>
+                              <td>${player.date_birth}</td>
+                              <td>${player.position}</td>
+                              <td>${player.club}</td>
+                              <td>${player.price}</td>
+
+
+                          </tr>
+                      </c:forEach>
+                  </tbody>
+              </table>
+          </div>
+          </div>
+
+    <div class="container">
+        <form class="form-horizontal" method="POST" action="buy-player">
+
+        <h3>     Wybierz pomocnika którego chcesz kupić w miejsce sprzedanego. Pamiętaj, że twój budżet nie może zostać przekroczony. </h3>
+        <select class="form-control cascadingDropDown"  name="bs">
+          <c:forEach var="player" items="${players}"><c:choose><c:when test="${player.position eq 'Pomocnik'}">
+      <option value="${player.id}">
+        ${player.firstname} ${player.lastname}, cena: ${player.price}
+      </option> </c:when>  </c:choose>
+      </c:forEach></select>
+      <br>
+        <div class="text-center">  <input type="submit" class="btn btn-success" value="Kup"/></div>
+    <br>
+      </form>
+    </div>
+</c:when>
+
+<c:when test="${mode == 'MODE_DEFENDER'}">
+    <c:set var = "budgett" scope = "session" value = "${100000-budget}"/>
+      <center><h2> <span color="green" class="label label-default">${pageContext.request.userPrincipal.name} twój aktualny budżet to: <c:out value = "${budgett}"/></span></h2> <br></center>
+      <div class="container">
+      <div class="text-center"><h3>    Twoi obrońcy: </h3></div>
+          <div class="table-responsive">
+              <table class="table table-striped table-bordered text-left">
+                  <thread>
+                      <tr>
+
+                          <th>Imię</th>
+                          <th>Nazwisko</th>
+                          <th>Data urodzenia</th>
+                          <th>Pozycja</th>
+                          <th>Klub</th>
+                          <th>Wartość</th>
+
+
+                      </tr>
+                  </thread>
+                  <tbody>
+                      <c:forEach var="player" items="${playerss}">
+                          <tr>
+
+                              <td>${player.firstname}</td>
+                              <td>${player.lastname}</td>
+                              <td>${player.date_birth}</td>
+                              <td>${player.position}</td>
+                              <td>${player.club}</td>
+                              <td>${player.price}</td>
+
+
+                          </tr>
+                      </c:forEach>
+                  </tbody>
+              </table>
+          </div>
+          </div>
+
+    <div class="container">
+        <form class="form-horizontal" method="POST" action="buy-player">
+
+        <h3>     Wybierz obrońcę którego chcesz kupić w miejsce sprzedanego. Pamiętaj, że twój budżet nie może zostać przekroczony. </h3>
+        <select class="form-control cascadingDropDown"  name="bs">
+          <c:forEach var="player" items="${players}"><c:choose><c:when test="${player.position eq 'Obrońca'}">
+      <option value="${player.id}">
+        ${player.firstname} ${player.lastname}, cena: ${player.price}
+      </option> </c:when>  </c:choose>
+      </c:forEach></select>
+      <br>
+        <div class="text-center">  <input type="submit" class="btn btn-success" value="Kup"/></div>
+    <br>
+      </form>
+    </div>
+</c:when>
+
+<c:when test="${mode == 'MODE_GOALKEEPER'}">
+    <c:set var = "budgett" scope = "session" value = "${100000-budget}"/>
+      <center><h2> <span color="green" class="label label-default">${pageContext.request.userPrincipal.name} twój aktualny budżet to: <c:out value = "${budgett}"/></span></h2> <br></center>
+  <div class="container">
+  <div class="text-center"><h3>    Twoi bramkarze: </h3></div>
+      <div class="table-responsive">
+          <table class="table table-striped table-bordered text-left">
+              <thread>
+                  <tr>
+
+                      <th>Imię</th>
+                      <th>Nazwisko</th>
+                      <th>Data urodzenia</th>
+                      <th>Pozycja</th>
+                      <th>Klub</th>
+                      <th>Wartość</th>
+
+
+                  </tr>
+              </thread>
+              <tbody>
+                  <c:forEach var="player" items="${playerss}">
+                      <tr>
+
+                          <td>${player.firstname}</td>
+                          <td>${player.lastname}</td>
+                          <td>${player.date_birth}</td>
+                          <td>${player.position}</td>
+                          <td>${player.club}</td>
+                          <td>${player.price}</td>
+
+
+                      </tr>
+                  </c:forEach>
+              </tbody>
+          </table>
+      </div>
+      </div>
+    <div class="container">
+        <form class="form-horizontal" method="POST" action="buy-player">
+
+        <h3>     Wybierz bramkarza którego chcesz kupić w miejsce sprzedanego. Pamiętaj, że twój budżet nie może zostać przekroczony. </h3>
+        <select class="form-control cascadingDropDown"  name="bs">
+          <c:forEach var="player" items="${players}"><c:choose><c:when test="${player.position eq 'Bramkarz'}">
+      <option value="${player.id}">
+        ${player.firstname} ${player.lastname}, cena: ${player.price}
+      </option> </c:when>  </c:choose>
+      </c:forEach></select>
+      <br>
+        <div class="text-center">  <input type="submit" class="btn btn-success" value="Kup"/></div>
+    <br>
+      </form>
+    </div>
+</c:when>
+
+              </c:choose>
 
                                 <script src="static/js/jquery-1.11.1.min.js"></script>
                                 <script src="static/js/bootstrap.min.js"></script>

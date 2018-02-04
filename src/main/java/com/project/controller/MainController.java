@@ -436,9 +436,6 @@ public class MainController {
         int budget= userteam.getTcounter();
      
        List<Player> playerList = new ArrayList<>();
-//       for(int i=1; i<=15; i++) {
-//            int playerNum = Integer.parseInt(userteam.getPlayer1());
-//            System.out.println(playerNum);
             playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer1())));
             playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer2())));
             playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer3())));
@@ -454,7 +451,7 @@ public class MainController {
             playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer13())));
             playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer14())));
             playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer15())));
-//       }
+
 
         request.setAttribute("budget", budget);
         request.setAttribute("players", playerList);
@@ -474,9 +471,7 @@ public class MainController {
         int budget= userteam.getTcounter();
      
        List<Player> playerList = new ArrayList<>();
-//       for(int i=1; i<=15; i++) {
-//            int playerNum = Integer.parseInt(userteam.getPlayer1());
-//            System.out.println(playerNum);
+
             playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer1())));
             playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer2())));
             playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer3())));
@@ -492,7 +487,7 @@ public class MainController {
             playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer13())));
             playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer14())));
             playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer15())));
-//       }
+
 
         request.setAttribute("budget", budget);
         request.setAttribute("players", playerList);
@@ -511,9 +506,6 @@ public class MainController {
         int budget= userteam.getTcounter();
      
        List<Player> playerList = new ArrayList<>();
-//       for(int i=1; i<=15; i++) {
-//            int playerNum = Integer.parseInt(userteam.getPlayer1());
-//            System.out.println(playerNum);
             playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer1())));
             playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer2())));
             playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer3())));
@@ -548,9 +540,7 @@ public class MainController {
         int budget= userteam.getTcounter();
      
        List<Player> playerList = new ArrayList<>();
-//       for(int i=1; i<=15; i++) {
-//            int playerNum = Integer.parseInt(userteam.getPlayer1());
-//            System.out.println(playerNum);
+
             playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer1())));
             playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer2())));
             playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer3())));
@@ -566,7 +556,7 @@ public class MainController {
             playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer13())));
             playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer14())));
             playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer15())));
-//       }
+
 
         request.setAttribute("budget", budget);
         request.setAttribute("players", playerList);
@@ -618,8 +608,321 @@ User user = userServiceImpl.getUserId();
         return "redirect:/";
     }
     
-    
+      @GetMapping("/transfers")
+    public String trasnfers(HttpServletRequest request) {
+        User user = userServiceImpl.getUserId();
+       Userteam userteam = new Userteam();
+       
+       userteam = userteamService.findUserteam(user.getId());
+        int budget= userteam.getTcounter();
      
-    
+       List<Player> playerList = new ArrayList<>();
 
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer1())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer2())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer3())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer4())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer5())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer6())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer7())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer8())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer9())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer10())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer11())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer12())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer13())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer14())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer15())));
+
+   
+            request.setAttribute("players", playerList);
+            request.setAttribute("budget", budget);
+        request.setAttribute("mode", "MODE_TRANSFERS");
+      request.setAttribute("users", userServiceImpl.findAll());
+        request.setAttribute("mode", "MODE_TRANSFERS"); 
+        return "index";
+    }
+     
+    @PostMapping("/sell-player")
+    public String sellplayer (Myteam myteam, Userteam userteam,  Player player, BindingResult bindingResult, HttpServletRequest request) {
+     
+        User user = userServiceImpl.getUserId();
+        user.getId();
+        
+         userteam = userteamService.findUserteam(user.getId());
+         myteam = myteamService.findMyteam(user.getId());
+        int oldbudget = userteam.getTcounter();
+        
+         Player pricePlayer;
+        int price = 0;
+         
+            pricePlayer = playerService.findPlayer(Integer.parseInt(request.getParameter("pl")));
+            price = pricePlayer.getPrice();
+                  
+                 String position = null;
+                if( request.getParameter("pl").equals(userteam.getPlayer1()) ) {
+                userteam.setPlayer1("0"); position= "bramkarz"; }
+                if( request.getParameter("pl").equals(userteam.getPlayer2()) ) {
+                userteam.setPlayer2("0"); position= "bramkarz";  }
+                if( request.getParameter("pl").equals(userteam.getPlayer3()) ){ 
+                userteam.setPlayer3("0"); position= "obrońca";}
+                if( request.getParameter("pl").equals(userteam.getPlayer4()) ){ 
+                userteam.setPlayer4("0"); position= "obrońca";}
+                if( request.getParameter("pl").equals(userteam.getPlayer5()) ){ 
+                userteam.setPlayer5("0");position= "obrońca";}
+                if( request.getParameter("pl").equals(userteam.getPlayer6()) ){ 
+                userteam.setPlayer6("0");position= "obrońca";}
+                if( request.getParameter("pl").equals(userteam.getPlayer7()) ){ 
+                userteam.setPlayer7("0");position= "obrońca";}
+                if( request.getParameter("pl").equals(userteam.getPlayer8()) ){ 
+                userteam.setPlayer8("0");position= "pomocnik";}
+                if( request.getParameter("pl").equals(userteam.getPlayer9()) ){ 
+                userteam.setPlayer9("0");position= "pomocnik";}
+                if( request.getParameter("pl").equals(userteam.getPlayer10()) ){ 
+                userteam.setPlayer10("0");position= "pomocnik";}
+                if( request.getParameter("pl").equals(userteam.getPlayer11()) ){ 
+                userteam.setPlayer11("0");position= "pomocnik";}
+                 if( request.getParameter("pl").equals(userteam.getPlayer12()) ){ 
+                userteam.setPlayer12("0");position= "pomocnik";}
+                  if( request.getParameter("pl").equals(userteam.getPlayer13()) ){ 
+                userteam.setPlayer13("0");position= "napastnik";}
+                   if( request.getParameter("pl").equals(userteam.getPlayer14()) ){ 
+                userteam.setPlayer14("0");position= "napastnik";}
+                    if( request.getParameter("pl").equals(userteam.getPlayer15()) ){ 
+                userteam.setPlayer15("0");position= "napastnik";}
+                    
+                 if( request.getParameter("pl").equals(myteam.getMplayer1()) ) 
+                myteam.setMplayer1("0"); 
+                if( request.getParameter("pl").equals(myteam.getMplayer2()) ) 
+                myteam.setMplayer2("0"); 
+                if( request.getParameter("pl").equals(myteam.getMplayer3()) ) 
+                myteam.setMplayer3("0");
+                if( request.getParameter("pl").equals(myteam.getMplayer4()) ) 
+                myteam.setMplayer4("0"); 
+                if( request.getParameter("pl").equals(myteam.getMplayer5()) )
+                myteam.setMplayer5("0");
+                if( request.getParameter("pl").equals(myteam.getMplayer6()) ) 
+                myteam.setMplayer6("0");
+                if( request.getParameter("pl").equals(myteam.getMplayer7()) )
+                myteam.setMplayer7("0");
+                if( request.getParameter("pl").equals(myteam.getMplayer8()) )
+                myteam.setMplayer8("0");
+                if( request.getParameter("pl").equals(myteam.getMplayer9()) ) 
+                myteam.setMplayer9("0");
+                if( request.getParameter("pl").equals(myteam.getMplayer10()) )
+                myteam.setMplayer10("0");
+                if( request.getParameter("pl").equals(myteam.getMplayer11()) )
+                myteam.setMplayer11("0"); 
+                    
+                   myteam.setId(user.getId());    
+                userteam.setId(user.getId());
+         userteam.setTcounter(oldbudget-price);
+        userteamService.save(userteam);   
+         myteamService.save(myteam);    
+         
+        request.setAttribute("users", userServiceImpl.findAll());
+        request.setAttribute("mode", "MODE_TRANSFERS"); 
+        request.setAttribute("userteams", userteamService.findAll());
+        request.setAttribute("mode", "MODE_TRANSFERS"); 
+         request.setAttribute("myteams", myteamService.findAll());
+        request.setAttribute("mode", "MODE_TRANSFERS"); 
+        request.setAttribute("players", playerService.findAll());
+        request.setAttribute("mode", "MODE_TRENSFERS"); 
+        
+        if(position.equals("napastnik"))
+        return "redirect:/striker";
+        if(position.equals("pomocnik"))
+        return "redirect:/midfielder";
+        if(position.equals("obrońca"))
+        return "redirect:/defender";
+        if(position.equals("bramkarz"))
+        return "redirect:/goalkeeper";
+        
+        
+    return "index";
+    }
+    
+     @GetMapping("/goalkeeper")
+    public String goalkeeper (HttpServletRequest request) {
+        User user = userServiceImpl.getUserId();
+       Userteam userteam = new Userteam();
+       
+       userteam = userteamService.findUserteam(user.getId());
+        int budget= userteam.getTcounter();
+        List<Player> playerList = new ArrayList<>();
+
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer1())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer2())));
+        
+        
+      request.setAttribute("playerss", playerList);
+      request.setAttribute("budget", budget);
+      request.setAttribute("players", playerService.findAll());
+        request.setAttribute("mode", "MODE_GOALKEEPER");
+      request.setAttribute("users", userServiceImpl.findAll());
+        request.setAttribute("mode", "MODE_GOALKEEPER"); 
+        return "index";
+    }
+    
+     @GetMapping("/defender")
+    public String defender (HttpServletRequest request) {
+        User user = userServiceImpl.getUserId();
+       Userteam userteam = new Userteam();
+       
+       userteam = userteamService.findUserteam(user.getId());
+        int budget= userteam.getTcounter();
+        List<Player> playerList = new ArrayList<>();
+          playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer3())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer4())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer5())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer6())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer7())));
+            
+        request.setAttribute("playerss", playerList);
+        request.setAttribute("budget", budget);
+      request.setAttribute("players", playerService.findAll());
+        request.setAttribute("mode", "MODE_DEFENDER");
+      request.setAttribute("users", userServiceImpl.findAll());
+        request.setAttribute("mode", "MODE_DEFENDER"); 
+        return "index";
+    }
+    
+     @GetMapping("/midfielder")
+    public String midfielder (HttpServletRequest request) {
+        User user = userServiceImpl.getUserId();
+       Userteam userteam = new Userteam();
+       
+       userteam = userteamService.findUserteam(user.getId());
+        int budget= userteam.getTcounter();
+         List<Player> playerList = new ArrayList<>();
+          playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer8())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer9())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer10())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer11())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer12())));
+           
+         
+        request.setAttribute("playerss", playerList);
+        request.setAttribute("budget", budget);
+      request.setAttribute("players", playerService.findAll());
+        request.setAttribute("mode", "MODE_MIDFIELDER");
+      request.setAttribute("users", userServiceImpl.findAll());
+        request.setAttribute("mode", "MODE_MIDFIELDER"); 
+        return "index";
+    }
+    
+    
+     @GetMapping("/striker")
+    public String striker (HttpServletRequest request) {
+        User user = userServiceImpl.getUserId();
+       Userteam userteam = new Userteam();
+       
+       userteam = userteamService.findUserteam(user.getId());
+        int budget= userteam.getTcounter();
+        List<Player> playerList = new ArrayList<>();
+         playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer13())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer14())));
+            playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer15())));
+        
+        request.setAttribute("playerss", playerList);
+        request.setAttribute("budget", budget);
+      request.setAttribute("players", playerService.findAll());
+        request.setAttribute("mode", "MODE_STRIKER");
+      request.setAttribute("users", userServiceImpl.findAll());
+        request.setAttribute("mode", "MODE_STRIKER"); 
+        return "index";
+    }
+    
+    
+     @PostMapping("/buy-player")
+    public String buyplayer (Myteam myteam, Userteam userteam,  Player player, BindingResult bindingResult, HttpServletRequest request) {
+        User user = userServiceImpl.getUserId();
+        user.getId();
+          myteam = myteamService.findMyteam(user.getId());
+         userteam = userteamService.findUserteam(user.getId());
+        int oldbudget = userteam.getTcounter();
+
+         Player pricePlayer;
+        int price = 0;
+         
+            pricePlayer = playerService.findPlayer(Integer.parseInt(request.getParameter("bs")));
+            price = pricePlayer.getPrice();       
+           
+                    if( request.getParameter("bs").equals(userteam.getPlayer13()) ) 
+                        return "redirect:/striker";
+                    if( request.getParameter("bs").equals(userteam.getPlayer14()) ) 
+                        return "redirect:/striker";
+                    if( request.getParameter("bs").equals(userteam.getPlayer15()) ) 
+                        return "redirect:/striker";
+            
+                  String check= "0"; 
+                  if( userteam.getPlayer1().equals(check) ) 
+                userteam.setPlayer1(request.getParameter("bs")); 
+                  if( userteam.getPlayer2().equals(check) ) 
+                userteam.setPlayer2(request.getParameter("bs")); 
+                  if( userteam.getPlayer3().equals(check) ) 
+                userteam.setPlayer3(request.getParameter("bs")); 
+                  if( userteam.getPlayer4().equals(check) ) 
+                userteam.setPlayer4(request.getParameter("bs")); 
+                  if( userteam.getPlayer5().equals(check) ) 
+                userteam.setPlayer5(request.getParameter("bs")); 
+                  if( userteam.getPlayer6().equals(check) ) 
+                userteam.setPlayer6(request.getParameter("bs")); 
+                 if( userteam.getPlayer7().equals(check) ) 
+                userteam.setPlayer7(request.getParameter("bs")); 
+                 if( userteam.getPlayer8().equals(check) ) 
+                userteam.setPlayer8(request.getParameter("bs")); 
+                 if( userteam.getPlayer9().equals(check) ) 
+                userteam.setPlayer9(request.getParameter("bs")); 
+                 if( userteam.getPlayer10().equals(check) ) 
+                userteam.setPlayer10(request.getParameter("bs")); 
+                 if( userteam.getPlayer11().equals(check) ) 
+                userteam.setPlayer11(request.getParameter("bs")); 
+                if( userteam.getPlayer12().equals(check) ) 
+                userteam.setPlayer12(request.getParameter("bs"));   
+               if( userteam.getPlayer13().equals(check) ) 
+                userteam.setPlayer13(request.getParameter("bs")); 
+               if( userteam.getPlayer14().equals(check) ) 
+                userteam.setPlayer14(request.getParameter("bs")); 
+               if( userteam.getPlayer15().equals(check) ) 
+                userteam.setPlayer15(request.getParameter("bs"));
+               
+                if( myteam.getMplayer1().equals(check) ) 
+                myteam.setMplayer1(request.getParameter("bs")); 
+                  if( myteam.getMplayer2().equals(check) ) 
+                myteam.setMplayer2(request.getParameter("bs")); 
+                  if( myteam.getMplayer3().equals(check) ) 
+                myteam.setMplayer3(request.getParameter("bs")); 
+                  if( myteam.getMplayer4().equals(check) ) 
+                myteam.setMplayer4(request.getParameter("bs")); 
+                  if( myteam.getMplayer5().equals(check) ) 
+                myteam.setMplayer5(request.getParameter("bs")); 
+                  if( myteam.getMplayer6().equals(check) ) 
+                myteam.setMplayer6(request.getParameter("bs")); 
+                 if( myteam.getMplayer7().equals(check) ) 
+                myteam.setMplayer7(request.getParameter("bs")); 
+                 if( myteam.getMplayer8().equals(check) ) 
+                myteam.setMplayer8(request.getParameter("bs")); 
+                if( myteam.getMplayer9().equals(check) ) 
+                myteam.setMplayer9(request.getParameter("bs")); 
+               if( myteam.getMplayer10().equals(check) ) 
+                myteam.setMplayer10(request.getParameter("bs")); 
+               if( myteam.getMplayer11().equals(check) ) 
+                myteam.setMplayer11(request.getParameter("bs")); 
+               
+               userteam.setId(user.getId());
+               myteam.setId(user.getId());   
+          userteam.setTcounter(oldbudget+price);
+         userteamService.save(userteam);  
+         myteamService.save(myteam);  
+         request.setAttribute("users", userServiceImpl.findAll());
+        request.setAttribute("mode", "MODE_BUYPLAYER"); 
+        request.setAttribute("userteams", userteamService.findAll());
+        request.setAttribute("mode", "MODE_BUYPLAYER"); 
+        request.setAttribute("players", playerService.findAll());
+        request.setAttribute("mode", "MODE_BUYPLAYER"); 
+        
+        return "redirect:/";
+    }
+    
 }

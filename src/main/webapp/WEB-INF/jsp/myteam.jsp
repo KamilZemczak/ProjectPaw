@@ -72,8 +72,8 @@
               <ul class="nav navbar-nav">
 
                 <li><a href="myteam-4-4-2">Edytuj swoją drużynę</a></li>
+                <li><a href="transfers">Transfery</a></li>
                 <li><a href="bet-games">Terminarz i wyniki meczów</a></li>
-
                   <li><a href="#">Klasyfikacja graczy</a></li>
                     <li><a href="rules">Zasady</a></li>
                   <li><a href="contact">Kontakt</a></li>
@@ -1104,7 +1104,7 @@
 
 <div class="container">
       <h3><center> Twój aktualny skład:</center></h3>
-    
+
 
 <c:if test="${formation eq '4-4-2'}">
  <div class="jumbotron">    <table class="table  text-center">

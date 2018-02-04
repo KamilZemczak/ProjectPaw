@@ -52,20 +52,11 @@
       <div class="navbar navbar-inverse">
           <!--<a class="pull-left" href="index.html"><img src="static/images/ligatyperow2.png" width="100" height="50"></a><!-->
 
-          <a href="/" class="navbar-brand">Strona główna</a>
+          <a href="/createam" class="navbar-brand">Strona główna</a>
 
               <ul class="nav navbar-nav">
 
-                  <li class="dropdown">
-                      <a class="dropdown-toggle" data-toggle="dropdown" href="#">Panel uzytkownika
-                          <span class="caret"></span></a>
-                      <ul class="dropdown-menu">
-                          <li><a href="bet-games">Obstaw mecz</a></li>
-                          <li><a href="your-games">Twoje typy</a></li>
-                      </ul></li>
-
-                  <li><a href="#">Klasyfikacja graczy</a></li>
-                  <li><a href="contact">Kontakt</a></li>
+            
               </ul>
               <ul class="nav navbar-nav navbar-right">
                   <c:if test="${pageContext.request.userPrincipal.name != null}">
@@ -85,13 +76,8 @@
           <div class="row">
             <div class="col-12 col-md-8 col-sm-12">
             <div class="jumbotron">    <table class="table  text-center">
-
               <tr height="75px">
-
               </tr>
-
-
-
               <tbody>
               <tr>
               <th width="23%"></td>
@@ -116,9 +102,7 @@
              </td>
               <th width="23%"></td>
               </tr>
-            </tr>
             <tr height="40px">
-
             </tr>
               <tr>
               <td class="text-center" ><h5 class="bg-primary">OBROŃCA 1</h>
@@ -158,7 +142,6 @@
                 </c:forEach></select></td>
               </tr>
               <tr height="40px">
-
               </tr>
               <tr>
               <td><h5 class="bg-primary">POMOCNIK1</h>
@@ -198,7 +181,6 @@
                 </c:forEach></select></td>
               </tr>
               <tr height="40px">
-
               </tr>
               <tr>
               <td></td>
@@ -225,7 +207,6 @@
                 </c:forEach></select></td>
               <td></td>
               </tr>
-
               </tbody>
               </table>
             </div>
