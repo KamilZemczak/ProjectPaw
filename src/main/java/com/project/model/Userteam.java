@@ -54,12 +54,7 @@ public class Userteam implements Serializable {
     
    
     
-    @ManyToMany
-   @JoinTable(
-            name="rosters",
-            joinColumns = {@JoinColumn(name = "userteam_id")},
-            inverseJoinColumns = {@JoinColumn(name = "player_id")}
-    )  List <Player> players;
+   
     
     public Userteam() {
     }
@@ -230,14 +225,6 @@ public class Userteam implements Serializable {
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public List<Player> getPlayers() {
-        return players;
-    }
-
-    public void setPlayers(List<Player> players) {
-        this.players = players;
     }
 
  

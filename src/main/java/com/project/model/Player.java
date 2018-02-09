@@ -34,8 +34,7 @@ public class Player implements Serializable {
     
    
     
-    @ManyToMany(mappedBy = "players")
-    private List<Userteam> userteams1;
+  
     
  
     
@@ -118,14 +117,6 @@ public class Player implements Serializable {
 
     public void setPlayerpoint(List<Playerpoints> playerpoint) {
         this.playerpoint = playerpoint;
-    }
-
-    public List<Userteam> getUserteams1() {
-        return userteams1;
-    }
-
-    public void setUserteams1(List<Userteam> userteams1) {
-        this.userteams1 = userteams1;
     }
 
    

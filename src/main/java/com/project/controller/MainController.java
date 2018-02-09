@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import com.project.service.PlayerService;
-import com.project.service.PlayerpointsService;
+import com.project.service.PlayerpointsServiceImpl;
 import com.project.service.ClubsService;
 import com.project.service.GameService;
 import com.project.service.MessageService;
@@ -44,7 +44,7 @@ public class MainController {
     private UserteamService userteamService;
     
     @Autowired
-    private PlayerpointsService playerpointsService;
+    private PlayerpointsServiceImpl playerpointsServiceImpl;
     @Autowired
     private PlayerService playerService;
     
@@ -91,13 +91,17 @@ public class MainController {
       @GetMapping("/points-manager")
     public String pointsManager ( HttpServletRequest request) {
         User panel = userServiceImpl.getUserId();
-        request.setAttribute("playerpoint", playerpointsService.findAll());
+      
+       
+        
+        request.setAttribute("playerpoint", playerpointsServiceImpl.findAll());
         request.setAttribute("mode", "MODE_POINTSMANAGER");
         request.setAttribute("players", playerService.findAll());
         request.setAttribute("mode", "MODE_POINTSMANAGER");
         request.setAttribute("adminu", panel.getId());
         return "index";
     }
+    
  @GetMapping("/new-clubs")
     public String newClubs(HttpServletRequest request) {
         User panel = userServiceImpl.getUserId();
@@ -159,17 +163,64 @@ public class MainController {
     
    @PostMapping("/save-points")
     public String savePoints(Playerpoints playerpoints, Player player, BindingResult bindingResult, HttpServletRequest request) {
-        //playerpointsService.save(playerpoints);
-        System.out.println(playerpoints.toString());
-        System.out.println(request.getParameter("roundpoints"));
-        System.out.println(request.getParameter("roundnr"));
+       int goals = 0, assists=0, lostgoals=0, penaltysave=0, penaltymissed=0, owngoals=0, firstsquad=0, cleansheet=0, yellowcards=0, redcards=0, roundpoints= 0;
+       int oldpoints=0;
+       int points= 0;
+         
+      player=  playerService.findPlayer(Integer.parseInt(request.getParameter("player.id")));
+      
+ 
+        if( player.getPosition().equals("Napastnik")){
+       goals= 4*(Integer.parseInt(request.getParameter("goals")));
+        assists= 3*(Integer.parseInt(request.getParameter("assists")));     
+        lostgoals= 0*(Integer.parseInt(request.getParameter("lostgoals")));
+        }
+          if( player.getPosition().equals("Pomocnik")){
+       goals= 5*(Integer.parseInt(request.getParameter("goals")));
+        assists= 3*(Integer.parseInt(request.getParameter("assists")));
+         if((Integer.parseInt(request.getParameter("lostgoals"))==0))cleansheet=1;
+        lostgoals= 0*(Integer.parseInt(request.getParameter("lostgoals")));
+        }
+            if( player.getPosition().equals("Obrońca")){
+       goals= 6*(Integer.parseInt(request.getParameter("goals")));
+        assists= 4*(Integer.parseInt(request.getParameter("assists")));
+        if((Integer.parseInt(request.getParameter("lostgoals"))==0))cleansheet=3;
+        lostgoals= -1*(Integer.parseInt(request.getParameter("lostgoals")));
+        }
+              if( player.getPosition().equals("Bramkarz")){
+       goals= 8*(Integer.parseInt(request.getParameter("goals")));
+        assists= 6*(Integer.parseInt(request.getParameter("assists")));
+        if((Integer.parseInt(request.getParameter("lostgoals"))==0))cleansheet=3;
+        lostgoals= -1*(Integer.parseInt(request.getParameter("lostgoals")));
+        }
+                penaltysave= 4*(Integer.parseInt(request.getParameter("penaltysave")));
+                penaltymissed= -3*(Integer.parseInt(request.getParameter("penaltymissed")));
+                owngoals= -3*(Integer.parseInt(request.getParameter("owngoals")));
+                if(Integer.parseInt(request.getParameter("yellowcards"))==1) yellowcards=-1;
+                if(Integer.parseInt(request.getParameter("redcards"))==1) redcards=-3;
+                if(Integer.parseInt(request.getParameter("firstsquad"))==1) firstsquad=2;
+                
+                
+             points= goals+assists+lostgoals+penaltysave+penaltymissed+owngoals+yellowcards+redcards+firstsquad+cleansheet;
+             Playerpoints p2;
+  if(Integer.parseInt(request.getParameter("roundnr"))==0 || Integer.parseInt(request.getParameter("roundnr"))==1)
+      oldpoints=0;
+  else{
+  p2= playerpointsServiceImpl.findByPlayer_id(Integer.parseInt(request.getParameter("roundnr"))-1,Integer.parseInt(request.getParameter("player.id")));
+          oldpoints=p2.getSummarypoints() ; }
         
-
+                                   
+      System.out.println(oldpoints);    
+        
+         playerpoints.setSummarypoints(points+oldpoints);
+                playerpoints.setRoundpoints(points);
+                
+        playerpointsServiceImpl.save(playerpoints);
          request.setAttribute("players", playerService.findAll());
         request.setAttribute("mode", "MODE_POINTSMANAGER"); 
-        request.setAttribute("playerpoint", playerpointsService.findAll());
+        request.setAttribute("playerpoint", playerpointsServiceImpl.findAll());
         request.setAttribute("mode", "MODE_POINTSMANAGER");
-        return "index";
+        return "redirect:/points-manager";
     }
     
      @PostMapping("/save-player")
@@ -209,6 +260,7 @@ public class MainController {
         request.setAttribute("mode", "MODE_GAMES");
         return "index";
     }
+    
      @GetMapping("/delete-clubs")
     public String deleteClubs(@RequestParam int id, HttpServletRequest request) {
         clubsService.delete(id);
@@ -217,8 +269,7 @@ public class MainController {
         return "index";
     }
     
-    
-    
+
        @GetMapping("/delete-player")
     public String deletePlayer(@RequestParam int id, HttpServletRequest request) {
         playerService.delete(id);
@@ -278,8 +329,6 @@ public class MainController {
         userteamService.save(userteam);
         
         if(totalPrice > 100000) {
-              
-
               userteamService.delete(userteam.getId());
               request.setAttribute("error", "1");
             request.setAttribute("users", userServiceImpl.findAll());
