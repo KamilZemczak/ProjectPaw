@@ -7,6 +7,7 @@ import com.project.model.Game;
 import com.project.model.Myteam;
 import com.project.model.Player;
 import com.project.model.Playerpoints;
+import com.project.model.Round;
 import com.project.model.User;
 import com.project.model.Userteam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ import com.project.service.ClubsService;
 import com.project.service.GameService;
 import com.project.service.MessageService;
 import com.project.service.MyteamService;
+import com.project.service.RoundService;
 import com.project.service.TypeService;
 import com.project.service.UserService;
 import com.project.service.UserServiceImpl;
@@ -36,6 +38,9 @@ public class MainController {
 
     @Autowired
     private UserServiceImpl userServiceImpl;
+
+ @Autowired
+    private RoundService roundService;
     
      @Autowired
     private MyteamService myteamService;
@@ -102,6 +107,8 @@ public class MainController {
         return "index";
     }
     
+  
+    
  @GetMapping("/new-clubs")
     public String newClubs(HttpServletRequest request) {
         User panel = userServiceImpl.getUserId();
@@ -148,6 +155,28 @@ public class MainController {
          request.setAttribute("adminu", panel.getId());
           request.setAttribute("club", clubsService.findAll());
         request.setAttribute("mode", "MODE_NEW");
+        return "index";
+    }
+     @GetMapping("/round")
+    public String round(HttpServletRequest request) {
+        User panel = userServiceImpl.getUserId();
+         request.setAttribute("adminu", panel.getId());
+          request.setAttribute("rounds", roundService.findAll());
+        request.setAttribute("mode", "MODE_ROUND");
+        return "index";
+    }
+       @PostMapping("/new-round")
+    public String newRound (Round round, BindingResult bindingResult, HttpServletRequest request) {
+        int n= Integer.parseInt(request.getParameter("number"));
+        int r=0;
+      round=  roundService.findRound(1);
+        r= round.getNumber();
+        round.setNumber(r+n);
+        roundService.save(round);
+       
+        request.setAttribute("rounds", roundService.findAll());
+        request.setAttribute("mode", "MODE_ROUND");
+         
         return "index";
     }
     
@@ -199,15 +228,18 @@ public class MainController {
                 if(Integer.parseInt(request.getParameter("yellowcards"))==1) yellowcards=-1;
                 if(Integer.parseInt(request.getParameter("redcards"))==1) redcards=-3;
                 if(Integer.parseInt(request.getParameter("firstsquad"))==1) firstsquad=2;
-                
-                
+                if(firstsquad>0)
              points= goals+assists+lostgoals+penaltysave+penaltymissed+owngoals+yellowcards+redcards+firstsquad+cleansheet;
+                else 
+                      points= goals+assists+lostgoals+penaltysave+penaltymissed+owngoals+yellowcards+redcards+firstsquad;
              Playerpoints p2;
+             
   if(Integer.parseInt(request.getParameter("roundnr"))==0 || Integer.parseInt(request.getParameter("roundnr"))==1)
       oldpoints=0;
   else{
   p2= playerpointsServiceImpl.findByPlayer_id(Integer.parseInt(request.getParameter("roundnr"))-1,Integer.parseInt(request.getParameter("player.id")));
-          oldpoints=p2.getSummarypoints() ; }
+     
+  oldpoints=p2.getSummarypoints() ; }
         
                                    
       System.out.println(oldpoints);    

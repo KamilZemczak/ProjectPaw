@@ -15,7 +15,6 @@ import javax.persistence.OneToOne;
 @Entity(name="userteam")
 public class Userteam implements Serializable {
     @Id
- 
     private Integer id;
     @Column
      private String player1;

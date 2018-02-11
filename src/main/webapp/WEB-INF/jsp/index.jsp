@@ -52,7 +52,9 @@
                           <li><a href="new-clubs">Dodaj Klub</a></li>
                           <li><a href="new-player">Dodaj Zawodnika</a></li>
                          <li><a href="points-manager">Zarządzaj punktami</a></li>
+                         <li><a href="round">Nowa runda</a></li>
                       </ul>  </li></c:if>
+
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <c:if test="${pageContext.request.userPrincipal.name != null}">
@@ -66,8 +68,14 @@
                 </ul>
         </div>
 
-
         <c:choose>
+<c:when test="${mode == 'MODE_ROUND'}">
+  <form class="form-horizontal" method="POST" action="new-round">
+     <input type="hidden" name="number" value="1"/>
+      <input type="submit" class="btn btn-primary" value="Nowa runda"/>
+    </form>
+
+</c:when>
 <c:when test="${mode == 'MODE_HOME'}">
                 <div class="container" id="homeDiv">
                     <center><h2> <span color="green" class="label label-default">Witaj w Fantasy Local League ${pageContext.request.userPrincipal.name}.</span></h2> <br></center>
@@ -504,7 +512,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="control-label col-md-3">Stracone gole (dla obrońców i bramkarzy)</label>
+                                        <label class="control-label col-md-3">Stracone gole</label>
                                         <div class="col-md-7">
                                             <input type="number" class="form-control" name="lostgoals" default="0" max="10" min="0" value="${playerpoints.assists}"/>
                                         </div>
@@ -519,7 +527,7 @@
                                      </div>
                                  </div>
                                  <div class="form-group">
-                                     <label class="control-label col-md-3">Obroniony karny (dla bramkarzy)</label>
+                                     <label class="control-label col-md-3">Obroniony karny</label>
                                      <div class="col-md-7">
                                          <input type="number" class="form-control" name="penaltysave" default="0" max="10" min="0" value="${playerpoints.assists}"/>
                                      </div>
@@ -553,7 +561,7 @@
                        <th>Żółta kartka</th>
                        <th>Czerwona kartka</th>
                        <th>Punkty za rundę</th>
-
+                       <th>Łącznie punktów</th>
                      </tr>
                      </thread>
                      <tbody>
@@ -567,7 +575,7 @@
                      <td> ${playerpoints.yellowcards}</td>
                      <td> ${playerpoints.redcards}</td>
                      <td><b>${playerpoints.roundpoints}</b></td>
-
+                     <td><b>${playerpoints.summarypoints}</b></td>
                      </tr>
                      </c:forEach>
                        </tbody>

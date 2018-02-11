@@ -86,6 +86,7 @@
                                           <li><a href="new-clubs">Dodaj Klub</a></li>
                                           <li><a href="new-player">Dodaj Zawodnika</a></li>
                                           <li><a href="points-manager">Zarządzaj punktami</a></li>
+                                           <li><a href="round">Nowa runda</a></li>
                                       </ul>  </li></c:if>
               </ul>
               <ul class="nav navbar-nav navbar-right">
