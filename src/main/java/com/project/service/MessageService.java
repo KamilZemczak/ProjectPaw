@@ -1,12 +1,4 @@
-/**
- * ***********************************************************
- * Autorskie Prawa Majątkowe Kamil Zemczak
- *
- * Copyright 2017 Kamil Zemczak
- * ************************************************************
- * Utworzono 04-06-2017, Kamil Zemczak
- * ************************************************************
- */
+
 package com.project.service;
 
 import com.project.dto.MessageDTO;

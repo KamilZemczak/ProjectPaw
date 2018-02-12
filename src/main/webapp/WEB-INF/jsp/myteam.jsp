@@ -1103,14 +1103,15 @@
 
 <c:when test="${mode == 'MODE_MYTEAM'}">
 
-<div class="container">
+
       <h3><center> Twój aktualny skład:</center></h3>
 
 
 <c:if test="${formation eq '4-4-2'}">
+  <div class="col-12 col-md-8 col-sm-12">
  <div class="jumbotron">    <table class="table  text-center">
 
-   <tr height="85px">
+   <tr height="55px">
 
    </tr>
 
@@ -1118,63 +1119,63 @@
    <tr>
    <th width="20%"></td>
    <th width="20%"></td>
-   <th width="20%">  <h3 class="bg-success">${p1.firstname}<br> ${p1.lastname}</h>
+   <th width="20%">  <h3 class="bg-success">${p1.firstname}<br> ${p1.lastname}<br> pkt: ${pr1.roundpoints}</h>
          </td>
    <th width="20%"></td>
    <th width="20%"></td>
    </tr>
 
- <tr height="40px">
+ <tr height="20px">
 
  </tr>
    <tr>
-   <td class="text-center" ><h3 class="bg-primary">${p2.firstname}<br> ${p2.lastname}</h>
+   <td class="text-center" ><h3 class="bg-primary">${p2.firstname}<br> ${p2.lastname}<br> pkt: ${pr2.roundpoints}</h>
    </td>
-   <td class="text-center"><h3 class="bg-primary">${p3.firstname}<br> ${p3.lastname}</h>
+   <td class="text-center"><h3 class="bg-primary">${p3.firstname}<br> ${p3.lastname}<br> pkt: ${pr3.roundpoints}</h>
     </td>
  <td>  </td>
-   <td class="text-center"><h3 class="bg-primary">${p4.firstname}<br> ${p4.lastname}</h>
+   <td class="text-center"><h3 class="bg-primary">${p4.firstname}<br> ${p4.lastname}<br> pkt: ${pr4.roundpoints}</h>
     </td>
-   <td class="text-center"><h3 class="bg-primary">${p5.firstname}<br> ${p5.lastname}</h>
+   <td class="text-center"><h3 class="bg-primary">${p5.firstname}<br> ${p5.lastname}<br> pkt: ${pr5.roundpoints}</h>
     </td>
    </tr>
-   <tr height="40px">
+   <tr height="20px">
 
    </tr>
    <tr>
-   <td><h3 class="bg-danger">${p6.firstname}<br> ${p6.lastname}</h>
+   <td><h3 class="bg-danger">${p6.firstname}<br> ${p6.lastname}<br> pkt: ${pr6.roundpoints}</h>
       </td>
-   <td><h3 class="bg-danger">${p7.firstname}<br> ${p7.lastname}</h>
+   <td><h3 class="bg-danger">${p7.firstname}<br> ${p7.lastname}<br> pkt: ${pr7.roundpoints}</h>
     </td>
    <td></td>
-   <td><h3 class="bg-danger">${p8.firstname}<br> ${p8.lastname}</h>
+   <td><h3 class="bg-danger">${p8.firstname}<br> ${p8.lastname}<br> pkt: ${pr8.roundpoints}</h>
     </td>
-   <td><h3 class="bg-danger">${p9.firstname}<br> ${p9.lastname}</h>
+   <td><h3 class="bg-danger">${p9.firstname}<br> ${p9.lastname}<br> pkt: ${pr9.roundpoints}</h>
     </td>
    </tr>
-   <tr height="40px">
+   <tr height="20px">
 
    </tr>
    <tr>
    <td></td>
-   <td><h3 class="bg-info">${p10.firstname}<br> ${p10.lastname}</h>
+   <td><h3 class="bg-info">${p10.firstname}<br> ${p10.lastname}<br> pkt: ${pr10.roundpoints}</h>
       </td>
    <td></td>
-   <td><h3 class="bg-info">${p11.firstname}<br> ${p11.lastname}</h>
+   <td><h3 class="bg-info">${p11.firstname}<br> ${p11.lastname}<br> pkt: ${pr11.roundpoints}</h>
      </td>
    <td></td>
    </tr>
 
    </tbody>
    </table>
-
+</div>
  </div>
 </c:if>
 <c:if test="${formation eq '4-3-3'}">
-
+  <div class="col-12 col-md-8 col-sm-12">
  <div class="jumbotron">    <table class="table  text-center">
 
-   <tr height="85px">
+   <tr height="55px">
 
    </tr>
    <tbody>
@@ -1183,7 +1184,7 @@
    <th width="20%">
 
      </td>
-   <th width="20%">  <h3 class="bg-success">${p1.firstname}<br> ${p1.lastname}</h>
+   <th width="20%">  <h3 class="bg-success">${p1.firstname}<br> ${p1.lastname}<br> pkt: ${pr1.roundpoints}</h>
          </td>
    <th width="20%">
 
@@ -1191,57 +1192,58 @@
    <th width="20%"></td>
    </tr>
 
- <tr height="40px">
+ <tr height="20px">
 
  </tr>
    <tr>
-   <td class="text-center" ><h3 class="bg-primary">${p2.firstname} <br> ${p2.lastname}</h>
+   <td class="text-center" ><h3 class="bg-primary">${p2.firstname} <br> ${p2.lastname} <br> pkt: ${pr2.roundpoints} </h>
    </td>
-   <td class="text-center"><h3 class="bg-primary">${p3.firstname}<br>  ${p3.lastname}</h>
+   <td class="text-center"><h3 class="bg-primary">${p3.firstname}<br>  ${p3.lastname}<br> pkt: ${pr3.roundpoints}</h>
     </td>
  <td>  </td>
-   <td class="text-center"><h3 class="bg-primary">${p4.firstname} <br> ${p4.lastname}</h>
+   <td class="text-center"><h3 class="bg-primary">${p4.firstname} <br> ${p4.lastname}<br> pkt: ${pr4.roundpoints}</h>
     </td>
-   <td class="text-center"><h3 class="bg-primary">${p5.firstname} <br> ${p5.lastname}</h>
+   <td class="text-center"><h3 class="bg-primary">${p5.firstname} <br> ${p5.lastname}<br> pkt: ${pr5.roundpoints}</h>
     </td>
    </tr>
-   <tr height="40px">
+   <tr height="20px">
 
    </tr>
    <tr>
    <td>  </td>
-   <td><h3 class="bg-danger">${p6.firstname}<br>  ${p6.lastname}</h>
+   <td><h3 class="bg-danger">${p6.firstname}<br>  ${p6.lastname}<br> pkt: ${pr6.roundpoints}</h>
   </td>
-   <td><h3 class="bg-danger">${p7.firstname}<br>  ${p7.lastname}</h>
+   <td><h3 class="bg-danger">${p7.firstname}<br>  ${p7.lastname}<br> pkt: ${pr7.roundpoints}</h>
  </td>
-   <td><h3 class="bg-danger">${p8.firstname}<br>  ${p8.lastname}</h>
+   <td><h3 class="bg-danger">${p8.firstname}<br>  ${p8.lastname}<br> pkt: ${pr8.roundpoints}</h>
     </td>
    <td>
     </td>
    </tr>
-   <tr height="40px">
+   <tr height="20px">
 
    </tr>
    <tr>
    <td></td>
-   <td><h3 class="bg-info">${p9.firstname} <br> ${p9.lastname}</h>
+   <td><h3 class="bg-info">${p9.firstname} <br> ${p9.lastname}<br> pkt: ${pr9.roundpoints}</h>
       </td>
-   <td><h3 class="bg-info">${p10.firstname}<br>  ${p10.lastname}</h>
+   <td><h3 class="bg-info">${p10.firstname}<br>  ${p10.lastname}<br> pkt: ${pr10.roundpoints}</h>
  </td>
-   <td><h3 class="bg-info">${p11.firstname}<br>  ${p11.lastname}</h>
+   <td><h3 class="bg-info">${p11.firstname}<br>  ${p11.lastname}<br> pkt: ${pr11.roundpoints}</h>
      </td>
    <td></td>
    </tr>
 
    </tbody>
    </table>
-
+</div>
  </div>
 </c:if>
 <c:if test="${formation eq '4-5-1'}">
+    <div class="col-12 col-md-8 col-sm-12">
  <div class="jumbotron">    <table class="table  text-center">
 
-   <tr height="85px">
+   <tr height="55px">
 
    </tr>
 
@@ -1249,61 +1251,62 @@
    <tr>
    <th width="20%"></td>
    <th width="20%"></td>
-   <th width="20%">  <h3 class="bg-success">${p1.firstname}<br> ${p1.lastname}</h>
+   <th width="20%">  <h3 class="bg-success">${p1.firstname}<br> ${p1.lastname}<br> pkt: ${pr1.roundpoints}</h>
          </td>
    <th width="20%"></td>
    <th width="20%"></td>
    </tr>
 
- <tr height="40px">
+ <tr height="20px">
 
  </tr>
    <tr>
-   <td class="text-center" ><h3 class="bg-primary">${p2.firstname}<br> ${p2.lastname}</h>
+   <td class="text-center" ><h3 class="bg-primary">${p2.firstname}<br> ${p2.lastname}<br> pkt: ${pr2.roundpoints}</h>
    </td>
-   <td class="text-center"><h3 class="bg-primary">${p3.firstname}<br> ${p3.lastname}</h>
+   <td class="text-center"><h3 class="bg-primary">${p3.firstname}<br> ${p3.lastname}<br> pkt: ${pr3.roundpoints}</h>
     </td>
  <td>  </td>
-   <td class="text-center"><h3 class="bg-primary">${p4.firstname}<br> ${p4.lastname}</h>
+   <td class="text-center"><h3 class="bg-primary">${p4.firstname}<br> ${p4.lastname}<br> pkt: ${pr4.roundpoints}</h>
     </td>
-   <td class="text-center"><h3 class="bg-primary">${p5.firstname}<br> ${p5.lastname}</h>
+   <td class="text-center"><h3 class="bg-primary">${p5.firstname}<br> ${p5.lastname}<br> pkt: ${pr5.roundpoints}</h>
     </td>
    </tr>
-   <tr height="40px">
+   <tr height="20px">
 
    </tr>
    <tr>
-   <td><h3 class="bg-danger">${p6.firstname}<br> ${p6.lastname}</h>
+   <td><h3 class="bg-danger">${p6.firstname}<br> ${p6.lastname}<br> pkt: ${pr6.roundpoints}</h>
       </td>
-   <td><h3 class="bg-danger">${p7.firstname}<br> ${p7.lastname}</h>
+   <td><h3 class="bg-danger">${p7.firstname}<br> ${p7.lastname}<br> pkt: ${pr7.roundpoints}</h>
     </td>
-   <td><h3 class="bg-danger">${p8.firstname}<br> ${p8.lastname}</h>
+   <td><h3 class="bg-danger">${p8.firstname}<br> ${p8.lastname}<br> pkt: ${pr8.roundpoints}</h>
    </td>
-   <td><h3 class="bg-danger">${p9.firstname}<br> ${p9.lastname}</h>
+   <td><h3 class="bg-danger">${p9.firstname}<br> ${p9.lastname}<br> pkt: ${pr9.roundpoints}</h>
     </td>
-   <td><h3 class="bg-danger">${p10.firstname}<br> ${p10.lastname}</h>
+   <td><h3 class="bg-danger">${p10.firstname}<br> ${p10.lastname}<br> pkt: ${pr10.roundpoints}</h>
     </td>
    </tr>
-   <tr height="40px">
+   <tr height="20px">
 
    </tr>
    <tr>
    <td></td>
    <td></td>
-   <td><h3 class="bg-info">${p11.firstname}<br> ${p11.lastname}</h></td>
+   <td><h3 class="bg-info">${p11.firstname}<br> ${p11.lastname}<br> pkt: ${pr11.roundpoints}</h></td>
    <td></td>
    <td></td>
    </tr>
 
    </tbody>
    </table>
-
+</div>
  </div>
 </c:if>
 <c:if test="${formation eq '5-4-1'}">
+  <div class="col-12 col-md-8 col-sm-12">
  <div class="jumbotron">    <table class="table  text-center">
 
-   <tr height="85px">
+   <tr height="55px">
 
    </tr>
 
@@ -1311,62 +1314,63 @@
    <tr>
    <th width="20%"></td>
    <th width="20%"></td>
-   <th width="20%">  <h3 class="bg-success">${p1.firstname}<br> ${p1.lastname}</h>
+   <th width="20%">  <h3 class="bg-success">${p1.firstname}<br> ${p1.lastname}<br> pkt: ${pr1.roundpoints}</h>
          </td>
    <th width="20%"></td>
    <th width="20%"></td>
    </tr>
 
- <tr height="40px">
+ <tr height="20px">
 
  </tr>
    <tr>
-   <td class="text-center"><h3 class="bg-primary">${p2.firstname}<br> ${p2.lastname}</h>
+   <td class="text-center"><h3 class="bg-primary">${p2.firstname}<br> ${p2.lastname}<br> pkt: ${pr2.roundpoints}</h>
    </td>
-   <td class="text-center"><h3 class="bg-primary">${p3.firstname}<br> ${p3.lastname}</h>
+   <td class="text-center"><h3 class="bg-primary">${p3.firstname}<br> ${p3.lastname}<br> pkt: ${pr3.roundpoints}</h>
     </td>
- <td> <h3 class="bg-primary">${p4.firstname}<br> ${p4.lastname}</h>
+ <td> <h3 class="bg-primary">${p4.firstname}<br> ${p4.lastname}<br> pkt: ${pr4.roundpoints}</h>
   </td>
-   <td class="text-center"><h3 class="bg-primary">${p5.firstname}<br> ${p5.lastname}</h>
+   <td class="text-center"><h3 class="bg-primary">${p5.firstname}<br> ${p5.lastname}<br> pkt: ${pr5.roundpoints}</h>
     </td>
-   <td class="text-center"><h3 class="bg-primary">${p6.firstname}<br> ${p6.lastname}</h>
+   <td class="text-center"><h3 class="bg-primary">${p6.firstname}<br> ${p6.lastname}<br> pkt: ${pr6.roundpoints}</h>
     </td>
    </tr>
-   <tr height="40px">
+   <tr height="20px">
 
    </tr>
    <tr>
-   <td><h3 class="bg-danger">${p7.firstname}<br> ${p7.lastname}</h>
+   <td><h3 class="bg-danger">${p7.firstname}<br> ${p7.lastname}<br> pkt: ${pr7.roundpoints}</h>
       </td>
-   <td><h3 class="bg-danger">${p8.firstname}<br> ${p8.lastname}</h>
+   <td><h3 class="bg-danger">${p8.firstname}<br> ${p8.lastname}<br> pkt: ${pr8.roundpoints}</h>
     </td>
    <td>
    </td>
-   <td><h3 class="bg-danger">${p9.firstname}<br> ${p9.lastname}</h>
+   <td><h3 class="bg-danger">${p9.firstname}<br> ${p9.lastname}<br> pkt: ${pr9.roundpoints}</h>
     </td>
-   <td><h3 class="bg-danger">${p10.firstname}<br> ${p10.lastname}</h>
+   <td><h3 class="bg-danger">${p10.firstname}<br> ${p10.lastname}<br> pkt: ${pr10.roundpoints}}</h>
     </td>
    </tr>
-   <tr height="40px">
+   <tr height="20px">
 
    </tr>
    <tr>
    <td></td>
    <td></td>
-   <td><h3 class="bg-info">${p11.firstname}<br> ${p11.lastname}</h></td>
+   <td><h3 class="bg-info">${p11.firstname}<br> ${p11.lastname}<br> pkt: ${pr11.roundpoints}</h></td>
    <td></td>
    <td></td>
    </tr>
 
    </tbody>
    </table>
-
+</div>
  </div>
 </c:if>
 <c:if test="${formation eq '5-3-2'}">
+  <div class="col-12 col-md-8 col-sm-12">
  <div class="jumbotron">    <table class="table  text-center">
 
-   <tr height="85px">
+   <tr height="55px">
 
    </tr>
 
@@ -1374,62 +1378,63 @@
    <tr>
    <th width="20%"></td>
    <th width="20%"></td>
-   <th width="20%">  <h3 class="bg-success">${p1.firstname}<br> ${p1.lastname}</h>
+   <th width="20%">  <h3 class="bg-success">${p1.firstname}<br> ${p1.lastname}<br> pkt: ${pr1.roundpoints}</h>
          </td>
    <th width="20%"></td>
    <th width="20%"></td>
    </tr>
 
- <tr height="40px">
+ <tr height="20px">
 
  </tr>
    <tr>
-   <td class="text-center"><h3 class="bg-primary">${p2.firstname}<br> ${p2.lastname}</h>
+   <td class="text-center"><h3 class="bg-primary">${p2.firstname}<br> ${p2.lastname}<br> pkt: ${pr2.roundpoints}</h>
    </td>
-   <td class="text-center"><h3 class="bg-primary">${p3.firstname}<br> ${p3.lastname}</h>
+   <td class="text-center"><h3 class="bg-primary">${p3.firstname}<br> ${p3.lastname}<br> pkt: ${pr3.roundpoints}</h>
     </td>
- <td> <h3 class="bg-primary">${p4.firstname}<br> ${p4.lastname}</h>
+ <td> <h3 class="bg-primary">${p4.firstname}<br> ${p4.lastname}<br> pkt: ${pr4.roundpoints}</h>
   </td>
-   <td class="text-center"><h3 class="bg-primary">${p5.firstname}<br> ${p5.lastname}</h>
+   <td class="text-center"><h3 class="bg-primary">${p5.firstname}<br> ${p5.lastname}<br> pkt: ${pr5.roundpoints}</h>
     </td>
-   <td class="text-center"><h3 class="bg-primary">${p6.firstname}<br> ${p6.lastname}</h>
+   <td class="text-center"><h3 class="bg-primary">${p6.firstname}<br> ${p6.lastname}<br> pkt: ${pr6.roundpoints}</h>
     </td>
    </tr>
-   <tr height="40px">
+   <tr height="20px">
 
    </tr>
    <tr>
    <td>
       </td>
-   <td><h3 class="bg-danger">${p7.firstname}<br> ${p7.lastname}</h>
+   <td><h3 class="bg-danger">${p7.firstname}<br> ${p7.lastname}<br> pkt: ${pr7.roundpoints}</h>
     </td>
-   <td><h3 class="bg-danger">${p8.firstname}<br> ${p8.lastname}</h>
+   <td><h3 class="bg-danger">${p8.firstname}<br> ${p8.lastname}<br> pkt: ${pr8.roundpoints}</h>
    </td>
-   <td><h3 class="bg-danger">${p9.firstname}<br> ${p9.lastname}</h>
+   <td><h3 class="bg-danger">${p9.firstname}<br> ${p9.lastname}<br> pkt: ${pr9.roundpoints}</h>
     </td>
    <td>
     </td>
    </tr>
-   <tr height="40px">
+   <tr height="20px">
 
    </tr>
    <tr>
    <td></td>
-   <td><h3 class="bg-info">${p10.firstname}<br> ${p10.lastname}</h></td>
+   <td><h3 class="bg-info">${p10.firstname}<br> ${p10.lastname}<br> pkt: ${pr10.roundpoints}</h></td>
    <td></td>
-   <td><h3 class="bg-info">${p11.firstname}<br> ${p11.lastname}</h></td>
+   <td><h3 class="bg-info">${p11.firstname}<br> ${p11.lastname}<br> pkt: ${pr11.roundpoints}</h></td>
    <td></td>
    </tr>
 
    </tbody>
    </table>
-
+</div>
  </div>
 </c:if>
 <c:if test="${formation eq '3-5-2'}">
+  <div class="col-12 col-md-8 col-sm-12">
  <div class="jumbotron">    <table class="table  text-center">
 
-   <tr height="85px">
+   <tr height="55px">
 
    </tr>
 
@@ -1437,59 +1442,70 @@
    <tr>
    <th width="20%"></td>
    <th width="20%"></td>
-   <th width="20%">  <h3 class="bg-success">${p1.firstname}<br> ${p1.lastname}</h>
+   <th width="20%">  <h3 class="bg-success">${p1.firstname}<br> ${p1.lastname}<br> pkt: ${pr1.roundpoints}</h>
          </td>
    <th width="20%"></td>
    <th width="20%"></td>
    </tr>
 
- <tr height="40px">
+ <tr height="20px">
 
  </tr>
    <tr>
    <td class="text-center">
    </td>
-   <td class="text-center"><h3 class="bg-primary">${p2.firstname}<br> ${p2.lastname}</h>
+   <td class="text-center"><h3 class="bg-primary">${p2.firstname}<br> ${p2.lastname}<br> pkt: ${pr2.roundpoints} </h>
     </td>
- <td><h3 class="bg-primary">${p3.firstname}<br> ${p3.lastname}</h>  </td>
-   <td class="text-center"><h3 class="bg-primary">${p4.firstname}<br> ${p4.lastname}</h>
+ <td><h3 class="bg-primary">${p3.firstname}<br> ${p3.lastname}<br> pkt: ${pr3.roundpoints}</h>  </td>
+   <td class="text-center"><h3 class="bg-primary">${p4.firstname}<br> ${p4.lastname}<br> pkt: ${pr4.roundpoints}</h>
     </td>
    <td class="text-center">
     </td>
    </tr>
-   <tr height="40px">
+   <tr height="20px">
 
    </tr>
    <tr>
-   <td><h3 class="bg-danger">${p5.firstname}<br> ${p5.lastname}</h>
+   <td><h3 class="bg-danger">${p5.firstname}<br> ${p5.lastname}<br> pkt: ${pr5.roundpoints}</h>
       </td>
-   <td><h3 class="bg-danger">${p6.firstname}<br> ${p6.lastname}</h>
+   <td><h3 class="bg-danger">${p6.firstname}<br> ${p6.lastname}<br> pkt: ${pr6.roundpoints}</h>
     </td>
-   <td><h3 class="bg-danger">${p7.firstname}<br> ${p7.lastname}</h></td>
-   <td><h3 class="bg-danger">${p8.firstname}<br> ${p8.lastname}</h>
+   <td><h3 class="bg-danger">${p7.firstname}<br> ${p7.lastname}<br> pkt: ${pr7.roundpoints}</h></td>
+   <td><h3 class="bg-danger">${p8.firstname}<br> ${p8.lastname}<br> pkt: ${pr8.roundpoints}</h>
     </td>
-   <td><h3 class="bg-danger">${p9.firstname}<br> ${p9.lastname}</h>
+   <td><h3 class="bg-danger">${p9.firstname}<br> ${p9.lastname}<br> pkt: ${pr9.roundpoints}</h>
     </td>
    </tr>
-   <tr height="40px">
+   <tr height="20px">
 
    </tr>
    <tr>
    <td></td>
-   <td><h3 class="bg-info">${p10.firstname}<br> ${p10.lastname}</h>
+   <td><h3 class="bg-info">${p10.firstname}<br> ${p10.lastname}<br> pkt: ${pr10.roundpoints}</h>
       </td>
    <td></td>
-   <td><h3 class="bg-info">${p11.firstname}<br> ${p11.lastname}</h>
+   <td><h3 class="bg-info">${p11.firstname}<br> ${p11.lastname}<br> pkt: ${pr11.roundpoints}</h>
      </td>
    <td></td>
    </tr>
 
    </tbody>
    </table>
-
+</div>
  </div>
 </c:if>
-</div>
+<div class="col-6 col-md-4">  <div class="well well-sm">
+  <div class="text-center">
+    <c:set var = "rpoints" scope = "session" value = "${pr1.roundpoints+pr2.roundpoints+pr3.roundpoints+pr4.roundpoints+pr5.roundpoints+pr6.roundpoints+pr7.roundpoints+pr8.roundpoints+pr9.roundpoints+pr10.roundpoints+pr11.roundpoints}"/>
+    Widzisz po lewej swój aktualny skład. <br>Pod nazwiskami graczy widnieje ilość punktów zdobyta przez nich w ostatniej kolejce.<br>
+    Liczba zdobytych punktów w tej kolejce: <b><c:out value = "${rpoints}"/></b> <br>
+
+    <c:set var = "budgett" scope = "session" value = "${100000-budget}"/>
+Twój aktualny budżet to:  <b><c:out value = "${budgett}"/></b> <br>
+ <br>
+
+</div></div></div>
+
 </c:when>
 </c:choose>
           <br>

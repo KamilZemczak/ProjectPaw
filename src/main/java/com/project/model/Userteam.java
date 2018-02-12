@@ -48,6 +48,8 @@ public class Userteam implements Serializable {
      private String player15;
      @Column
      private Integer tcounter;
+      @Column
+     private Integer transfers;
     @OneToOne 
     private User user;
     
@@ -58,7 +60,7 @@ public class Userteam implements Serializable {
     public Userteam() {
     }
 
-    public Userteam(Integer id, String player1, String player2, String player3, String player4, String player5, String player6, String player7, String player8, String player9, String player10, String player11, String player12, String player13, String player14, String player15, Integer tcounter) {
+    public Userteam(Integer id, String player1, String player2, String player3, String player4, String player5, String player6, String player7, String player8, String player9, String player10, String player11, String player12, String player13, String player14, String player15, Integer tcounter, Integer transfers) {
        super();
         this.id = id;
         this.player1 = player1;
@@ -77,6 +79,7 @@ public class Userteam implements Serializable {
         this.player14 = player14;
         this.player15 = player15;
         this.tcounter = tcounter;
+        this.transfers=transfers;
     
     }
     
@@ -224,6 +227,14 @@ public class Userteam implements Serializable {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Integer getTransfers() {
+        return transfers;
+    }
+
+    public void setTransfers(Integer transfers) {
+        this.transfers = transfers;
     }
 
  

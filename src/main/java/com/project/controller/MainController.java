@@ -394,7 +394,20 @@ public class MainController {
        Myteam myteam;
        myteam = myteamService.findMyteam(user.getId());
       String formation = myteam.getFormation();
-       
+      
+      Round round= roundService.findRound(1);
+           int r= round.getNumber();
+     Playerpoints pr1=  playerpointsServiceImpl.findByPlayer_id(r,Integer.parseInt(myteam.getMplayer1()));
+     Playerpoints pr2=  playerpointsServiceImpl.findByPlayer_id(r,Integer.parseInt(myteam.getMplayer2()));
+     Playerpoints pr3=  playerpointsServiceImpl.findByPlayer_id(r,Integer.parseInt(myteam.getMplayer3()));
+     Playerpoints pr4=  playerpointsServiceImpl.findByPlayer_id(r,Integer.parseInt(myteam.getMplayer4()));
+     Playerpoints pr5=  playerpointsServiceImpl.findByPlayer_id(r,Integer.parseInt(myteam.getMplayer5()));
+     Playerpoints pr6=  playerpointsServiceImpl.findByPlayer_id(r,Integer.parseInt(myteam.getMplayer6()));
+     Playerpoints pr7=  playerpointsServiceImpl.findByPlayer_id(r,Integer.parseInt(myteam.getMplayer7()));
+     Playerpoints pr8=  playerpointsServiceImpl.findByPlayer_id(r,Integer.parseInt(myteam.getMplayer8()));
+     Playerpoints pr9=  playerpointsServiceImpl.findByPlayer_id(r,Integer.parseInt(myteam.getMplayer9()));
+     Playerpoints pr10=  playerpointsServiceImpl.findByPlayer_id(r,Integer.parseInt(myteam.getMplayer10()));
+     Playerpoints pr11=  playerpointsServiceImpl.findByPlayer_id(r,Integer.parseInt(myteam.getMplayer11()));
      player1 = playerService.findPlayer(Integer.parseInt(myteam.getMplayer1()));
      player2 = playerService.findPlayer(Integer.parseInt(myteam.getMplayer2()));
      player3 = playerService.findPlayer(Integer.parseInt(myteam.getMplayer3()));
@@ -410,6 +423,17 @@ public class MainController {
        List<Player> mplayerList = new ArrayList<>();
        
        request.setAttribute("formation", formation);
+       request.setAttribute("pr1", pr1);
+       request.setAttribute("pr2", pr2);
+       request.setAttribute("pr3", pr3);
+       request.setAttribute("pr4", pr4);
+       request.setAttribute("pr5", pr5);
+       request.setAttribute("pr6", pr6);
+       request.setAttribute("pr7", pr7);
+       request.setAttribute("pr8", pr8);
+       request.setAttribute("pr9", pr9);
+       request.setAttribute("pr10", pr10);
+       request.setAttribute("pr11", pr11);
         request.setAttribute("p1", player1);
         request.setAttribute("p2", player2);
         request.setAttribute("p3", player3);
@@ -602,7 +626,6 @@ public class MainController {
             playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer13())));
             playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer14())));
             playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer15())));
-//       }
 
         request.setAttribute("budget", budget);
         request.setAttribute("players", playerList);
@@ -612,6 +635,7 @@ public class MainController {
          
         return "myteam";
     }
+    
     @GetMapping("/myteam-3-5-2")
     public String myteam352(HttpServletRequest request) {
        User user = userServiceImpl.getUserId();
@@ -662,7 +686,6 @@ User user = userServiceImpl.getUserId();
                         return "redirect:/myteam-4-4-2";
                        }}
 
-   
         myteam.setMplayer1(request.getParameter("mplayer1"));
         myteam.setMplayer2(request.getParameter("mplayer2"));
         myteam.setMplayer3(request.getParameter("mplayer3"));
@@ -675,10 +698,8 @@ User user = userServiceImpl.getUserId();
         myteam.setMplayer10(request.getParameter("mplayer10"));
         myteam.setMplayer11(request.getParameter("mplayer11"));
     
-        
     myteamService.save(myteam);
-        
-          
+
         request.setAttribute("users", userServiceImpl.findAll());
         request.setAttribute("mode", "MODE_MYTEAMS"); 
         request.setAttribute("myteams", myteamService.findAll());
@@ -692,11 +713,10 @@ User user = userServiceImpl.getUserId();
       @GetMapping("/transfers")
     public String trasnfers(HttpServletRequest request) {
         User user = userServiceImpl.getUserId();
-       Userteam userteam = new Userteam();
-       
+       Userteam userteam;
        userteam = userteamService.findUserteam(user.getId());
         int budget= userteam.getTcounter();
-     
+        int tr = userteam.getTransfers();
        List<Player> playerList = new ArrayList<>();
 
             playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer1())));
@@ -715,12 +735,13 @@ User user = userServiceImpl.getUserId();
             playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer14())));
             playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer15())));
 
-   
             request.setAttribute("players", playerList);
             request.setAttribute("budget", budget);
+            request.setAttribute("tr", tr); 
         request.setAttribute("mode", "MODE_TRANSFERS");
       request.setAttribute("users", userServiceImpl.findAll());
         request.setAttribute("mode", "MODE_TRANSFERS"); 
+    
         return "index";
     }
      
@@ -729,11 +750,10 @@ User user = userServiceImpl.getUserId();
      
         User user = userServiceImpl.getUserId();
         user.getId();
-        
          userteam = userteamService.findUserteam(user.getId());
          myteam = myteamService.findMyteam(user.getId());
         int oldbudget = userteam.getTcounter();
-        
+        int tr = userteam.getTransfers();
          Player pricePlayer;
         int price = 0;
          
@@ -798,6 +818,7 @@ User user = userServiceImpl.getUserId();
                    myteam.setId(user.getId());    
                 userteam.setId(user.getId());
          userteam.setTcounter(oldbudget-price);
+         userteam.setTransfers(tr+1);
         userteamService.save(userteam);   
          myteamService.save(myteam);    
          
@@ -818,24 +839,19 @@ User user = userServiceImpl.getUserId();
         return "redirect:/defender";
         if(position.equals("bramkarz"))
         return "redirect:/goalkeeper";
-        
-        
     return "index";
     }
     
      @GetMapping("/goalkeeper")
     public String goalkeeper (HttpServletRequest request) {
         User user = userServiceImpl.getUserId();
-       Userteam userteam = new Userteam();
-       
+       Userteam userteam = new Userteam(); 
        userteam = userteamService.findUserteam(user.getId());
         int budget= userteam.getTcounter();
         List<Player> playerList = new ArrayList<>();
-
             playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer1())));
             playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer2())));
-        
-        
+
       request.setAttribute("playerss", playerList);
       request.setAttribute("budget", budget);
       request.setAttribute("players", playerService.findAll());
@@ -881,8 +897,7 @@ User user = userServiceImpl.getUserId();
             playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer10())));
             playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer11())));
             playerList.add(playerService.findPlayer(Integer.parseInt(userteam.getPlayer12())));
-           
-         
+ 
         request.setAttribute("playerss", playerList);
         request.setAttribute("budget", budget);
       request.setAttribute("players", playerService.findAll());
@@ -897,7 +912,6 @@ User user = userServiceImpl.getUserId();
     public String striker (HttpServletRequest request) {
         User user = userServiceImpl.getUserId();
        Userteam userteam = new Userteam();
-       
        userteam = userteamService.findUserteam(user.getId());
         int budget= userteam.getTcounter();
         List<Player> playerList = new ArrayList<>();
@@ -922,10 +936,9 @@ User user = userServiceImpl.getUserId();
           myteam = myteamService.findMyteam(user.getId());
          userteam = userteamService.findUserteam(user.getId());
         int oldbudget = userteam.getTcounter();
-
          Player pricePlayer;
         int price = 0;
-         
+
             pricePlayer = playerService.findPlayer(Integer.parseInt(request.getParameter("bs")));
             price = pricePlayer.getPrice();       
            
@@ -993,7 +1006,7 @@ User user = userServiceImpl.getUserId();
                
                userteam.setId(user.getId());
                myteam.setId(user.getId());   
-          userteam.setTcounter(oldbudget+price);
+          userteam.setTcounter(oldbudget+price);    
          userteamService.save(userteam);  
          myteamService.save(myteam);  
          request.setAttribute("users", userServiceImpl.findAll());
@@ -1002,7 +1015,6 @@ User user = userServiceImpl.getUserId();
         request.setAttribute("mode", "MODE_BUYPLAYER"); 
         request.setAttribute("players", playerService.findAll());
         request.setAttribute("mode", "MODE_BUYPLAYER"); 
-        
         return "redirect:/";
     }
     

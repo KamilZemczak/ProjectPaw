@@ -162,6 +162,11 @@
 
                                     k) Bramka samobójcza.  <br>
                                     - wszyscy: minus 3 pkt.  <br>
+                                    <h3>Transfery:</h3>
+                                      <br>
+                                        Użytkownik ma prawo wykonać 10 transferów w ciągu sezonu.<br>
+                                         Aby kupić nowego zawodnika na daną pozycję najpierw trzeba jednego sprzedać. Wtedy to odpowiednia ilość wirtualnych pieniędzy wróci na konto użytkownika.
+                                         Następnie możemy kupić nowego piłkarza jeśli pozwoli nam na to stan budżetu.
 
 
                             </div>
@@ -472,7 +477,7 @@
 
                                              <select class="form-control cascadingDropDown"  name="player.id">
                                                <c:forEach var="player" items="${players}">
-                                                   <option value="${player.id}"> ${player.firstname}  ${player.lastname} ${player.position} ${player.club} </option>
+                                                   <option value="${player.id}"> ${player.firstname}  ${player.lastname} &nbsp;&nbsp;&nbsp;&nbsp; <b>${player.position}</b> &nbsp;&nbsp;&nbsp; ${player.club} </option>
                                           </c:forEach>    </select>
                                        </div>
                                        </div>
@@ -800,10 +805,15 @@
 </c:when>
 <c:when test="${mode == 'MODE_TRANSFERS'}">
   <c:set var = "budgett" scope = "session" value = "${100000-budget}"/>
-    <center><h2> <span color="green" class="label label-default">${pageContext.request.userPrincipal.name} twój aktualny budżet to: <c:out value = "${budgett}"/></span></h2> <br></center>
+    <center><h2> <span color="green" class="label label-default">${pageContext.request.userPrincipal.name} twój aktualny budżet to: <c:out value = "${budgett}"/></span>
+     <br></h2>
+  <c:set var = "trr" scope = "session" value = "${10-tr}"/>
+<h3>Zostało Ci jeszcze: <b><c:out value = "${trr}"/></b> transferów</h3>
+
+  </center>
                     <div class="container">
 
-                  <div class="text-center"></h3>    Twoi zawodnicy: </h3></div>
+                  <div class="text-center"><h3>    Twoi zawodnicy: </h3></div>
                       <table class="table table-striped table-bordered text-left">
                           <thread>
                               <tr>
@@ -839,7 +849,15 @@
                        </option>
                      </c:forEach></select>
                      <br>
-          <div class="text-center">   <input type="submit" class="btn btn-success" value="Sprzedaj wybranego zawodnika"/></div>
+          <div class="text-center">
+            <c:choose>
+              <c:when test="${tr >= 10}">
+                <h3>Wykorzystałeś limit transferów na ten sezon!</h3>
+                </c:when>
+          <c:otherwise>  <input type="submit" class="btn btn-success" value="Sprzedaj wybranego zawodnika"/></c:otherwise>
+          </c:choose>
+          </div>
+
                       <br>
                         </form>
                     </div>
