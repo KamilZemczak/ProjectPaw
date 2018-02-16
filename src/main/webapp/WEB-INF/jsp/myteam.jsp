@@ -95,6 +95,7 @@
                                           <span class="caret"></span></a>
                                       <ul class="dropdown-menu">
                                           <li><a href="new-game">Dodaj nowy mecz</a></li>
+                                          <li><a href="all-games">Edytuj mecze</a></li>
                                           <li><a href="new-clubs">Dodaj Klub</a></li>
                                           <li><a href="new-player">Dodaj Zawodnika</a></li>
                                           <li><a href="points-manager">Zarządzaj punktami</a></li>

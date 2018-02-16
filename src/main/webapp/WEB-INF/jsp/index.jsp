@@ -61,6 +61,7 @@
                     <span class="caret"></span></a>
                       <ul class="dropdown-menu">
                           <li><a href="new-game">Dodaj nowy mecz</a></li>
+                          <li><a href="all-games">Edytuj mecze</a></li>
                           <li><a href="new-clubs">Dodaj Klub</a></li>
                           <li><a href="new-player">Dodaj Zawodnika</a></li>
                          <li><a href="points-manager">Zarządzaj punktami</a></li>
@@ -222,7 +223,7 @@
                                         <th>Wynik</th>
                                         <th>Zakończony</th>
                                         <th></th>
-                                        <th></th>
+
                                     </tr>
                                 </thread>
                                 <tbody>
@@ -234,9 +235,9 @@
                                             <td>${game.awayTeam}</td>
                                             <td>${game.dateGame}</td>
                                             <td>${game.scoreHomea} : ${game.scoreAwaya}</td>
-                                            <td>${game.finished}</td>
+                                            <td><c:if test="${game.finished== false}"> Nie zakończony</c:if>
+                                          <c:if test="${game.finished== true}"> Zakończony</c:if></td>
                                             <td><a href="update-game?id=${game.id}"><span class="glyphicon glyphicon-pencil"></span></a></td>
-                                            <td><a href="delete-game?id=${game.id}"><span class="glyphicon glyphicon-trash"></span></a></td>
                                         </tr>
                                     </c:forEach>
                                 </tbody>
@@ -245,7 +246,7 @@
                     </div>
 </c:when>
 
-<c:when test="${mode == 'MODE_NEW' || mode == 'MODE_UPDATE'}">
+<c:when test="${mode == 'MODE_NEW'}">
                     <div class="container text-center">
                         <h3>Dodaj mecz</h3>
                         <hr>
@@ -304,9 +305,9 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3">Zakończony</label>
                                 <div class="col-md-7">
-                                    <input type="radio" class="col-sm-1" name="finished" value="tak"/>
+                                    <input type="radio" class="col-sm-1" name="finished" value="1"/>
                                     <div class="col-sm-1">Tak</div>
-                                    <input type="radio" class="col-sm-1" name="finished" value="nie" checked/>
+                                    <input type="radio" class="col-sm-1" name="finished" value="0" checked/>
                                     <div class="col-sm-1">Nie</div>
                                 </div>
                             </div>
@@ -319,6 +320,81 @@
                         </form>
                     </div>
 </c:when>
+
+<c:when test="${mode == 'MODE_UPDATE'}">
+                    <div class="container text-center">
+                        <h3>Dodaj mecz</h3>
+                        <hr>
+                        <form class="form-horizontal" method="POST" action="save-game">
+
+                            <input type="hidden" name="id" value="${game.id}"/>
+                            <div class="form-group">
+                                <label class="control-label col-md-3">Numer kolejki</label>
+                                <div class="col-md-7">
+                                    <input type="number" class="form-control" name="round" max="99" min="0" value="${game.round}"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <label class="control-label col-md-3">Drużyna 1 (gospodarze)</label>
+
+                                <div class="col-md-7">
+
+                                    <input type="text" class="form-control" name="homeTeam" value="${game.homeTeam}"/>
+
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <label class="control-label col-md-3">Drużyna 2 (goście)</label>
+
+                                <div class="col-md-7">
+
+                                    <input type="text" class="form-control" name="awayTeam" value="${game.awayTeam}"/>
+
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3">Data spotkania</label>
+                                <div class="col-md-7">
+                                    <input type="date" class="form-control" name="dateGame" value="${game.dateGame}"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3">Wynik 1 drużyny (gospodarze)</label>
+                                <div class="col-md-7">
+
+                                    <input type="number" class="form-control" name="scoreHomea" max="25" min="0"  value="${game.scoreHomea}"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3">Wynik 2 drużyny (goście)</label>
+                                <div class="col-md-7">
+                                    <input type="number" class="form-control" name="scoreAwaya" max="25" min="0" value="${game.scoreAwaya}"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3">Zakończony</label>
+                                <div class="col-md-7">
+                                    <input type="radio" class="col-sm-1" name="finished" value="1"/>
+                                    <div class="col-sm-1">Tak</div>
+                                    <input type="radio" class="col-sm-1" name="finished" value="0" checked/>
+                                    <div class="col-sm-1">Nie</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-primary" value="Zapisz"/>
+                            </div>
+
+
+
+                        </form>
+                    </div>
+</c:when>
+
 
 <c:when test="${mode == 'MODE_CLUBS'}">
                     <div class="container text-center">
@@ -634,7 +710,8 @@
                                             <td>${game.dateGame}</td>
                                             <td>${game.scoreHomep} : ${game.scoreAwayp}</td>
                                             <td>${game.scoreHomea} : ${game.scoreAwaya}</td>
-                                            <td>${game.finished}</td>
+                                            <td><c:if test="${game.finished== false}"> Nie zakończony</c:if>
+                                          <c:if test="${game.finished== true}"> Zakończony</c:if></td>
                                         </tr>
                                     </c:forEach>
                                 </tbody>
@@ -699,7 +776,8 @@
                                             <td>${game.dateGame}</td>
 
                                             <td>${game.scoreHomea} : ${game.scoreAwaya}</td>
-                                            <td>${game.finished}</td>
+                                            <td><c:if test="${game.finished== false}"> Nie zakończony</c:if>
+                                          <c:if test="${game.finished== true}"> Zakończony</c:if></td>
 
                                         </tr>
                                     </c:forEach>
