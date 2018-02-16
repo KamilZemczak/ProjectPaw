@@ -26,8 +26,20 @@
                 padding-top: 5px;
                 padding-bottom: 20px;
             }
-
-
+            .navbar-inverse{
+                background-color:#009500;
+                border-color: #006600;
+                color: #000000;
+            }
+            .navbar-inverse .navbar-nav > li > a {
+              color: #000000;
+            }
+            .navbar-inverse .navbar-brand {
+              color: #000000;
+            }
+            .modal-header{
+              background-color:#009500;
+            }
         </style>
     </head>
     <body>
@@ -41,7 +53,7 @@
                     <li><a href="myteam-4-4-2">Edytuj swoją drużynę</a></li>
                     <li><a href="transfers">Transfery</a></li>
                     <li><a href="bet-games">Terminarz i wyniki meczów</a></li>
-                    <li><a href="#">Klasyfikacja graczy</a></li>
+
                     <li><a href="rules">Zasady</a></li>
                     <li><a href="contact">Kontakt</a></li>
                     <c:if test="${adminu eq '28'}">             <li class="dropdown">
@@ -110,10 +122,10 @@
 </c:when>
 
 <c:when test="${mode == 'MODE_RULES'}">
-                    <div class="container" id="homeDiv">
+                    <div class="container" >
                         <center><h2> <span color="green" class="label label-default">Witaj w Fantasy Local League ${pageContext.request.userPrincipal.name}.</span></h2> <br></center>
 
-                        <div class="jumbotron">
+                        <div class="jumbotron" style="background-color:#009500;">
                             <div class="modal-header">
                                 <h3>Tworzenie drużyny:</h3>
                                 <br>
@@ -162,8 +174,9 @@
 
                                     k) Bramka samobójcza.  <br>
                                     - wszyscy: minus 3 pkt.  <br>
+                                    <hr>
                                     <h3>Transfery:</h3>
-                                      <br>
+
                                         Użytkownik ma prawo wykonać 10 transferów w ciągu sezonu.<br>
                                          Aby kupić nowego zawodnika na daną pozycję najpierw trzeba jednego sprzedać. Wtedy to odpowiednia ilość wirtualnych pieniędzy wróci na konto użytkownika.
                                          Następnie możemy kupić nowego piłkarza jeśli pozwoli nam na to stan budżetu.

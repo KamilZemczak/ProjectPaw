@@ -61,6 +61,18 @@
               background-color: red;
               color:black;
             }
+            .navbar-inverse{
+                background-color:#009500;
+                color: #000000;
+                border-color: #006600;
+            }
+            .navbar-inverse .navbar-nav > li > a {
+              color: #000000;
+            }
+            .navbar-inverse .navbar-brand {
+              color: #000000;
+            }
+
         </style>
     </head>
     <body>
@@ -74,7 +86,7 @@
                 <li><a href="myteam-4-4-2">Edytuj swoją drużynę</a></li>
                 <li><a href="transfers">Transfery</a></li>
                 <li><a href="bet-games">Terminarz i wyniki meczów</a></li>
-                  <li><a href="#">Klasyfikacja graczy</a></li>
+
                     <li><a href="rules">Zasady</a></li>
                   <li><a href="contact">Kontakt</a></li>
                   <c:if test="${adminu eq '28'}">             <li class="dropdown">

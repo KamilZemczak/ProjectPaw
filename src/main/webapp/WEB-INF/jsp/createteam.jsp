@@ -47,7 +47,18 @@
             .well {
               background-color:#80ff80;
             }
-            
+            .navbar-inverse{
+                background-color:#009500;
+                border-color: #006600;
+                color: #000000;
+            }
+            .navbar-inverse .navbar-nav > li > a {
+              color: #000000;
+            }
+            .navbar-inverse .navbar-brand {
+              color: #000000;
+            }
+
 
         </style>
     </head>
